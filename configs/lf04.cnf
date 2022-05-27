@@ -17,6 +17,22 @@ routing-policy {
             }
         }
     }
+    policy ibgp-overlay {
+        default-action {
+            reject {
+            }
+        }
+        statement 10 {
+            match {
+                family evpn
+                protocol bgp
+            }
+            action {
+                accept {
+                }
+            }
+        }
+    }
 }
 network-instance default {
     protocols {
@@ -151,6 +167,54 @@ network-instance default {
                     level 2 {
                     }
                 }
+            }
+        }
+    }
+}
+
+network-instance default {
+    protocols {
+        bgp {
+            autonomous-system 65001
+            router-id 100.64.1.4
+            group ibgp-overlay {
+                export-policy ibgp-overlay
+                import-policy ibgp-overlay
+                peer-as 65001
+                ipv4-unicast {
+                    admin-state disable
+                }
+                evpn {
+                    admin-state enable
+                }
+                local-as 65001 {
+                }
+                timers {
+                    minimum-advertisement-interval 1
+                }
+                transport {
+                    local-address fc00::1:4:0:0
+                }
+            }
+            
+            neighbor fc00::1:1:0:0 {
+                peer-group ibgp-overlay
+            }
+            
+            neighbor fc00::1:2:0:0 {
+                peer-group ibgp-overlay
+            }
+            
+            neighbor fc00::1:3:0:0 {
+                peer-group ibgp-overlay
+            }
+            
+            neighbor fc00::1:5:0:0 {
+                peer-group ibgp-overlay
+            }
+            
+            neighbor fc00::1:6:0:0 {
+                peer-group ibgp-overlay
             }
         }
     }
