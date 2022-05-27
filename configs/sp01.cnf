@@ -17,7 +17,24 @@ routing-policy {
             }
         }
     }
+    policy ibgp-overlay {
+        default-action {
+            reject {
+            }
+        }
+        statement 10 {
+            match {
+                family evpn
+                protocol bgp
+            }
+            action {
+                accept {
+                }
+            }
+        }
+    }
 }
+
 network-instance default {
     protocols {
         isis {
