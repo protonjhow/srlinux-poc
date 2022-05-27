@@ -1,0 +1,157 @@
+routing-policy {
+    policy underlay-export {
+        default-action {
+            reject {
+            }
+        }
+        statement 10 {
+            match {
+                protocol isis
+                isis {
+                    route-type internal
+                }
+            }
+            action {
+                accept {
+                }
+            }
+        }
+    }
+}
+network-instance default {
+    protocols {
+        isis {
+            instance underlay {
+                admin-state enable
+                level-capability L2
+                max-ecmp-paths 3
+                export-policy underlay-export
+                # 49.dc.pod.rack.device.00
+                net [
+                    49.0000.0001.0003.0006.00
+                ]
+                ipv4-unicast {
+                    admin-state enable
+                }
+                auto-cost {
+                    reference-bandwidth 1000000
+                }
+                level 2 {
+                    metric-style wide
+                }
+            }
+        }
+    }
+}
+
+interface ethernet-1/49 {
+    admin-state enable
+    subinterface 0 {
+        type routed
+        description "to pod1-sp1"
+        admin-state enable
+        ipv6 {
+            address fc00::1:16:649:1/127 {
+            }
+        }
+    }
+}
+network-instance default {
+    interface ethernet-1/49.0 {
+    }
+    protocols {
+        isis {
+            instance underlay {
+                interface ethernet-1/49.0 {
+                    circuit-type point-to-point
+                    level 2 {
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+interface ethernet-1/50 {
+    admin-state enable
+    subinterface 0 {
+        type routed
+        description "to pod1-sp2"
+        admin-state enable
+        ipv6 {
+            address fc00::1:26:650:1/127 {
+            }
+        }
+    }
+}
+network-instance default {
+    interface ethernet-1/50.0 {
+    }
+    protocols {
+        isis {
+            instance underlay {
+                interface ethernet-1/50.0 {
+                    circuit-type point-to-point
+                    level 2 {
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+interface ethernet-1/51 {
+    admin-state enable
+    subinterface 0 {
+        type routed
+        description "to pod1-sp3"
+        admin-state enable
+        ipv6 {
+            address fc00::1:36:651:1/127 {
+            }
+        }
+    }
+}
+network-instance default {
+    interface ethernet-1/51.0 {
+    }
+    protocols {
+        isis {
+            instance underlay {
+                interface ethernet-1/51.0 {
+                    circuit-type point-to-point
+                    level 2 {
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+interface system0 {
+    admin-state enable
+    subinterface 0 {
+        ipv6 {
+            address fc00::1:6:0:0/128 {
+            }
+        }
+    }
+}
+network-instance default {
+    interface system0.0 {
+    }
+    protocols {
+        isis {
+            instance underlay {
+                interface system0.0 {
+                    level 2 {
+                    }
+                }
+            }
+        }
+    }
+}

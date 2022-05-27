@@ -1,0 +1,160 @@
+name: zur1-pods
+prefix: null
+mgmt: {}
+topology:
+  defaults: 
+    kind: srl
+    type: ixrd2
+    image: ghcr.io/nokia/srlinux
+  nodes:
+    cr1:
+      group: core
+      type: ixrh3
+    cr2:
+      group: core
+      type: ixrh3
+    cr3:
+      group: core
+      type: ixrh3
+    pod1-sp1:
+      group: pod1-spine
+      type: ixrd3
+    pod1-sp2:
+      group: pod1-spine
+      type: ixrd3
+    pod1-sp3:
+      group: pod1-spine
+      type: ixrd3
+    pod1-lf1:
+      group: pod1-leaf
+    pod1-lf2:
+      group: pod1-leaf
+    pod1-lf3:
+      group: pod1-leaf
+    pod1-lf4:
+      group: pod1-leaf
+    pod1-lf5:
+      group: pod1-leaf
+    pod1-lf6:
+      group: pod1-leaf
+  links:
+  
+  # core1
+  - endpoints:
+    - cr1:e1-3
+    - pod1-lf1:e1-56
+  - endpoints:
+    - cr1:e1-4
+    - pod1-lf2:e1-56
+  - endpoints:
+    - cr1:e1-5
+    - pod1-lf3:e1-56
+  - endpoints:
+    - cr1:e1-6
+    - pod1-lf4:e1-56
+  - endpoints:
+    - cr1:e1-7
+    - pod1-lf5:e1-56
+  - endpoints:
+    - cr1:e1-8
+    - pod1-lf6:e1-56
+  
+  # core2
+  - endpoints:
+    - cr2:e1-3
+    - pod1-lf1:e1-55
+  - endpoints:
+    - cr2:e1-4
+    - pod1-lf2:e1-55
+  - endpoints:
+    - cr2:e1-5
+    - pod1-lf3:e1-55
+  - endpoints:
+    - cr2:e1-6
+    - pod1-lf4:e1-55
+  - endpoints:
+    - cr2:e1-7
+    - pod1-lf5:e1-55
+  - endpoints:
+    - cr2:e1-8
+    - pod1-lf6:e1-55
+  
+  # core3
+  - endpoints:
+    - cr3:e1-3
+    - pod1-lf1:e1-54
+  - endpoints:
+    - cr3:e1-4
+    - pod1-lf2:e1-54
+  - endpoints:
+    - cr3:e1-5
+    - pod1-lf3:e1-54
+  - endpoints:
+    - cr3:e1-6
+    - pod1-lf4:e1-54
+  - endpoints:
+    - cr3:e1-7
+    - pod1-lf5:e1-54
+  - endpoints:
+    - cr3:e1-8
+    - pod1-lf6:e1-54
+
+  # spine1     
+  - endpoints:
+    - pod1-sp1:e1-1
+    - pod1-lf1:e1-49
+  - endpoints:
+    - pod1-sp1:e1-2
+    - pod1-lf2:e1-49
+  - endpoints:
+    - pod1-sp1:e1-3
+    - pod1-lf3:e1-49
+  - endpoints:
+    - pod1-sp1:e1-4
+    - pod1-lf4:e1-49
+  - endpoints:
+    - pod1-sp1:e1-5
+    - pod1-lf5:e1-49
+  - endpoints:
+    - pod1-sp1:e1-6
+    - pod1-lf6:e1-49
+  
+  # spine2
+  - endpoints:
+    - pod1-sp2:e1-1
+    - pod1-lf1:e1-50
+  - endpoints:
+    - pod1-sp2:e1-2
+    - pod1-lf2:e1-50
+  - endpoints:
+    - pod1-sp2:e1-3
+    - pod1-lf3:e1-50
+  - endpoints:
+    - pod1-sp2:e1-4
+    - pod1-lf4:e1-50
+  - endpoints:
+    - pod1-sp2:e1-5
+    - pod1-lf5:e1-50
+  - endpoints:
+    - pod1-sp2:e1-6
+    - pod1-lf6:e1-50
+  
+  # spine 3
+  - endpoints:
+    - pod1-sp3:e1-1
+    - pod1-lf1:e1-51
+  - endpoints:
+    - pod1-sp3:e1-2
+    - pod1-lf2:e1-51
+  - endpoints:
+    - pod1-sp3:e1-3
+    - pod1-lf3:e1-51
+  - endpoints:
+    - pod1-sp3:e1-4
+    - pod1-lf4:e1-51
+  - endpoints:
+    - pod1-sp3:e1-5
+    - pod1-lf5:e1-51
+  - endpoints:
+    - pod1-sp3:e1-6
+    - pod1-lf6:e1-51
