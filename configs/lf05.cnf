@@ -220,3 +220,56 @@ network-instance default {
         }
     }
 }
+
+
+interface ethernet-1/1 {
+    vlan-tagging true
+    subinterface 0 {
+        type bridged
+        admin-state enable
+        vlan {
+            encap {
+                untagged {
+                }
+            }
+        }
+    }
+}
+
+tunnel-interface vxlan1 {
+    vxlan-interface 1 {
+        type bridged
+        ingress {
+            vni 1
+        }
+    }
+}
+
+network-instance vrf-1 {
+    type mac-vrf
+    admin-state enable
+    interface ethernet-1/1.0 {
+    }
+    vxlan-interface vxlan1.1 {
+    }
+}
+
+network-instance vrf-1 {
+    protocols {
+        bgp-evpn {
+            bgp-instance 1 {
+                admin-state enable
+                vxlan-interface vxlan1.1
+                evi 111
+            }
+        }
+        bgp-vpn {
+            bgp-instance 1 {
+                route-target {
+                    export-rt target:100:111
+                    import-rt target:100:111
+                }
+            }
+        }
+    }
+}
