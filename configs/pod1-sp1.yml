@@ -104,7 +104,7 @@ srl_nokia-network-instance:network-instance:
     protocols:
       srl_nokia-bgp:bgp:
         autonomous-system: 65000
-        router-id: fded:127::1:1:255
+        router-id: 169.254.1.255
         group:
           - group-name: underlay
             admin-state: enable

@@ -104,7 +104,7 @@ srl_nokia-network-instance:network-instance:
     protocols:
       srl_nokia-bgp:bgp:
         autonomous-system: 65001
-        router-id: fded:127::1:2:254
+        router-id: 169.254.2.254
         group:
           - group-name: underlay
             peer-as: 65000
