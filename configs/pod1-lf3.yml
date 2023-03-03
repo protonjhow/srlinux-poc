@@ -153,6 +153,19 @@ srl_nokia-network-instance:network-instance:
       - name: ethernet-1/1.0
     vxlan-interface:
       - name: vxlan1.1
+    protocols:
+      bgp-evpn:
+        bgp-instance: 
+          - id: 1
+            admin-state: enable
+            vxlan-interface: vxlan1.1
+            evi: 111
+      bgp-vpn:
+        bgp-instance:
+          - id: 1,
+            route-target:
+              export-rt: target:100:111
+              import-rt: target:100:111
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
     - name: underlay-loopback-v6
