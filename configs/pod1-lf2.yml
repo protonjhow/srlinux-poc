@@ -107,6 +107,8 @@ srl_nokia-network-instance:network-instance:
         router-id: 169.254.2.254
         ipv6-unicast: 
           admin-state: enable
+          multipath: 
+            max-paths-level-1: 3
         group:
           - group-name: underlay
             peer-as: 65000
