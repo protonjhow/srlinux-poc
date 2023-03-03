@@ -100,7 +100,8 @@ srl_nokia-network-instance:network-instance:
           - group-name: overlay-fabric
             admin-state: enable
             peer-as: 64999
-            local-as: 64999
+            local-as: 
+              - as-number: 64999
             evpn: 
               admin-state: enable
               transport: 

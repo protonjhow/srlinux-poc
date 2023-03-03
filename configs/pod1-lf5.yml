@@ -115,9 +115,10 @@ srl_nokia-network-instance:network-instance:
           - group-name: overlay-fabric
             peer-as: 64999
             admin-state: enable
+            local-as: 
+              - as-number: 64999
             evpn: 
               admin-state: enable
-              local-as: 64999
               transport: 
                 local-address: fded:127::1:5:254
         neighbor:
