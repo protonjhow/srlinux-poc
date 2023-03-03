@@ -4,24 +4,28 @@ cat > /etc/network/interfaces << EOF
 auto eth1
 iface eth1 inet static
   # 10.{pod}.{leaf}.{nextfree}/30
-  address 10.1.1.2
-  netmask 255.255.255.254
-iface eth1 inet6 static
+  #address 10.1.1.2
+  #netmask 255.255.255.254
+  address 192.168.0.1
+  netmask 255.255.255.248
+#iface eth1 inet6 static
   # fd00:{pod}{leaf}::{port}:{vrf}:1/64
-  address fd00:11::1:100:2
-  netmask 64
-  pre-up echo 0 > /proc/sys/net/ipv6/conf/eth1/accept_ra
+  #address fd00:11::1:100:2
+  #netmask 64
+  #pre-up echo 0 > /proc/sys/net/ipv6/conf/eth1/accept_ra
 
 auto eth2
 iface eth2 inet static
   # 10.{pod}.{leaf}.{nextfree}/30
-  address 10.1.2.2
-  netmask 255.255.255.254
-iface eth2 inet6 static
+  #address 10.1.2.2
+  #netmask 255.255.255.254
+  address 192.168.0.9
+  netmask 255.255.255.248
+#iface eth2 inet6 static
   # fd00:{pod}{leaf}::{port}:{vrf}:1/64
-  address fd00:12::1:100:2
-  netmask 64
-  pre-up echo 0 > /proc/sys/net/ipv6/conf/eth1/accept_ra
+  #address fd00:12::1:100:2
+  #netmask 64
+  #pre-up echo 0 > /proc/sys/net/ipv6/conf/eth1/accept_ra
 EOF
 
 ifup eth1
