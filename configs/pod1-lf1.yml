@@ -112,6 +112,14 @@ srl_nokia-network-instance:network-instance:
               flag:
                 - name: events
                 - name: graceful-restart
+          - group-name: overlay-fabric
+            remote-as: 64999
+            admin-state: enable
+            evpn: 
+              admin-state: enable
+              local-as: 64999
+              transport: 
+                local-address: fded:127::1:1:254
         neighbor:
           - peer-address: fccf:111::1:49:1
             peer-group: underlay
@@ -119,6 +127,13 @@ srl_nokia-network-instance:network-instance:
             peer-group: underlay
           - peer-address: fccf:131::1:51:1
             peer-group: underlay
+          - peer-address: fded:127::1:1:255
+            peer-group: overlay-fabric
+          - peer-address: fded:127::1:2:255
+            peer-group: overlay-fabric
+          - peer-address: fded:127::1:3:255
+            peer-group: overlay-fabric
+  
 #  - name: default
 #    admin-state: enable
 #    interface:
