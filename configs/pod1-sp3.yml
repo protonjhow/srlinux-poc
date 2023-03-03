@@ -143,7 +143,7 @@ srl_nokia-routing-policy:routing-policy:
             family: 
               - ipv6-unicast
           action: 
-            policy-result: reject
+            policy-result: accept
         - sequence-id: 1000
           action: 
             policy-result: reject
