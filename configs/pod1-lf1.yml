@@ -7,7 +7,7 @@ srl_nokia-interfaces:interface:
     subinterface:
       - index: 0
         type: bridged
-        admin-state: enabled
+        admin-state: enable
         vlan: 
           encap: 
             untagged: {}
