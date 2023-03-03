@@ -158,6 +158,9 @@ srl_nokia-routing-policy:routing-policy:
           match: 
             prefix-set: underlay-loopback-v6
             protocol: bgp
+            bgp: 
+              as-path-length:
+                value: 1
             family: 
               - ipv6-unicast
           action: 
