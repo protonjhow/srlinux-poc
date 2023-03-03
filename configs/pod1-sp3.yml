@@ -126,7 +126,7 @@ srl_nokia-routing-policy:routing-policy:
   prefix-set:
     - name: underlay-loopback-v4
       prefix:
-        - ip-prefix: "169.254.254.0/23"
+        - ip-prefix: "169.254.0.0/16"
           mask-length-range: "32..32"
     - name: underlay-loopback-v6
       prefix:

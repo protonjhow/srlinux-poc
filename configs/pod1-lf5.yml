@@ -138,32 +138,12 @@ srl_nokia-routing-policy:routing-policy:
   prefix-set:
     - name: underlay-loopback-v4
       prefix:
-        - ip-prefix: "169.254.254.0/23"
+        - ip-prefix: "169.254.0.0/16"
           mask-length-range: "32..32"
     - name: underlay-loopback-v6
       prefix:
         - ip-prefix: "fded:127::/32"
           mask-length-range: "128..128"
-  policy:
-    - name: underlay-loopback
-      statement: 
-        - sequence-id: 10
-          match: 
-            prefix-set: underlay-loopback-v4
-            family: 
-              - ipv4-unicast
-          action: 
-            policy-result: accept
-        - sequence-id: 20
-          match: 
-            prefix-set: underlay-loopback-v6
-            family: 
-              - ipv6-unicast
-          action: 
-            policy-result: accept
-        - sequence-id: 1000
-          action: 
-            policy-result: reject
   policy:
     - name: underlay-loopback
       statement: 
