@@ -86,7 +86,13 @@ srl_nokia-interfaces:interface:
           address:
             # fded:127::{pod}:{devnum}:{255sp|254lf}
             - ip-prefix: fded:127::1:1:254/128
-
+srl_nokia-tunnel-interface:tunnel-interface:
+  - name: vxlan1
+    vxlan-interface: 
+    - index: 1
+      type: bridged
+      ingress:
+        vni: 1
 srl_nokia-network-instance:network-instance:
   - name: default
     admin-state: enable
@@ -140,24 +146,13 @@ srl_nokia-network-instance:network-instance:
             peer-group: overlay-fabric
           - peer-address: fded:127::1:3:255
             peer-group: overlay-fabric
-  
-#  - name: default
-#    admin-state: enable
-#    interface:
-#      - name: ethernet-1/1.0
-#      - name: ethernet-1/2.0
-#      - name: ethernet-1/3.0
-#    protocols:
-#      srl_nokia-bgp:bgp:
-#        autonomous-system: 65999
-#        router-id: 169.254.1.255
-#        group:
-#          - group-name: overlay
-#            peer-as: 65999
-#            admin-state: enable
-#        neighbor:
-#          - peer-address: lol
-#            peer-group: underlay
+  - name: vrf-1
+    type: mac-vrf
+    admin-state: enable
+    interface:
+      - name: ethernet-1/1.0
+    vxlan-interface:
+      - name: vxlan1.1
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
     - name: underlay-loopback-v6
