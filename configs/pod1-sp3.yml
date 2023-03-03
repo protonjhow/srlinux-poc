@@ -106,6 +106,12 @@ srl_nokia-network-instance:network-instance:
             admin-state: enable
             export-policy: underlay-loopback
             import-policy: underlay-loopback
+            graceful-restart:
+              admin-state: enable
+            trace-options:
+              flag:
+                - name: events
+                - name: graceful-restart
         neighbor:
           - peer-address: fccf:131::1:51:0
             peer-as: 65001
