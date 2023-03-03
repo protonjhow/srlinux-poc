@@ -103,7 +103,7 @@ srl_nokia-network-instance:network-instance:
       - name: system0.0
     protocols:
       srl_nokia-bgp:bgp:
-        autonomous-system: 65002
+        autonomous-system: 65004
         router-id: 169.254.4.254
         ipv6-unicast: 
           admin-state: enable

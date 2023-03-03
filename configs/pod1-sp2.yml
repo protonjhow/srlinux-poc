@@ -125,19 +125,19 @@ srl_nokia-network-instance:network-instance:
             peer-as: 65001
             peer-group: underlay
           - peer-address: fccf:122::2:50:0
-            peer-as: 65001
+            peer-as: 65002
             peer-group: underlay
           - peer-address: fccf:123::3:50:0
-            peer-as: 65002
+            peer-as: 65003
             peer-group: underlay
           - peer-address: fccf:124::4:50:0
-            peer-as: 65002
+            peer-as: 65004
             peer-group: underlay
           - peer-address: fccf:125::5:50:0
-            peer-as: 65003
+            peer-as: 65005
             peer-group: underlay
           - peer-address: fccf:126::6:50:0
-            peer-as: 65003
+            peer-as: 65006
             peer-group: underlay
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
