@@ -3,7 +3,7 @@
 CFG_DIR=./configs
 
 configure_SRL() {
-  OUT=$(gnmic -a clab-zur1-pods-$1 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file $CFG_DIR/$1.yaml 2>&1)
+  OUT=$(gnmic -a clab-zur1-pods-$1 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file $CFG_DIR/$1.yml 2>&1)
   echo $OUT | grep -q -e '\"operation\": \"UPDATE\"'
   if [ $? -eq 0 ]; then
     docker exec clab-zur1-pods-$1 sr_cli "save startup" > /dev/null
