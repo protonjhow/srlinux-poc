@@ -162,6 +162,7 @@ srl_nokia-routing-policy:routing-policy:
         - sequence-id: 20
           match: 
             prefix-set: underlay-loopback-v6
+            protocol: local
             family: 
               - ipv6-unicast
           action: 
