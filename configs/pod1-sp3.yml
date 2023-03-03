@@ -99,13 +99,13 @@ srl_nokia-network-instance:network-instance:
                 - name: graceful-restart
           - group-name: overlay-fabric
             admin-state: enable
+            transport: 
+                local-address: fded:127::1:3:255
             peer-as: 64999
             local-as: 
               - as-number: 64999
             evpn: 
               admin-state: enable
-              transport: 
-                local-address: fded:127::1:3:255
             route-reflector:
               client: true
               cluster-id: 169.254.0.255

@@ -116,11 +116,11 @@ srl_nokia-network-instance:network-instance:
             peer-as: 64999
             local-as: 
               - as-number: 64999
+            transport: 
+              local-address: fded:127::1:1:254
             admin-state: enable
             evpn: 
               admin-state: enable
-              transport: 
-                local-address: fded:127::1:1:254
         neighbor:
           - peer-address: fccf:111::1:49:1
             peer-group: underlay
