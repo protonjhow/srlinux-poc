@@ -93,6 +93,8 @@ srl_nokia-network-instance:network-instance:
       srl_nokia-bgp:bgp:
         autonomous-system: 65006
         router-id: 169.254.6.254
+        failure-detection: 
+          fast-failover: true
         ipv6-unicast: 
           admin-state: enable
           multipath: 
