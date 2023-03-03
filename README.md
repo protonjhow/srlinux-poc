@@ -95,3 +95,13 @@ IPv6 prefixes with active ECMP routes: 0
 7. check erb gateways are reachable
 8. check leaf to core adjacencies are up
 9. check reachability
+
+
+## helpful commands: 
+
+### kick bgp
+#### with kaboom
+`tools network-instance default protocols bgp group underlay reset-peer`
+
+#### no kaboom
+`tools network-instance default protocols bgp soft-clear`
