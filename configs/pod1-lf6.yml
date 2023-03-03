@@ -113,7 +113,7 @@ srl_nokia-network-instance:network-instance:
                 - name: events
                 - name: graceful-restart
           - group-name: overlay-fabric
-            remote-as: 64999
+            peer-as: 64999
             admin-state: enable
             evpn: 
               admin-state: enable
