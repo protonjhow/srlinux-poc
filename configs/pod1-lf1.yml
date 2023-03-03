@@ -165,5 +165,5 @@ srl_nokia-routing-policy:routing-policy:
           action: 
             policy-result: accept
         - sequence-id: 1000
-          default-action: 
+          action: 
             policy-result: reject
