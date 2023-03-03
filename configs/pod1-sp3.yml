@@ -76,12 +76,13 @@ srl_nokia-interfaces:interface:
     admin-state: enable
     subinterface:
       - index: 0
-        ipv4:
-          address:
-            - ip-prefix: 169.254.3.255/32
+        # ipv4:
+        #   address:
+        #     - ip-prefix: 169.254.3.255/32
         ipv6:
           address:
-            - ip-prefix: fded:127::1:1/128
+            # fded:127::{pod}:{devnum}:{255sp|254lf}
+            - ip-prefix: fded:127::1:3:255/128
 
 srl_nokia-network-instance:network-instance:
   - name: default
@@ -97,7 +98,7 @@ srl_nokia-network-instance:network-instance:
     protocols:
       srl_nokia-bgp:bgp:
         autonomous-system: 65000
-        router-id: 169.254.3.255
+        router-id: fded:127::1:3:255
         group:
           - group-name: underlay
             admin-state: enable
@@ -124,10 +125,10 @@ srl_nokia-network-instance:network-instance:
             peer-group: underlay
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
-    - name: underlay-loopback-v4
-      prefix:
-        - ip-prefix: "169.254.0.0/16"
-          mask-length-range: "32..32"
+    # - name: underlay-loopback-v4
+    #   prefix:
+    #     - ip-prefix: "169.254.0.0/16"
+    #       mask-length-range: "32..32"
     - name: underlay-loopback-v6
       prefix:
         - ip-prefix: "fded:127::/32"
@@ -135,13 +136,13 @@ srl_nokia-routing-policy:routing-policy:
   policy:
     - name: underlay-loopback
       statement: 
-        - sequence-id: 10
-          match: 
-            prefix-set: underlay-loopback-v4
-            family: 
-              - ipv4-unicast
-          action: 
-            policy-result: accept
+        # - sequence-id: 10
+        #   match: 
+        #     prefix-set: underlay-loopback-v4
+        #     family: 
+        #       - ipv4-unicast
+        #   action: 
+        #     policy-result: accept
         - sequence-id: 20
           match: 
             prefix-set: underlay-loopback-v6
