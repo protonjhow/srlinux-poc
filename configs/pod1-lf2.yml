@@ -105,6 +105,8 @@ srl_nokia-network-instance:network-instance:
       srl_nokia-bgp:bgp:
         autonomous-system: 65001
         router-id: 169.254.2.254
+        ipv6-unicast: 
+          admin-state: enable
         group:
           - group-name: underlay
             peer-as: 65000

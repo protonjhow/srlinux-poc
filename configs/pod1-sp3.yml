@@ -99,6 +99,8 @@ srl_nokia-network-instance:network-instance:
       srl_nokia-bgp:bgp:
         autonomous-system: 65000
         router-id: 169.254.3.255
+        ipv6-unicast: 
+          admin-state: enable
         group:
           - group-name: underlay
             admin-state: enable

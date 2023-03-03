@@ -101,10 +101,12 @@ srl_nokia-network-instance:network-instance:
       - name: ethernet-1/50.0
       - name: ethernet-1/51.0
       - name: system0.0
-    protocols:
+    protocols:  
       srl_nokia-bgp:bgp:
         autonomous-system: 65001
         router-id: 169.254.1.254
+        ipv6-unicast: 
+          admin-state: enable
         group:
           - group-name: underlay
             peer-as: 65000
@@ -163,5 +165,5 @@ srl_nokia-routing-policy:routing-policy:
           action: 
             policy-result: accept
         - sequence-id: 1000
-          action: 
+          default-action: 
             policy-result: reject
