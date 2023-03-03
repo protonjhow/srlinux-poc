@@ -5,10 +5,6 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/1..az1lf02_e-1/50"
     subinterface:
       - index: 0
-        ipv4:
-          address:
-            # 169.254.{spine}.{nextfree}/31
-            - ip-prefix: 169.254.2.1/31
         ipv6:
           address:
             # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{1|2}/127
@@ -18,10 +14,6 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/2..az1lf02_e-1/50"
     subinterface:
       - index: 0
-        ipv4:
-          address:
-            # 169.254.{spine}.{nextfree}/31
-            - ip-prefix: 169.254.2.3/31
         ipv6:
           address:
             # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{1|2}/127
@@ -31,10 +23,6 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/3..az1lf03_e-1/50"
     subinterface:
       - index: 0
-        ipv4:
-          address:
-            # 169.254.{spine}.{nextfree}/31
-            - ip-prefix: 169.254.2.5/31
         ipv6:
           address:
             # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{1|2}/127
@@ -44,10 +32,6 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/4..az1lf04_e-1/50"
     subinterface:
       - index: 0
-        ipv4:
-          address:
-            # 169.254.{spine}.{nextfree}/31
-            - ip-prefix: 169.254.2.7/31
         ipv6:
           address:
             # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{1|2}/127
@@ -57,10 +41,6 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/5..az1lf05_e-1/50"
     subinterface:
       - index: 0
-        ipv4:
-          address:
-            # 169.254.{spine}.{nextfree}/31
-            - ip-prefix: 169.254.2.9/31
         ipv6:
           address:
             # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{1|2}/127
@@ -70,10 +50,6 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/6..az1lf06_e-1/50"
     subinterface:
       - index: 0
-        ipv4:
-          address:
-            # 169.254.{spine}.{nextfree}/31
-            - ip-prefix: 169.254.2.11/31
         ipv6:
           address:
             # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{1|2}/127
@@ -82,9 +58,9 @@ srl_nokia-interfaces:interface:
     admin-state: enable
     subinterface:
       - index: 0
-        # ipv4:
-        #   address:
-        #     - ip-prefix: 169.254.2.255/32
+        ipv4:
+          address:
+            - ip-prefix: 169.254.2.255/32
         ipv6:
           address:
             # fded:127::{pod}:{devnum}:{255sp|254lf}
@@ -141,10 +117,6 @@ srl_nokia-network-instance:network-instance:
             peer-group: underlay
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
-    # - name: underlay-loopback-v4
-    #   prefix:
-    #     - ip-prefix: "169.254.0.0/16"
-    #       mask-length-range: "32..32"
     - name: underlay-loopback-v6
       prefix:
         - ip-prefix: "fded:127::/32"
