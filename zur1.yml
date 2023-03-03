@@ -8,9 +8,9 @@ topology:
     type: ixrd2
   kinds:
     srl:
-      image: ghcr.io/nokia/srlinux
+      image: ghcr.io/nokia/srlinux:latest
     linux:
-      image: ghcr.io/hellt/network-multitool
+      image: ghcr.io/hellt/network-multitool:latest
   nodes:
     cr1:
       group: core
