@@ -120,7 +120,7 @@ srl_nokia-routing-policy:routing-policy:
   prefix-set:
     - name: underlay-loopback-v6
       prefix:
-        - ip-prefix: "fded:127::/32"
+        - ip-prefix: fded:127::/32
           mask-length-range: "128..128"
   policy:
     - name: underlay-loopback-out
