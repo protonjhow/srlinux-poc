@@ -162,7 +162,7 @@ srl_nokia-network-instance:network-instance:
             evi: 111
       bgp-vpn:
         bgp-instance:
-          - id: 1,
+          - id: 1
             route-target:
               export-rt: target:100:111
               import-rt: target:100:111
