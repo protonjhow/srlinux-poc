@@ -58,9 +58,9 @@ srl_nokia-interfaces:interface:
     admin-state: enable
     subinterface:
       - index: 0
-        # ipv4:
-        #   address:
-        #     - ip-prefix: 169.254.3.255/32
+        ipv4:
+          address:
+            - ip-prefix: 169.254.3.255/32
         ipv6:
           address:
             # fded:127::{pod}:{devnum}:{255sp|254lf}
@@ -142,6 +142,10 @@ srl_nokia-network-instance:network-instance:
             peer-group: overlay-fabric
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
+    - name: underlay-loopback-v4
+      prefix:
+        - ip-prefix: "169.254.0.0/16"
+          mask-length-range: "32..32"
     - name: underlay-loopback-v6
       prefix:
         - ip-prefix: fded:127::/32
@@ -149,7 +153,23 @@ srl_nokia-routing-policy:routing-policy:
   policy:
     - name: underlay-loopback-out
       statement: 
-        - sequence-id: 10
+        - sequence-id: 410
+          match: 
+            prefix-set: underlay-loopback-v4
+            protocol: local
+            family: 
+              - ipv4-unicast
+          action: 
+            policy-result: accept
+        - sequence-id: 420
+          match: 
+            prefix-set: underlay-loopback-v4
+            protocol: bgp
+            family: 
+              - ipv4-unicast
+          action: 
+            policy-result: reject
+        - sequence-id: 610
           match: 
             prefix-set: underlay-loopback-v6
             protocol: local
@@ -157,7 +177,7 @@ srl_nokia-routing-policy:routing-policy:
               - ipv6-unicast
           action: 
             policy-result: accept
-        - sequence-id: 20
+        - sequence-id: 620
           match: 
             prefix-set: underlay-loopback-v6
             protocol: bgp
@@ -172,8 +192,24 @@ srl_nokia-routing-policy:routing-policy:
           action: 
             policy-result: reject
     - name: underlay-loopback-in
-      statement: 
-        - sequence-id: 10
+      statement:
+        - sequence-id: 410
+          match: 
+            prefix-set: underlay-loopback-v4
+            protocol: bgp
+            family: 
+              - ipv4-unicast
+          action: 
+            policy-result: accept
+        - sequence-id: 420
+          match: 
+            prefix-set: underlay-loopback-v4
+            protocol: local
+            family: 
+              - ipv4-unicast
+          action: 
+            policy-result: reject
+        - sequence-id: 610
           match: 
             prefix-set: underlay-loopback-v6
             protocol: bgp
@@ -181,7 +217,7 @@ srl_nokia-routing-policy:routing-policy:
               - ipv6-unicast
           action: 
             policy-result: accept
-        - sequence-id: 20
+        - sequence-id: 620
           match: 
             prefix-set: underlay-loopback-v6
             protocol: local
