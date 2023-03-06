@@ -182,16 +182,13 @@ srl_nokia-network-instance:network-instance:
             route-target:
               export-rt: target:1:111
               import-rt: target:1:111
+
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
     - name: underlay-loopback-v4
       prefix:
         - ip-prefix: "169.254.0.0/16"
           mask-length-range: "32..32"
-    # - name: underlay-loopback-v6
-    #   prefix:
-    #     - ip-prefix: "fded:127::/32"
-    #       mask-length-range: "128..128"
   policy:
     - name: underlay-loopback-out
       statement: 
@@ -211,22 +208,6 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action: 
             policy-result: reject
-        # - sequence-id: 610
-        #   match: 
-        #     prefix-set: underlay-loopback-v6
-        #     protocol: local
-        #     family: 
-        #       - ipv6-unicast
-        #   action: 
-        #     policy-result: accept
-        # - sequence-id: 620
-        #   match: 
-        #     prefix-set: underlay-loopback-v6
-        #     protocol: bgp
-        #     family: 
-        #       - ipv6-unicast
-        #   action: 
-        #     policy-result: reject
         - sequence-id: 1000
           action: 
             policy-result: reject
@@ -248,22 +229,6 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action: 
             policy-result: reject
-        # - sequence-id: 610
-        #   match: 
-        #     prefix-set: underlay-loopback-v6
-        #     protocol: bgp
-        #     family: 
-        #       - ipv6-unicast
-        #   action: 
-        #     policy-result: accept
-        # - sequence-id: 620
-        #   match: 
-        #     prefix-set: underlay-loopback-v6
-        #     protocol: local
-        #     family: 
-        #       - ipv6-unicast
-        #   action: 
-        #     policy-result: reject
         - sequence-id: 1000
           action: 
             policy-result: reject

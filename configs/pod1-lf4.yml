@@ -57,10 +57,6 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{spine}{next_avail_upper}/30
             - ip-prefix: 169.254.1.14/30
-        # ipv6:
-        #   address:
-        #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
-        #     - ip-prefix: fccf:114::4:49:0/127
   - name: ethernet-1/50
     admin-state: enable
     description: "CORE: az1sp02_e1/4..az1lf04_e-1/50"
@@ -70,10 +66,6 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{spine}{next_avail_upper}/30
             - ip-prefix: 169.254.2.14/30
-        # ipv6:
-        #   address:
-        #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
-        #     - ip-prefix: fccf:124::4:50:0/127
   - name: ethernet-1/51
     admin-state: enable
     description: "CORE: az1sp03_e1/4..az1lf04_e-1/51"
@@ -83,10 +75,6 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{spine}{next_avail_upper}/30
             - ip-prefix: 169.254.3.14/30
-        # ipv6:
-        #   address:
-        #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
-        #     - ip-prefix: fccf:134::4:51:0/127
   - name: system0
     admin-state: enable
     subinterface:
@@ -95,10 +83,6 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{devnum}.{254_lf|255_sp}/32
             - ip-prefix: 169.254.4.254/32
-        # ipv6:
-        #   address:
-        #     # fded:127::{pod}:{devnum}:{255sp|254lf}
-        #     - ip-prefix: fded:127::1:4:254/128
 
 srl_nokia-tunnel-interface:tunnel-interface:
   - name: vxlan1
@@ -107,6 +91,7 @@ srl_nokia-tunnel-interface:tunnel-interface:
       type: bridged
       ingress:
         vni: 1
+
 srl_nokia-network-instance:network-instance:
   - name: default
     admin-state: enable
@@ -181,16 +166,13 @@ srl_nokia-network-instance:network-instance:
             route-target:
               export-rt: target:1:111
               import-rt: target:1:111
+
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
     - name: underlay-loopback-v4
       prefix:
         - ip-prefix: "169.254.0.0/16"
           mask-length-range: "32..32"
-    # - name: underlay-loopback-v6
-    #   prefix:
-    #     - ip-prefix: "fded:127::/32"
-    #       mask-length-range: "128..128"
   policy:
     - name: underlay-loopback-out
       statement: 
@@ -210,22 +192,6 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action: 
             policy-result: reject
-        # - sequence-id: 610
-        #   match: 
-        #     prefix-set: underlay-loopback-v6
-        #     protocol: local
-        #     family: 
-        #       - ipv6-unicast
-        #   action: 
-        #     policy-result: accept
-        # - sequence-id: 620
-        #   match: 
-        #     prefix-set: underlay-loopback-v6
-        #     protocol: bgp
-        #     family: 
-        #       - ipv6-unicast
-        #   action: 
-        #     policy-result: reject
         - sequence-id: 1000
           action: 
             policy-result: reject
@@ -247,22 +213,6 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action: 
             policy-result: reject
-        # - sequence-id: 610
-        #   match: 
-        #     prefix-set: underlay-loopback-v6
-        #     protocol: bgp
-        #     family: 
-        #       - ipv6-unicast
-        #   action: 
-        #     policy-result: accept
-        # - sequence-id: 620
-        #   match: 
-        #     prefix-set: underlay-loopback-v6
-        #     protocol: local
-        #     family: 
-        #       - ipv6-unicast
-        #   action: 
-        #     policy-result: reject
         - sequence-id: 1000
           action: 
             policy-result: reject
