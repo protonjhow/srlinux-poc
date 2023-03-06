@@ -79,9 +79,10 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp03_e1/3..az1lf02_e-1/51"
     subinterface:
       - index: 0
-        ipv4: 
+        ipv4:  
+          address:
           # 169.254.{spine}{next_avail_upper}/30
-          - address: 169.254.3.6/30
+          - ip-prefix: 169.254.3.6/30
         # ipv6:
         #   address:
         #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
