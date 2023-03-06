@@ -193,7 +193,7 @@ srl_nokia-routing-policy:routing-policy:
             family: 
               - ipv4-unicast
           action: 
-            policy-result: reject
+            policy-result: accept
         # - sequence-id: 610
         #   match: 
         #     prefix-set: underlay-loopback-v6
