@@ -53,34 +53,45 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp01_e1/5..az1lf05_e-1/49"
     subinterface:
       - index: 0
-        ipv6:
-          address:
-            # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
-            - ip-prefix: fccf:115::5:49:0/127
+        ipv4:
+          # 169.254.{spine}{next_avail_upper}/30
+          - address: 169.254.1.18/30
+        # ipv6:
+        #   address:
+        #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
+        #     - ip-prefix: fccf:115::5:49:0/127
   - name: ethernet-1/50
     admin-state: enable
     description: "CORE: az1sp02_e1/5..az1lf05_e-1/50"
     subinterface:
       - index: 0
-        ipv6:
-          address:
-            # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
-            - ip-prefix: fccf:125::5:50:0/127
+        ipv4:
+          # 169.254.{spine}{next_avail_upper}/30
+          - address: 169.254.2.18/30
+        # ipv6:
+        #   address:
+        #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
+        #     - ip-prefix: fccf:125::5:50:0/127
   - name: ethernet-1/51
     admin-state: enable
     description: "CORE: az1sp03_e1/5..az1lf05_e-1/51"
     subinterface:
       - index: 0
-        ipv6:
-          address:
-            # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
-            - ip-prefix: fccf:135::5:51:0/127
+        ipv4:
+          # 169.254.{spine}{next_avail_upper}/30
+          - address: 169.254.3.18/30
+        # ipv6:
+        #   address:
+        #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
+        #     - ip-prefix: fccf:135::5:51:0/127
+
   - name: system0
     admin-state: enable
     subinterface:
       - index: 0
         ipv4:
           address:
+            # 169.254.{devnum}.{254_lf|255_sp}/32
             - ip-prefix: 169.254.5.254/32
         ipv6:
           address:
