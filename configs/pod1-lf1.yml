@@ -104,6 +104,7 @@ srl_nokia-tunnel-interface:tunnel-interface:
       type: bridged
       ingress:
         vni: 1
+
 srl_nokia-network-instance:network-instance:
   - name: default
     admin-state: enable
@@ -118,7 +119,7 @@ srl_nokia-network-instance:network-instance:
         router-id: 169.254.1.254
         failure-detection: 
           fast-failover: true
-        ipv6-unicast: 
+        ipv4-unicast: 
           admin-state: enable
           multipath: 
             max-paths-level-1: 8
@@ -140,22 +141,22 @@ srl_nokia-network-instance:network-instance:
             local-as: 
               - as-number: 64999
             transport: 
-              local-address: fded:127::1:1:254
+              local-address: 169.254.1.254
             admin-state: enable
             evpn: 
               admin-state: enable
         neighbor:
-          - peer-address: fccf:111::1:49:1
+          - peer-address: 169.254.1.1
             peer-group: underlay
-          - peer-address: fccf:121::1:50:1
+          - peer-address: 169.254.2.1
             peer-group: underlay
-          - peer-address: fccf:131::1:51:1
+          - peer-address: 169.254.3.1
             peer-group: underlay
-          - peer-address: fded:127::1:1:255
+          - peer-address: 169.254.1.255
             peer-group: overlay-fabric
-          - peer-address: fded:127::1:2:255
+          - peer-address: 169.254.2.255
             peer-group: overlay-fabric
-          - peer-address: fded:127::1:3:255
+          - peer-address: 169.254.3.255
             peer-group: overlay-fabric
   - name: vrf-1
     type: mac-vrf
@@ -184,10 +185,10 @@ srl_nokia-routing-policy:routing-policy:
       prefix:
         - ip-prefix: "169.254.0.0/16"
           mask-length-range: "32..32"
-    - name: underlay-loopback-v6
-      prefix:
-        - ip-prefix: "fded:127::/32"
-          mask-length-range: "128..128"
+    # - name: underlay-loopback-v6
+    #   prefix:
+    #     - ip-prefix: "fded:127::/32"
+    #       mask-length-range: "128..128"
   policy:
     - name: underlay-loopback-out
       statement: 
@@ -207,22 +208,22 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action: 
             policy-result: reject
-        - sequence-id: 610
-          match: 
-            prefix-set: underlay-loopback-v6
-            protocol: local
-            family: 
-              - ipv6-unicast
-          action: 
-            policy-result: accept
-        - sequence-id: 620
-          match: 
-            prefix-set: underlay-loopback-v6
-            protocol: bgp
-            family: 
-              - ipv6-unicast
-          action: 
-            policy-result: reject
+        # - sequence-id: 610
+        #   match: 
+        #     prefix-set: underlay-loopback-v6
+        #     protocol: local
+        #     family: 
+        #       - ipv6-unicast
+        #   action: 
+        #     policy-result: accept
+        # - sequence-id: 620
+        #   match: 
+        #     prefix-set: underlay-loopback-v6
+        #     protocol: bgp
+        #     family: 
+        #       - ipv6-unicast
+        #   action: 
+        #     policy-result: reject
         - sequence-id: 1000
           action: 
             policy-result: reject
@@ -244,22 +245,22 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action: 
             policy-result: reject
-        - sequence-id: 610
-          match: 
-            prefix-set: underlay-loopback-v6
-            protocol: bgp
-            family: 
-              - ipv6-unicast
-          action: 
-            policy-result: accept
-        - sequence-id: 620
-          match: 
-            prefix-set: underlay-loopback-v6
-            protocol: local
-            family: 
-              - ipv6-unicast
-          action: 
-            policy-result: reject
+        # - sequence-id: 610
+        #   match: 
+        #     prefix-set: underlay-loopback-v6
+        #     protocol: bgp
+        #     family: 
+        #       - ipv6-unicast
+        #   action: 
+        #     policy-result: accept
+        # - sequence-id: 620
+        #   match: 
+        #     prefix-set: underlay-loopback-v6
+        #     protocol: local
+        #     family: 
+        #       - ipv6-unicast
+        #   action: 
+        #     policy-result: reject
         - sequence-id: 1000
           action: 
             policy-result: reject
