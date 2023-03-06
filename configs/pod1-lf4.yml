@@ -79,9 +79,9 @@ srl_nokia-interfaces:interface:
     admin-state: enable
     subinterface:
       - index: 0
-        ipv4:
-          address:
-            - ip-prefix: 169.254.4.254/32
+        # ipv4:
+        #   address:
+        #     - ip-prefix: 169.254.4.254/32
         ipv6:
           address:
             # fded:127::{pod}:{devnum}:{255sp|254lf}
