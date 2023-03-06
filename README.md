@@ -152,6 +152,9 @@ Total Eth-cfm Macs             :    0 Total    0 Active
 ----
 
 ## operational commands
+### check vxlan tunnels
+`info from state tunnel vxlan-tunnel`
+
 ### kick bgp
 #### with kaboom
 `tools network-instance default protocols bgp group underlay reset-peer`
