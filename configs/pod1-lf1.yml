@@ -54,8 +54,9 @@ srl_nokia-interfaces:interface:
     subinterface:
       - index: 0
         ipv4: 
-          # 169.254.{spine}{next_avail_upper}/30
-          - address: 169.254.1.2/30
+          address:
+            # 169.254.{spine}{next_avail_upper}/30
+            - ip-prefix: 169.254.1.2/30
         # ipv6:
         #   address:
         #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
@@ -66,8 +67,9 @@ srl_nokia-interfaces:interface:
     subinterface:
       - index: 0
         ipv4: 
-          # 169.254.{spine}{next_avail_upper}/30
-          - address: 169.254.2.2/30
+          address: 
+            # 169.254.{spine}{next_avail_upper}/30
+            - ip-prefix: 169.254.2.2/30
         # ipv6:
         #   address:
         #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
@@ -78,8 +80,9 @@ srl_nokia-interfaces:interface:
     subinterface:
       - index: 0
         ipv4: 
-          # 169.254.{spine}{next_avail_upper}/30
-          - address: 169.254.3.2/30
+          address: 
+            # 169.254.{spine}{next_avail_upper}/30
+            - ip-prefix: 169.254.3.2/30
         # ipv6:
         #   address:
         #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127

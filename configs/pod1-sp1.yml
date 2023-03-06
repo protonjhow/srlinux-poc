@@ -5,9 +5,10 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp01_e1/1..az1lf02_e-1/49"
     subinterface:
       - index: 0
-        ipv4:
-          # 169.254.{spine}{next_avail_lower}/30
-          - address: 169.254.1.1/30
+        ipv4: 
+          address:
+            # 169.254.{spine}{next_avail_lower}/30
+            - ip-prefix: 169.254.1.1/30
         # ipv6:
         #   address:
         #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
@@ -17,9 +18,10 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp01_e1/2..az1lf02_e-1/49"
     subinterface:
       - index: 0
-        ipv4:
-          # 169.254.{spine}{next_avail_lower}/30
-          - address: 169.254.1.5/30
+        ipv4: 
+          address:
+            # 169.254.{spine}{next_avail_lower}/30
+            - ip-prefix: 169.254.1.5/30
         # ipv6:
         #   address:
         #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
@@ -29,9 +31,10 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp01_e1/3..az1lf03_e-1/49"
     subinterface:
       - index: 0
-        ipv4:
-          # 169.254.{spine}{next_avail_lower}/30
-          - address: 169.254.1.9/30
+        ipv4: 
+          address:
+            # 169.254.{spine}{next_avail_lower}/30
+            - ip-prefix: 169.254.1.9/30
         # ipv6:
         #   address:
         #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
@@ -41,9 +44,10 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp01_e1/4..az1lf04_e-1/49"
     subinterface:
       - index: 0
-        ipv4:
-          # 169.254.{spine}{next_avail_lower}/30
-          - address: 169.254.1.13/30
+        ipv4: 
+          address:
+            # 169.254.{spine}{next_avail_lower}/30
+            - ip-prefix: 169.254.1.13/30
         # ipv6:
         #   address:
         #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
@@ -53,9 +57,10 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp01_e1/5..az1lf05_e-1/49"
     subinterface:
       - index: 0
-        ipv4:
-          # 169.254.{spine}{next_avail_lower}/30
-          - address: 169.254.1.17/30
+        ipv4: 
+          address:
+            # 169.254.{spine}{next_avail_lower}/30
+            - ip-prefix: 169.254.1.17/30
         # ipv6:
         #   address:
         #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
@@ -65,9 +70,10 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp01_e1/6..az1lf06_e-1/49"
     subinterface:
       - index: 0
-        ipv4:
-          # 169.254.{spine}{next_avail_lower}/30
-          - address: 169.254.1.21/30
+        ipv4: 
+          address:
+            # 169.254.{spine}{next_avail_lower}/30
+            - ip-prefix: 169.254.1.21/30
         # ipv6:
         #   address:
         #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
