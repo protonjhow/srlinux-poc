@@ -1,13 +1,13 @@
 ---
 srl_nokia-interfaces:interface:
-  - name: ethernet-1/1
+  - name: lag1
     admin-state: enable
     description: "SRV: cab1-srv1_eth1"
     vlan-tagging: true
     subinterface:
       - index: 0
         type: bridged
-        admin-state: enable
+        admin-state: disable
         vlan: 
           encap: 
             untagged: {}
@@ -18,6 +18,15 @@ srl_nokia-interfaces:interface:
           encap:
             single-tagged: 
               vlan-id: 200
+    lag: 
+      lag-type: lacp
+    
+  - name: ethernet-1/1
+    admin-state: enable
+    description: "SRV: cab1-srv1_bond0"
+    ethernet: 
+      aggregate-id: lag1
+      reload-delay: 20
         # ipv4:
         #   address:
         #     # 10.{pod}.{leaf}.{nextfree}/30
