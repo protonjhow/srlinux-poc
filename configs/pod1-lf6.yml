@@ -1,5 +1,26 @@
 ---
 srl_nokia-interfaces:interface:
+  - name: lag1
+    admin-state: enable
+    description: "SRV: cab3-srv1_eth2"
+    vlan-tagging: true
+    subinterface:
+      - index: 0
+        type: bridged
+        admin-state: disable
+        vlan: 
+          encap: 
+            untagged: {}
+      - index: 200
+        type: bridged
+        admin-state: enable
+        vlan:
+          encap:
+            single-tagged: 
+              vlan-id: 200
+    lag: 
+      lag-type: lacp
+    
   - name: ethernet-1/1
     admin-state: enable
     description: "SRV: cab3-srv1_eth2"
@@ -98,12 +119,22 @@ srl_nokia-interfaces:interface:
           address:
             - ip-prefix: 192.168.0.6/29 
               anycast-gw: true
+          arp: 
+            learn-unsolicited: true
+            evpn: 
+              advertise:
+                - route-type: dynamic
         anycast-gw: {}
       - index: 200
         ipv4:
           address:
             - ip-prefix: 10.200.200.1/24
               anycast-gw: true
+          arp: 
+            learn-unsolicited: true
+            evpn: 
+              advertise:
+                - route-type: dynamic
         anycast-gw: {}
 
 srl_nokia-tunnel-interface:tunnel-interface:
