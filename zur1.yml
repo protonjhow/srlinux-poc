@@ -10,7 +10,10 @@ topology:
     srl:
       image: ghcr.io/nokia/srlinux:latest
     linux:
-      image: ghcr.io/hellt/network-multitool:latest
+      #image: ghcr.io/hellt/network-multitool:latest
+      image: alpine-host
+      env:
+        TMODE: lacp
   nodes:
     cr1:
       group: core
