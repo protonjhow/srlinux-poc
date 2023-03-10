@@ -97,10 +97,14 @@ srl_nokia-interfaces:interface:
         ipv4:
           address:
             - ip-prefix: 192.168.0.6/29 
+              anycast-gw: true
+        anycast-gw: {}
       - index: 200
         ipv4:
           address:
             - ip-prefix: 10.200.200.1/24
+              anycast-gw: true
+        anycast-gw: {}
 
 srl_nokia-tunnel-interface:tunnel-interface:
   - name: vxlan1
