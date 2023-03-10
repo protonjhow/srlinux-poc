@@ -20,6 +20,7 @@ srl_nokia-interfaces:interface:
               vlan-id: 200
     lag: 
       lag-type: lacp
+      #member-speed: 10G
     
   - name: ethernet-1/1
     admin-state: enable
