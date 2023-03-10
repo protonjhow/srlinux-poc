@@ -11,6 +11,13 @@ srl_nokia-interfaces:interface:
         vlan: 
           encap: 
             untagged: {}
+      - index: 200
+        type: bridged
+        admin-state: enable
+        vlan:
+          encap:
+            single-tagged: 
+              vlan-id: 200
         # ipv4:
         #   address:
         #     # 10.{pod}.{leaf}.{nextfree}/30
@@ -83,14 +90,41 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{devnum}.{254_lf|255_sp}/32
             - ip-prefix: 169.254.3.254/32
+  - interface: irb1
+    admin-state: enable
+    subinterface:
+      - index: 1
+        ipv4:
+          address:
+            - ip-prefix: 192.168.0.6/29 
+      - index: 200
+        ipv4:
+          address:
+            - ip-prefix: 10.200.200.1/24
 
 srl_nokia-tunnel-interface:tunnel-interface:
   - name: vxlan1
     vxlan-interface: 
+    # vlan1 l2vni
     - index: 1
       type: bridged
       ingress:
-        vni: 1
+        vni: 1 
+    # vlan1 l3vni
+    - index: 10001
+      type: bridged
+      ingress:
+        vni: 10001
+    # vlan200 l2vni
+    - index: 200
+      type: bridged
+      ingress:
+        vni: 200
+    # vlan200 l3vni
+    - index: 10200
+      type: bridged
+      ingress:
+        vni: 10200
 
 srl_nokia-network-instance:network-instance:
   - name: default
@@ -145,11 +179,13 @@ srl_nokia-network-instance:network-instance:
             peer-group: overlay-fabric
           - peer-address: 169.254.3.255
             peer-group: overlay-fabric
-  - name: vrf-1
+  # vlan 1 bridge domain
+  - name: mac-vrf-1
     type: mac-vrf
     admin-state: enable
     interface:
       - name: ethernet-1/1.0
+      - name: irb1.1
     vxlan-interface:
       - name: vxlan1.1
     protocols:
@@ -158,14 +194,81 @@ srl_nokia-network-instance:network-instance:
           - id: 1
             admin-state: enable
             vxlan-interface: vxlan1.1
-            evi: 111
+            evi: 1
             ecmp: 3
       bgp-vpn:
         bgp-instance:
           - id: 1
             route-target:
-              export-rt: target:1:111
-              import-rt: target:1:111
+              export-rt: target:1:1
+              import-rt: target:1:1
+  # vlan 1 routing domain
+  - name: ip-vrf-1
+    type: ip-vrf
+    admin-state: enable
+    interface:
+      - name: irb1.1
+    vxlan-interface:
+      - name: vxlan1.10001
+    protocols:
+      bgp-evpn:
+        bgp-instance: 
+          - id: 1
+            admin-state: enable
+            vxlan-interface: vxlan1.10001
+            evi: 10001
+            ecmp: 3
+      bgp-vpn:
+        bgp-instance:
+          - id: 1
+            route-target:
+              export-rt: target:1:10001
+              import-rt: target:1:10001
+  # vlan 200 bridge domain
+  - name: mac-vrf-200
+    type: mac-vrf
+    admin-state: enable
+    interface:
+      - name: ethernet-1/1.200
+      - name: irb1.200
+    vxlan-interface:
+      - name: vxlan1.10200
+    protocols:
+      bgp-evpn:
+        bgp-instance: 
+          - id: 1
+            admin-state: enable
+            vxlan-interface: vxlan1.200
+            evi: 200
+            ecmp: 3
+      bgp-vpn:
+        bgp-instance:
+          - id: 1
+            route-target:
+              export-rt: target:1:200
+              import-rt: target:1:200
+  # vlan 200 routing domain
+  - name: ip-vrf-200
+    type: ip-vrf
+    admin-state: enable
+    interface:
+      - name: irb1.200
+    vxlan-interface:
+      - name: vxlan1.10200
+    protocols:
+      bgp-evpn:
+        bgp-instance: 
+          - id: 1
+            admin-state: enable
+            vxlan-interface: vxlan1.10200
+            evi: 10200
+            ecmp: 3
+      bgp-vpn:
+        bgp-instance:
+          - id: 1
+            route-target:
+              export-rt: target:1:10200
+              import-rt: target:1:10200
 
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
