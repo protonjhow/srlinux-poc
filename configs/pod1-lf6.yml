@@ -139,7 +139,7 @@ srl_nokia-tunnel-interface:tunnel-interface:
         vni: 1 
     # vlan1 l3vni
     - index: 10001
-      type: enable
+      type: routed
       ingress:
         vni: 10001
     # vlan200 l2vni
@@ -149,7 +149,7 @@ srl_nokia-tunnel-interface:tunnel-interface:
         vni: 200
     # vlan200 l3vni
     - index: 10200
-      type: enable
+      type: routed
       ingress:
         vni: 10200
 
