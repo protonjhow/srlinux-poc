@@ -1,5 +1,5 @@
 ---
-interface:
+interfaces:
   - name: lag1
     admin-state: enable
     description: "SRV: cab1-srv1_eth1"
