@@ -20,7 +20,7 @@ srl_nokia-interfaces:interface:
               vlan-id: 200
     lag: 
       lag-type: lacp
-      member-speed: 10G
+      member-speed: 25G
       lacp: 
         interval: FAST
         lacp-mode: ACTIVE
