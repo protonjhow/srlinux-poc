@@ -7,6 +7,7 @@ RUN apk update && \
     apk add tcpdump && \
     apk add scapy && \
     apk add bash && \
+    apk add ethtool && \
     apk add iperf3
 
 RUN adduser -u 1000 -G wheel -D alpine && \
