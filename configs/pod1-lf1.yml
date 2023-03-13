@@ -150,7 +150,7 @@ srl_nokia-tunnel-interface:tunnel-interface:
       ingress:
         vni: 10200
 
-srl_nokia-system:
+system:
   network-instance:
     protocols:
       evpn:
