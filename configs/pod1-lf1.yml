@@ -311,7 +311,7 @@ srl_nokia-network-instance:network-instance:
               export-rt: target:1:10200
               import-rt: target:1:10200
 
-routing-policy:
+srl_nokia-routing-policy:routing-policy:
   prefix-set:
     - name: underlay-loopback-v4
       prefix:
