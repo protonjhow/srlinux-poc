@@ -103,7 +103,7 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{devnum}.{254_lf|255_sp}/32
             - ip-prefix: 169.254.2.254/32
-  - interface: irb1
+  - name: irb1
     admin-state: enable
     subinterface:
       - index: 1
