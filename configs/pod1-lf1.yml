@@ -129,26 +129,26 @@ srl_nokia-interfaces:interface:
 tunnel-interface:
   - name: vxlan1
     vxlan-interface: 
-    # vlan1 l2vni
-    - index: 1
-      type: bridged
-      ingress:
-        vni: 1 
-    # vlan1 l3vni
-    - index: 10001
-      type: bridged
-      ingress:
-        vni: 10001
-    # vlan200 l2vni
-    - index: 200
-      type: bridged
-      ingress:
-        vni: 200
-    # vlan200 l3vni
-    - index: 10200
-      type: bridged
-      ingress:
-        vni: 10200
+      # vlan1 l2vni
+      - index: 1
+        type: bridged
+        ingress:
+          vni: 1 
+      # vlan1 l3vni
+      - index: 10001
+        type: bridged
+        ingress:
+          vni: 10001
+      # vlan200 l2vni
+      - index: 200
+        type: bridged
+        ingress:
+          vni: 200
+      # vlan200 l3vni
+      - index: 10200
+        type: bridged
+        ingress:
+          vni: 10200
 
 system:
   network-instance:
