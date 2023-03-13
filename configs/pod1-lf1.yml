@@ -276,7 +276,7 @@ srl_nokia-network-instance:network-instance:
       - name: ethernet-1/1.200
       - name: irb1.200
     vxlan-interface:
-      - name: vxlan1.10200
+      - name: vxlan1.200
     protocols:
       bgp-evpn:
         bgp-instance: 
