@@ -152,7 +152,7 @@ srl_nokia-tunnel-interface:tunnel-interface:
 
 srl_nokia-system-network-instance:network-instance:
   protocols:
-    evpn:
+    bgp-evpn:
       ethernet-segments:
         bgp-instance:
           - id: 1 
@@ -161,9 +161,9 @@ srl_nokia-system-network-instance:network-instance:
                 admin-state: enable
                 esi: 00:34:34:34:34:34:34:00:00:01
                 interface: lag1
-      bgp-vpn:
-        bgp-instance:
-          - id: 1
+    bgp-vpn:
+      bgp-instance:
+        - id: 1
 
 srl_nokia-network-instance:network-instance:
   - name: default
