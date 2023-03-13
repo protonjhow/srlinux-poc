@@ -1,5 +1,5 @@
 ---
-srl_nokia-interfaces:interface:
+interface:
   - name: lag1
     admin-state: enable
     description: "SRV: cab1-srv1_eth1"
@@ -126,7 +126,7 @@ srl_nokia-interfaces:interface:
                 - route-type: dynamic
         anycast-gw: {}
 
-srl_nokia-tunnel-interface:tunnel-interface:
+tunnel-interface:
   - name: vxlan1
     vxlan-interface: 
     # vlan1 l2vni
@@ -167,7 +167,7 @@ system:
         bgp-instance:
           - id: 1
 
-srl_nokia-network-instance:
+network-instance:
   - name: default
     admin-state: enable
     interface:
@@ -176,7 +176,7 @@ srl_nokia-network-instance:
       - name: ethernet-1/51.0
       - name: system0.0
     protocols:  
-      srl_nokia-bgp:bgp:
+      bgp:
         autonomous-system: 65001
         router-id: 169.254.1.254
         failure-detection: 
@@ -311,7 +311,7 @@ srl_nokia-network-instance:
               export-rt: target:1:10200
               import-rt: target:1:10200
 
-srl_nokia-routing-policy:routing-policy:
+routing-policy:
   prefix-set:
     - name: underlay-loopback-v4
       prefix:
