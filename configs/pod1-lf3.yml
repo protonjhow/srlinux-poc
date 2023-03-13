@@ -22,7 +22,7 @@ srl_nokia-interfaces:interface:
       lag-type: lacp
       member-speed: 10G
       lacp: 
-        interval: SLOW
+        interval: FAST
         lacp-mode: ACTIVE
     
   - name: ethernet-1/1
