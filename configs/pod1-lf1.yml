@@ -150,7 +150,7 @@ srl_nokia-tunnel-interface:tunnel-interface:
       ingress:
         vni: 10200
 
-srl_nokia-system-network-instance:network-instance:
+srl_nokia-system-network-instance:
   protocols:
     evpn:
       ethernet-segments:
@@ -166,7 +166,7 @@ srl_nokia-system-network-instance:network-instance:
       bgp-instance:
         - id: 1
 
-srl_nokia-network-instance:network-instance:
+srl_nokia-network-instance:
   - name: default
     admin-state: enable
     interface:
