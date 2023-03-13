@@ -156,7 +156,7 @@ tunnel-interface:
 system:
   network-instance:
     protocols:
-      bgp-evpn:
+      evpn:
         ethernet-segments:
           bgp-instance:
             - id: 1 
