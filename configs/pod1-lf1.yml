@@ -21,6 +21,9 @@ srl_nokia-interfaces:interface:
     lag: 
       lag-type: lacp
       member-speed: 10G
+      lacp: 
+        interval: SLOW
+        lacp-mode: ACTIVE
     
   - name: ethernet-1/1
     admin-state: enable
