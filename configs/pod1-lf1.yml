@@ -7,7 +7,7 @@ srl_nokia-interfaces:interface:
     subinterface:
       - index: 0
         type: bridged
-        admin-state: disable
+        admin-state: enable
         vlan: 
           encap: 
             untagged: {}
@@ -228,7 +228,7 @@ srl_nokia-network-instance:network-instance:
     type: mac-vrf
     admin-state: enable
     interface:
-      - name: ethernet-1/1.0
+      - name: lag1.0
       - name: irb1.1
     vxlan-interface:
       - name: vxlan1.1
@@ -273,7 +273,7 @@ srl_nokia-network-instance:network-instance:
     type: mac-vrf
     admin-state: enable
     interface:
-      - name: ethernet-1/1.200
+      - name: lag1.200
       - name: irb1.200
     vxlan-interface:
       - name: vxlan1.200
