@@ -167,7 +167,7 @@ system:
         bgp-instance:
           - id: 1
 
-network-instance:
+srl_nokia-network-instance:network-instance:
   - name: default
     admin-state: enable
     interface:
