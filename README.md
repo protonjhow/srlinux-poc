@@ -102,6 +102,8 @@ IPv4 prefixes with active ECMP routes: 5
 
 _this is showing the three (one per leaf pair) servers in vrf-1. this works when you first spawn the lab, but since there is no persistent traffic, these will age out. you might have to jump on one srv1 and ping another one to put traffic on the fabric_
 
+```docker exec -it clab-zur1-pods-pod1-cab1-srv1 ping -c3 192.168.0.2```
+
 ```
 A:pod1-lf1# show network-instance vrf-1 bridge-table mac-table all
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
