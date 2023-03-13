@@ -164,7 +164,8 @@ system:
                 - name: cab1-srv1_bond0
                   admin-state: enable
                   esi: 00:12:12:12:12:12:12:00:00:01
-                  interface: lag1
+                  interface: 
+                    - ethernet-interface: lag1
       bgp-vpn:
         bgp-instance:
           - id: 1
