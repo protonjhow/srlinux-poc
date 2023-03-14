@@ -1,0 +1,26 @@
+name: Check that network topology works as configured
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  clab-ci-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        srl-version: ["latest"]
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: pull srlinux image, could tag it for testing
+      run: docker pull ghcr.io/nokia/srlinux:${{ matrix.srl-version }}
+    - name: Build alpine-host image (TODO cache this)
+      run: cd alpine-host && ./build.sh
+    - name: install latest clab
+      run: bash -c "$(curl -sL https://get.containerlab.dev)" # -- -v 0.36.1
+    - name: start clab ci topo
+      run: make deploy-clab-ci
+    - name: Run all CI tests under test/ci
+      run: make run-tests
