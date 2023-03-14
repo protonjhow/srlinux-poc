@@ -122,6 +122,11 @@ srl_nokia-network-instance:network-instance:
               flag:
                 - name: events
                 - name: graceful-restart
+            timers: 
+              connect-retry: 1 
+              hold-time: 9
+              keepalive-interval: 3
+              minimum-advertisement-interval: 1
           - group-name: overlay-fabric
             peer-as: 64999
             admin-state: enable
@@ -134,6 +139,11 @@ srl_nokia-network-instance:network-instance:
             route-reflector:
               client: true
               cluster-id: 169.254.0.255
+            timers: 
+              connect-retry: 1 
+              hold-time: 9
+              keepalive-interval: 3
+              minimum-advertisement-interval: 1
         neighbor:
           - peer-address: 169.254.1.2
             peer-as: 65001

@@ -201,6 +201,11 @@ srl_nokia-network-instance:network-instance:
               flag:
                 - name: events
                 - name: graceful-restart
+            timers: 
+              connect-retry: 1 
+              hold-time: 9
+              keepalive-interval: 3
+              minimum-advertisement-interval: 1
           - group-name: overlay-fabric
             peer-as: 64999
             local-as: 
@@ -210,6 +215,11 @@ srl_nokia-network-instance:network-instance:
               local-address: 169.254.2.254
             evpn: 
               admin-state: enable
+            timers: 
+              connect-retry: 1 
+              hold-time: 9
+              keepalive-interval: 3
+              minimum-advertisement-interval: 1
         neighbor:
           - peer-address: 169.254.1.5
             peer-group: underlay
