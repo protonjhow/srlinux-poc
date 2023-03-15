@@ -51,7 +51,7 @@ srl_nokia-interfaces:interface:
           address:
             # fd00:{pod}{leaf}::{port}:{vrf}:1/64
             - ip-prefix: fd00:16::2:100:1/64
-  #- name: ethernet-1/3
+  # - name: ethernet-1/3
   #  admin-state: enable
   #  description: "SRV: server3_eth2"
   #  subinterface:
