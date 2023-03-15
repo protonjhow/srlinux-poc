@@ -9,10 +9,6 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{spine}{next_avail_lower}/30
             - ip-prefix: 169.254.1.1/30
-              # ipv6:
-              #   address:
-              #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
-              #     - ip-prefix: fccf:111::1:49:1/127
   - name: ethernet-1/2
     admin-state: enable
     description: "CORE: az1sp01_e1/2..az1lf02_e-1/49"
@@ -22,10 +18,6 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{spine}{next_avail_lower}/30
             - ip-prefix: 169.254.1.5/30
-              # ipv6:
-              #   address:
-              #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
-              #     - ip-prefix: fccf:112::2:49:1/127
   - name: ethernet-1/3
     admin-state: enable
     description: "CORE: az1sp01_e1/3..az1lf03_e-1/49"
@@ -35,10 +27,6 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{spine}{next_avail_lower}/30
             - ip-prefix: 169.254.1.9/30
-              # ipv6:
-              #   address:
-              #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
-              #     - ip-prefix: fccf:113::3:49:1/127
   - name: ethernet-1/4
     admin-state: enable
     description: "CORE: az1sp01_e1/4..az1lf04_e-1/49"
@@ -48,10 +36,6 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{spine}{next_avail_lower}/30
             - ip-prefix: 169.254.1.13/30
-              # ipv6:
-              #   address:
-              #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
-              #     - ip-prefix: fccf:114::4:49:1/127
   - name: ethernet-1/5
     admin-state: enable
     description: "CORE: az1sp01_e1/5..az1lf05_e-1/49"
@@ -61,10 +45,6 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{spine}{next_avail_lower}/30
             - ip-prefix: 169.254.1.17/30
-              # ipv6:
-              #   address:
-              #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
-              #     - ip-prefix: fccf:115::5:49:1/127
   - name: ethernet-1/6
     admin-state: enable
     description: "CORE: az1sp01_e1/6..az1lf06_e-1/49"
@@ -74,10 +54,6 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{spine}{next_avail_lower}/30
             - ip-prefix: 169.254.1.21/30
-              # ipv6:
-              #   address:
-              #     # fccf:{pod}{spine}{leaf}::{spine-port}:{leaf-port}:{0|1}/127
-              #     - ip-prefix: fccf:116::6:49:1/127
   - name: system0
     admin-state: enable
     subinterface:
@@ -86,10 +62,6 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{devnum}.{254_lf|255_sp}/32
             - ip-prefix: 169.254.1.255/32
-        # ipv6:
-        #   address:
-        #     # fded:127::{pod}:{devnum}:{255sp|254lf}
-        #     - ip-prefix: fded:127::1:1:255/128
 srl_nokia-network-instance:network-instance:
   - name: default
     admin-state: enable
