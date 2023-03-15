@@ -1,4 +1,3 @@
----
 srl_nokia-interfaces:interface:
   - name: lag1
     admin-state: enable
@@ -26,21 +25,20 @@ srl_nokia-interfaces:interface:
         lacp-mode: ACTIVE
         admin-key: 1
         system-id-mac: 02:00:00:00:02:02
-
   - name: ethernet-1/1
     admin-state: enable
     description: "SRV: cab2-srv1_bond0"
     ethernet:
       aggregate-id: lag1
       reload-delay: 20
-        # ipv4:
-        #   address:
-        #     # 10.{pod}.{leaf}.{nextfree}/30
-        #     - ip-prefix: 10.1.3.1/30
-        # ipv6:
-        #   address:
-        #     # fd00:{pod}{leaf}::{port}:{vrf}:1/64
-        #     - ip-prefix: fd00:13::1:100:1/64
+      # ipv4:
+      #   address:
+      #     # 10.{pod}.{leaf}.{nextfree}/30
+      #     - ip-prefix: 10.1.3.1/30
+      # ipv6:
+      #   address:
+      #     # fd00:{pod}{leaf}::{port}:{vrf}:1/64
+      #     - ip-prefix: fd00:13::1:100:1/64
   - name: ethernet-1/2
     admin-state: enable
     description: "SRV: cab2-srv2_eth1"
@@ -130,31 +128,29 @@ srl_nokia-interfaces:interface:
               advertise:
                 - route-type: dynamic
         anycast-gw: {}
-
 tunnel-interface:
   - name: vxlan1
     vxlan-interface:
-    # vlan1 l2vni
-    - index: 1
-      type: bridged
-      ingress:
-        vni: 1
-    # vlan1 l3vni
-    - index: 10001
-      type: routed
-      ingress:
-        vni: 10001
-    # vlan200 l2vni
-    - index: 200
-      type: bridged
-      ingress:
-        vni: 200
-    # vlan200 l3vni
-    - index: 10200
-      type: routed
-      ingress:
-        vni: 10200
-
+      # vlan1 l2vni
+      - index: 1
+        type: bridged
+        ingress:
+          vni: 1
+      # vlan1 l3vni
+      - index: 10001
+        type: routed
+        ingress:
+          vni: 10001
+      # vlan200 l2vni
+      - index: 200
+        type: bridged
+        ingress:
+          vni: 200
+      # vlan200 l3vni
+      - index: 10200
+        type: routed
+        ingress:
+          vni: 10200
 system:
   network-instance:
     protocols:
@@ -171,7 +167,6 @@ system:
       bgp-vpn:
         bgp-instance:
           - id: 1
-
 srl_nokia-network-instance:network-instance:
   - name: default
     admin-state: enable
@@ -325,7 +320,6 @@ srl_nokia-network-instance:network-instance:
             route-target:
               export-rt: target:1:10200
               import-rt: target:1:10200
-
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
     - name: underlay-loopback-v4
