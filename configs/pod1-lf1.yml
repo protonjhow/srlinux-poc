@@ -1,4 +1,3 @@
----
 srl_nokia-interfaces:interface:
   - name: lag1
     admin-state: enable
@@ -8,39 +7,38 @@ srl_nokia-interfaces:interface:
       - index: 0
         type: bridged
         admin-state: enable
-        vlan: 
-          encap: 
+        vlan:
+          encap:
             untagged: {}
       - index: 200
         type: bridged
         admin-state: enable
         vlan:
           encap:
-            single-tagged: 
+            single-tagged:
               vlan-id: 200
-    lag: 
+    lag:
       lag-type: lacp
       member-speed: 25G
-      lacp: 
+      lacp:
         interval: FAST
         lacp-mode: ACTIVE
         admin-key: 1
         system-id-mac: 02:00:00:00:02:01
-    
   - name: ethernet-1/1
     admin-state: enable
     description: "SRV: cab1-srv1_bond0"
-    ethernet: 
+    ethernet:
       aggregate-id: lag1
       reload-delay: 20
-        # ipv4:
-        #   address:
-        #     # 10.{pod}.{leaf}.{nextfree}/30
-        #     - ip-prefix: 10.1.1.1/30
-        # ipv6:
-        #   address:
-        #     # fd00:{pod}{leaf}::{port}:{vrf}:1/64
-        #     - ip-prefix: fd00:11::1:100:1/64
+      # ipv4:
+      #   address:
+      #     # 10.{pod}.{leaf}.{nextfree}/30
+      #     - ip-prefix: 10.1.1.1/30
+      # ipv6:
+      #   address:
+      #     # fd00:{pod}{leaf}::{port}:{vrf}:1/64
+      #     - ip-prefix: fd00:11::1:100:1/64
   - name: ethernet-1/2
     admin-state: enable
     description: "SRV: cab1-srv2_eth1"
@@ -68,14 +66,14 @@ srl_nokia-interfaces:interface:
   #          # fd00:{pod}{leaf}::{port}:{vrf}:1/64
   #          - ip-prefix: fd00:11::3:100:1/64
   # SPACE FOR MORE SERVERS
-  # 
+  #
   # SPINES!
   - name: ethernet-1/49
     admin-state: enable
     description: "CORE: az1sp01_e1/1..az1lf01_e-1/49"
     subinterface:
       - index: 0
-        ipv4: 
+        ipv4:
           address:
             # 169.254.{spine}{next_avail_upper}/30
             - ip-prefix: 169.254.1.2/30
@@ -84,8 +82,8 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/1..az1lf01_e-1/50"
     subinterface:
       - index: 0
-        ipv4: 
-          address: 
+        ipv4:
+          address:
             # 169.254.{spine}{next_avail_upper}/30
             - ip-prefix: 169.254.2.2/30
   - name: ethernet-1/51
@@ -93,8 +91,8 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp03_e1/1..az1lf01_e-1/51"
     subinterface:
       - index: 0
-        ipv4: 
-          address: 
+        ipv4:
+          address:
             # 169.254.{spine}{next_avail_upper}/30
             - ip-prefix: 169.254.3.2/30
   - name: system0
@@ -103,7 +101,7 @@ srl_nokia-interfaces:interface:
       - index: 0
         ipv4:
           address:
-          # 169.254.{devnum}.{254_lf|255_sp}/32
+            # 169.254.{devnum}.{254_lf|255_sp}/32
             - ip-prefix: 169.254.1.254/32
   - name: irb1
     admin-state: enable
@@ -111,11 +109,11 @@ srl_nokia-interfaces:interface:
       - index: 1
         ipv4:
           address:
-            - ip-prefix: 192.168.0.6/29 
+            - ip-prefix: 192.168.0.6/29
               anycast-gw: true
-          arp: 
+          arp:
             learn-unsolicited: true
-            evpn: 
+            evpn:
               advertise:
                 - route-type: dynamic
         anycast-gw: {}
@@ -124,21 +122,20 @@ srl_nokia-interfaces:interface:
           address:
             - ip-prefix: 10.200.200.1/24
               anycast-gw: true
-          arp: 
+          arp:
             learn-unsolicited: true
-            evpn: 
+            evpn:
               advertise:
                 - route-type: dynamic
         anycast-gw: {}
-
 tunnel-interface:
   - name: vxlan1
-    vxlan-interface: 
+    vxlan-interface:
       # vlan1 l2vni
       - index: 1
         type: bridged
         ingress:
-          vni: 1 
+          vni: 1
       # vlan1 l3vni
       - index: 10001
         type: routed
@@ -154,24 +151,22 @@ tunnel-interface:
         type: routed
         ingress:
           vni: 10200
-
 system:
   network-instance:
     protocols:
       evpn:
         ethernet-segments:
           bgp-instance:
-            - id: 1 
+            - id: 1
               ethernet-segment:
                 - name: cab1-srv1_bond0
                   admin-state: enable
                   esi: 00:12:12:12:12:12:12:00:00:01
-                  interface: 
+                  interface:
                     - ethernet-interface: lag1
       bgp-vpn:
         bgp-instance:
           - id: 1
-
 srl_nokia-network-instance:network-instance:
   - name: default
     admin-state: enable
@@ -180,15 +175,15 @@ srl_nokia-network-instance:network-instance:
       - name: ethernet-1/50.0
       - name: ethernet-1/51.0
       - name: system0.0
-    protocols:  
+    protocols:
       bgp:
         autonomous-system: 65001
         router-id: 169.254.1.254
-        failure-detection: 
+        failure-detection:
           fast-failover: true
-        ipv4-unicast: 
+        ipv4-unicast:
           admin-state: enable
-          multipath: 
+          multipath:
             max-paths-level-1: 8
             max-paths-level-2: 8
         group:
@@ -203,22 +198,22 @@ srl_nokia-network-instance:network-instance:
               flag:
                 - name: events
                 - name: graceful-restart
-            timers: 
-              connect-retry: 1 
+            timers:
+              connect-retry: 1
               hold-time: 9
               keepalive-interval: 3
-              minimum-advertisement-interval: 1 
+              minimum-advertisement-interval: 1
           - group-name: overlay-fabric
             peer-as: 64999
-            local-as: 
+            local-as:
               - as-number: 64999
-            transport: 
+            transport:
               local-address: 169.254.1.254
             admin-state: enable
-            evpn: 
+            evpn:
               admin-state: enable
-            timers: 
-              connect-retry: 1 
+            timers:
+              connect-retry: 1
               hold-time: 9
               keepalive-interval: 3
               minimum-advertisement-interval: 1
@@ -246,7 +241,7 @@ srl_nokia-network-instance:network-instance:
       - name: vxlan1.1
     protocols:
       bgp-evpn:
-        bgp-instance: 
+        bgp-instance:
           - id: 1
             admin-state: enable
             vxlan-interface: vxlan1.1
@@ -268,7 +263,7 @@ srl_nokia-network-instance:network-instance:
       - name: vxlan1.10001
     protocols:
       bgp-evpn:
-        bgp-instance: 
+        bgp-instance:
           - id: 1
             admin-state: enable
             vxlan-interface: vxlan1.10001
@@ -291,7 +286,7 @@ srl_nokia-network-instance:network-instance:
       - name: vxlan1.200
     protocols:
       bgp-evpn:
-        bgp-instance: 
+        bgp-instance:
           - id: 1
             admin-state: enable
             vxlan-interface: vxlan1.200
@@ -313,7 +308,7 @@ srl_nokia-network-instance:network-instance:
       - name: vxlan1.10200
     protocols:
       bgp-evpn:
-        bgp-instance: 
+        bgp-instance:
           - id: 1
             admin-state: enable
             vxlan-interface: vxlan1.10200
@@ -325,7 +320,6 @@ srl_nokia-network-instance:network-instance:
             route-target:
               export-rt: target:1:10200
               import-rt: target:1:10200
-
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
     - name: underlay-loopback-v4
@@ -334,44 +328,44 @@ srl_nokia-routing-policy:routing-policy:
           mask-length-range: "32..32"
   policy:
     - name: underlay-loopback-out
-      statement: 
+      statement:
         - sequence-id: 410
-          match: 
+          match:
             prefix-set: underlay-loopback-v4
             protocol: local
-            family: 
+            family:
               - ipv4-unicast
-          action: 
+          action:
             policy-result: accept
         - sequence-id: 420
-          match: 
+          match:
             prefix-set: underlay-loopback-v4
             protocol: bgp
-            family: 
+            family:
               - ipv4-unicast
-          action: 
+          action:
             policy-result: reject
         - sequence-id: 1000
-          action: 
+          action:
             policy-result: reject
     - name: underlay-loopback-in
       statement:
         - sequence-id: 410
-          match: 
+          match:
             prefix-set: underlay-loopback-v4
             protocol: bgp
-            family: 
+            family:
               - ipv4-unicast
-          action: 
+          action:
             policy-result: accept
         - sequence-id: 420
-          match: 
+          match:
             prefix-set: underlay-loopback-v4
             protocol: local
-            family: 
+            family:
               - ipv4-unicast
-          action: 
+          action:
             policy-result: reject
         - sequence-id: 1000
-          action: 
+          action:
             policy-result: reject
