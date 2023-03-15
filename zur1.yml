@@ -42,6 +42,7 @@ topology:
     ed1: 
       group: edge
       kind: vr-sros
+      startup-config: configs/ed1.cfg
     ed2: 
       group: edge
       kind: vr-sros
