@@ -96,6 +96,33 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{spine}{next_avail_upper}/30
             - ip-prefix: 169.254.3.14/30
+  - name: ethernet-1/54
+    admin-state: enable
+    description: "CORE: az1lf4_e-1/54..cr3_e1/6"
+    subinterface:
+      - index: 0
+        ipv4:
+          address:
+            # 169.254.20{core}{next_avail_upper}/30
+            - ip-prefix: 169.254.203.14/30
+  - name: ethernet-1/55
+    admin-state: enable
+    description: "CORE: az1lf4_e-1/55..cr2_e1/6"
+    subinterface:
+      - index: 0
+        ipv4:
+          address:
+            # 169.254.20{core}{next_avail_upper}/30
+            - ip-prefix: 169.254.202.14/30
+  - name: ethernet-1/56
+    admin-state: enable
+    description: "CORE: az1lf4_e-1/56..cr1_e1/6"
+    subinterface:
+      - index: 0
+        ipv4:
+          address:
+            # 169.254.20{core}{next_avail_upper}/30
+            - ip-prefix: 169.254.201.14/30
   - name: system0
     admin-state: enable
     subinterface:
