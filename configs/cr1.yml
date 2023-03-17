@@ -3,7 +3,7 @@ srl_nokia-interfaces:interface:
 # az1 leaves
   - name: ethernet-1/3
     admin-state: enable
-    description: "CORE: cr01_e1/1..az1lf1_e-1/57"
+    description: "CORE: cr01_e1/1..az1lf1_e-1/56"
     subinterface:
       - index: 0
         ipv4:
@@ -12,7 +12,7 @@ srl_nokia-interfaces:interface:
             - ip-prefix: 169.254.201.1/30
   - name: ethernet-1/4
     admin-state: enable
-    description: "CORE: cr1_e1/2..az1lf2_e-1/57"
+    description: "CORE: cr1_e1/2..az1lf2_e-1/56"
     subinterface:
       - index: 0
         ipv4:
@@ -21,7 +21,7 @@ srl_nokia-interfaces:interface:
             - ip-prefix: 169.254.201.5/30
   - name: ethernet-1/5
     admin-state: enable
-    description: "CORE: cr1_e1/3..az1lf3_e-1/57"
+    description: "CORE: cr1_e1/3..az1lf3_e-1/56"
     subinterface:
       - index: 0
         ipv4:
@@ -30,7 +30,7 @@ srl_nokia-interfaces:interface:
             - ip-prefix: 169.254.201.9/30
   - name: ethernet-1/6
     admin-state: enable
-    description: "CORE: cr1_e1/4..az1lf4_e-1/57"
+    description: "CORE: cr1_e1/4..az1lf4_e-1/56"
     subinterface:
       - index: 0
         ipv4:
@@ -39,7 +39,7 @@ srl_nokia-interfaces:interface:
             - ip-prefix: 169.254.201.13/30
   - name: ethernet-1/7
     admin-state: enable
-    description: "CORE: az1cr1_e1/5..az1lf5_e-1/57"
+    description: "CORE: az1cr1_e1/5..az1lf5_e-1/56"
     subinterface:
       - index: 0
         ipv4:
@@ -48,7 +48,7 @@ srl_nokia-interfaces:interface:
             - ip-prefix: 169.254.201.17/30
   - name: ethernet-1/8
     admin-state: enable
-    description: "CORE: cr1_e1/8..az1lf6_e-1/57"
+    description: "CORE: cr1_e1/8..az1lf6_e-1/56"
     subinterface:
       - index: 0
         ipv4:
