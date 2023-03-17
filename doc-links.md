@@ -18,3 +18,9 @@ CLI Cheatsheet [here](https://documentation.nokia.com/srlinux/22-11/SR_Linux_Boo
 * [Start page](https://documentation.nokia.com/srlinux/22-11/title/adv_solutions.html)
 * [EVPN Multihoming](https://documentation.nokia.com/srlinux/22-11/SR_Linux_Book_Files/Advanced_Solutions_Guide/evpn-l2-multihome.html)
 * [Control plane policing](https://documentation.nokia.com/srlinux/22-11/SR_Linux_Book_Files/Advanced_Solutions_Guide/acl-cpm.html)
+
+## Community links
+* [Blog: Intro to EVPN on SR-Linux](https://networkcloudandeverything.com/configuring-srlinux-nodes-in-a-3-tier-data-center/)
+* [Blog: Custom CLI Commands Overview](https://networkcloudandeverything.com/programming-a-custom-show-command-with-sr-linux-cli-plugin/)
+* [Blog: Custom CLI Commands example](https://networkcloudandeverything.com/programming-a-cli-plugin-with-python-in-sr-linux/)
+* [Blog: Jeroen Van Bemmel (Nokia TME)](https://srlinux-at-your-service.medium.com/)
