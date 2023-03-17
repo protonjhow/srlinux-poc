@@ -24,3 +24,12 @@ CLI Cheatsheet [here](https://documentation.nokia.com/srlinux/22-11/SR_Linux_Boo
 * [Blog: Custom CLI Commands Overview](https://networkcloudandeverything.com/programming-a-custom-show-command-with-sr-linux-cli-plugin/)
 * [Blog: Custom CLI Commands example](https://networkcloudandeverything.com/programming-a-cli-plugin-with-python-in-sr-linux/)
 * [Blog: Jeroen Van Bemmel (Nokia TME)](https://srlinux-at-your-service.medium.com/)
+
+
+## Container lab General
+
+[Main Docs](https://containerlab.dev/manual/topo-def-file/)
+
+### Reference materials
+* [Lab Examples](https://containerlab.dev/lab-examples/lab-examples/)
+* [Node kinds](https://containerlab.dev/manual/kinds/)
