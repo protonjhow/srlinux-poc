@@ -72,7 +72,7 @@ srl_nokia-interfaces:interface:
       - index: 0
         ipv4:
           address:
-            # 169.254.200.{next_avail_lower}/30
+            # 169.254.21{core}.{next_avail_lower}/30
             - ip-prefix: 169.254.212.5/30
   # Loopback
   - name: system0
@@ -83,6 +83,116 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.7.{corenumber}/32
             - ip-prefix: 169.254.7.2/32
+srl_nokia-network-instance:network-instance:
+  - name: WAN_EDGE
+    admin-state: enable
+    interface:
+      - name: ethernet-1/10.0
+      - name: ethernet-1/11.0
+      - name: system0.0
+    protocols:
+      srl_nokia-bgp:bgp:
+        autonomous-system: 65999
+        router-id: 169.254.1.254
+        ipv4-unicast:
+          admin-state: enable
+          multipath:
+            max-paths-level-1: 8
+            max-paths-level-2: 8
+        group:
+          - group-name: ebgp_edge
+            admin-state: enable
+            export-policy: ebgp_export_edge
+            import-policy: ebgp_import_edge
+            graceful-restart:
+              admin-state: enable
+            trace-options:
+              flag:
+                - name: events
+                - name: graceful-restart
+            timers:
+              connect-retry: 1
+              hold-time: 9
+              keepalive-interval: 3
+              minimum-advertisement-interval: 1
+        neighbor:
+          - peer-address: 169.254.212.2
+            peer-as: 62371
+            peer-group: ebgp_edge
+          - peer-address: 169.254.212.6
+            peer-as: 62371
+            peer-group: ebgp_edge
+srl_nokia-routing-policy:routing-policy:
+  prefix-set:
+    - name: WAN_EDGE_loopbacks
+      prefix:
+        - ip-prefix: "169.254.1.253/32"
+          mask-length-range: "32..32"
+        - ip-prefix: "169.254.2.253/32"
+          mask-length-range: "32..32"
+        - ip-prefix: "169.254.3.253/32"
+          mask-length-range: "32..32"
+        - ip-prefix: "169.254.1.252/32"
+          mask-length-range: "32..32"
+        - ip-prefix: "169.254.2.252/32"
+          mask-length-range: "32..32"
+    - name: default_route
+      prefix:
+        - ip-prefix: "0.0.0.0/0"
+          mask-length-range: "32..32"
+    - name: proton_public
+      prefix:
+        - ip-prefix: 185.70.40.0/22
+          mask-length-range: "32..32"
+  policy:
+    - name: ebgp_import_edge
+      statement:
+        - sequence-id: 410
+          match:
+            prefix-set: WAN_EDGE_loopbacks
+            family:
+              - ipv4-unicast
+          action:
+            policy-result: accept
+        - sequence-id: 420
+          match:
+            prefix-set: default_route
+            family:
+              - ipv4-unicast
+          action:
+            policy-result: accept
+        - sequence-id: 1000
+          action:
+            policy-result: reject
+    - name: ebgp_export_edge
+      statement:
+        - sequence-id: 410
+          match:
+            prefix-set: proton_public
+            protocol: local
+            family:
+              - ipv4-unicast
+          action:
+            policy-result: accept
+        - sequence-id: 420
+          match:
+            prefix-set: proton_public
+            protocol: bgp
+            family:
+              - ipv4-unicast
+          action:
+            policy-result: accept
+        - sequence-id: 430
+          match:
+            prefix-set: proton_public
+            protocol: bgp-evpn
+            family:
+              - ipv4-unicast
+          action:
+            policy-result: accept
+        - sequence-id: 1000
+          action:
+            policy-result: reject
 srl_nokia-network-instance:network-instance:
   - name: Routing
     admin-state: enable
