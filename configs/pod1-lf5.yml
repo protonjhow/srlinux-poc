@@ -256,7 +256,7 @@ srl_nokia-network-instance:network-instance:
             peer-group: overlay-fabric
           - peer-address: 169.254.2.255
             peer-group: overlay-fabric
-  #Routing instance
+  # Routing instance
   - name: Routing
     admin-state: enable
     type: ip-vrf
@@ -268,16 +268,16 @@ srl_nokia-network-instance:network-instance:
       bgp:
         autonomous-system: 65005
         router-id: 169.254.5.254
-#        ipv4-unicast:
-#          admin-state: enable
+      #  ipv4-unicast:
+      #    admin-state: enable
         group:
           - group-name: ebgp_cr
             admin-state: enable
-#            timers:
-#              connect-retry: 1
-#              hold-time: 9
-#              keepalive-interval: 3
-#              minimum-advertisement-interval: 1
+          #  timers:
+          #    connect-retry: 1
+          #    hold-time: 9
+          #    keepalive-interval: 3
+          #    minimum-advertisement-interval: 1
         neighbor:
           - peer-address: 169.254.201.17
             peer-group: ebgp_cr

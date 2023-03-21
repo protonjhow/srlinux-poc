@@ -1,6 +1,6 @@
 ---
 srl_nokia-interfaces:interface:
-# az1 leaves
+  # az1 leaves
   - name: ethernet-1/3
     admin-state: enable
     description: "CORE: cr01_e1/1..az1lf1_e-1/56"
@@ -55,7 +55,7 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.20{core}.{next_avail_lower}/30
             - ip-prefix: 169.254.201.21/30
-# Edge
+  # Edge
   - name: ethernet-1/10
     admin-state: enable
     description: "EDGE: cr1_e1/10..ed1_eth1"
@@ -74,7 +74,7 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.200.{next_avail_lower}/30
             - ip-prefix: 169.254.211.5/30
-#Loopback
+  # Loopback
   - name: system0
     admin-state: enable
     subinterface:
@@ -98,16 +98,16 @@ srl_nokia-network-instance:network-instance:
       bgp:
         autonomous-system: 65007
         router-id: 169.254.7.1
-#        ipv4-unicast:
-#          admin-state: enable
+      #  ipv4-unicast:
+      #    admin-state: enable
         group:
           - group-name: ebgp_fabric
             admin-state: enable
-#            timers:
-#              connect-retry: 1
-#              hold-time: 9
-#              keepalive-interval: 3
-#              minimum-advertisement-interval: 1
+          #  timers:
+          #    connect-retry: 1
+          #    hold-time: 9
+          #    keepalive-interval: 3
+          #    minimum-advertisement-interval: 1
         neighbor:
           - peer-address: 169.254.201.2
             peer-group: ebgp_fabric
