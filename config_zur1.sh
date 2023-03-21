@@ -20,7 +20,7 @@ configure_SRV() {
 
 echo
 PIDS=""
-NE=("pod1-sp1" "pod1-sp2" "pod1-sp3" "pod1-lf1" "pod1-lf2" "pod1-lf3" "pod1-lf4" "pod1-lf5" "pod1-lf6")
+NE=("pod1-sp1" "pod1-sp2" "pod1-sp3" "pod1-lf1" "pod1-lf2" "pod1-lf3" "pod1-lf4" "pod1-lf5" "pod1-lf6" "cr1" "cr2" "cr3")
 SRV=("pod1-cab1-srv1" "pod1-cab2-srv1" "pod1-cab3-srv1")
 
 for VARIANT in ${NE[@]}; do
