@@ -96,6 +96,33 @@ srl_nokia-interfaces:interface:
           address:
             # 169.254.{spine}{next_avail_upper}/30
             - ip-prefix: 169.254.3.14/30
+  - name: ethernet-1/54
+    admin-state: enable
+    description: "CORE: az1lf4_e-1/54..cr3_e1/6"
+    subinterface:
+      - index: 0
+        ipv4:
+          address:
+            # 169.254.20{core}{next_avail_upper}/30
+            - ip-prefix: 169.254.203.14/30
+  - name: ethernet-1/55
+    admin-state: enable
+    description: "CORE: az1lf4_e-1/55..cr2_e1/6"
+    subinterface:
+      - index: 0
+        ipv4:
+          address:
+            # 169.254.20{core}{next_avail_upper}/30
+            - ip-prefix: 169.254.202.14/30
+  - name: ethernet-1/56
+    admin-state: enable
+    description: "CORE: az1lf4_e-1/56..cr1_e1/6"
+    subinterface:
+      - index: 0
+        ipv4:
+          address:
+            # 169.254.20{core}{next_avail_upper}/30
+            - ip-prefix: 169.254.201.14/30
   - name: system0
     admin-state: enable
     subinterface:
@@ -231,6 +258,38 @@ srl_nokia-network-instance:network-instance:
             peer-group: overlay-fabric
           - peer-address: 169.254.3.255
             peer-group: overlay-fabric
+  #Routing instance
+  - name: Routing
+    admin-state: enable
+    type: ip-vrf
+    interface:
+      - name: ethernet-1/54.0
+      - name: ethernet-1/55.0
+      - name: ethernet-1/56.0
+    protocols:
+      bgp:
+        autonomous-system: 65004
+        router-id: 169.254.4.254
+#        ipv4-unicast:
+#          admin-state: enable
+        group:
+          - group-name: ebgp_cr
+            admin-state: enable
+#            timers:
+#              connect-retry: 1
+#              hold-time: 9
+#              keepalive-interval: 3
+#              minimum-advertisement-interval: 1
+        neighbor:
+          - peer-address: 169.254.201.13
+            peer-group: ebgp_cr
+            peer-as: 65007
+          - peer-address: 169.254.202.13
+            peer-group: ebgp_cr
+            peer-as: 65008
+          - peer-address: 169.254.203.13
+            peer-group: ebgp_cr
+            peer-as: 65009
   # vlan 1 bridge domain
   - name: mac-vrf-1
     type: mac-vrf
