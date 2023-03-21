@@ -136,16 +136,16 @@ srl_nokia-network-instance:network-instance:
       bgp:
         autonomous-system: 65007
         router-id: 169.254.7.1
-      #  ipv4-unicast:
-      #    admin-state: enable
+        # ipv4-unicast:
+        #   admin-state: enable
         group:
           - group-name: ebgp_fabric
             admin-state: enable
-          #  timers:
-          #    connect-retry: 1
-          #    hold-time: 9
-          #    keepalive-interval: 3
-          #    minimum-advertisement-interval: 1
+            # timers:
+            #   connect-retry: 1
+            #   hold-time: 9
+            #   keepalive-interval: 3
+            #   minimum-advertisement-interval: 1
         neighbor:
           - peer-address: 169.254.201.2
             peer-group: ebgp_fabric
@@ -165,7 +165,6 @@ srl_nokia-network-instance:network-instance:
           - peer-address: 169.254.201.22
             peer-group: ebgp_fabric
             peer-as: 65006
-
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
     - name: WAN_EDGE_loopbacks
