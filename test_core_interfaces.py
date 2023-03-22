@@ -3,9 +3,9 @@ import requests
 import json
 
 DEVICE_LIST = [
-    "clab-zur1-pods-pod1-cr1",
-    "clab-zur1-pods-pod1-cr2",
-    "clab-zur1-pods-pod1-cr3"
+    "clab-zur1-pods-cr1",
+    "clab-zur1-pods-cr2",
+    "clab-zur1-pods-cr3"
 ]
 INTERFACE_LIST = [
     "ethernet-1/3",
