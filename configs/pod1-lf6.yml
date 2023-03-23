@@ -2,7 +2,7 @@
 srl_nokia-interfaces:interface:
   - name: lag1
     admin-state: enable
-    description: "SRV: cab3-srv1_eth2"
+    description: "SRV: cab3-websrv1_eth2"
     vlan-tagging: true
     subinterface:
       - index: 0
@@ -28,7 +28,7 @@ srl_nokia-interfaces:interface:
         system-id-mac: 02:00:00:00:03:03
   - name: ethernet-1/1
     admin-state: enable
-    description: "SRV: cab3-srv1_bond0"
+    description: "SRV: cab3-websrv1_bond0"
     ethernet:
       aggregate-id: lag1
       reload-delay: 20
@@ -187,7 +187,7 @@ system:
           bgp-instance:
             - id: 1
               ethernet-segment:
-                - name: cab3-srv1_bond0
+                - name: cab3-websrv1_bond0
                   admin-state: enable
                   esi: 00:56:56:56:56:56:56:00:00:01
                   interface:
