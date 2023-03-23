@@ -24,17 +24,22 @@ def build_rpc_request(path: str, datastore: str) -> str:
 
 
 def assert_bgp_peer_status(response: requests.models.Response, bgp_group: str) -> tuple:
-    peer_status = response.json()["result"][0]
-    if peer_status["total-peers"] == BGP_PEERS[bgp_group]:
-        if peer_status["up-peers"] == BGP_PEERS[bgp_group]:
-            state_str = f"peers expected {BGP_PEERS[bgp_group]} ... cfgd {peer_status['total-peers']} / {peer_status['up-peers']} up"
-            state_bool = True
+    if response.json()["result"][0] == {}:
+        state_str = f"peers expected {BGP_PEERS[bgp_group]} ... cfgd 0 / 0 up"
+        state_bool = False
+    else: 
+        peer_status = response.json()["result"][0]
+
+        if peer_status["total-peers"] == BGP_PEERS[bgp_group]:
+            if peer_status["up-peers"] == BGP_PEERS[bgp_group]:
+                state_str = f"peers expected {BGP_PEERS[bgp_group]} ... cfgd {peer_status['total-peers']} / {peer_status['up-peers']} up"
+                state_bool = True
+            else:
+                state_str = f"peers expected {BGP_PEERS[bgp_group]} ... cfgd {peer_status['total-peers']} / {peer_status['up-peers']} up"
+                state_bool = False
         else:
             state_str = f"peers expected {BGP_PEERS[bgp_group]} ... cfgd {peer_status['total-peers']} / {peer_status['up-peers']} up"
             state_bool = False
-    else:
-        state_str = f"peers expected {BGP_PEERS[bgp_group]} ... cfgd {peer_status['total-peers']} / {peer_status['up-peers']} up"
-        state_bool = False
     return (state_bool, state_str)
 
 
@@ -53,7 +58,6 @@ for group in BGP_GROUPS:
             auth=requests.auth.HTTPBasicAuth(*default_cred),
             verify="clab-zur1-pods/.tls/ca/ca.pem",
         )
-
         success, result = assert_bgp_peer_status(response, group)
 
         if success:
