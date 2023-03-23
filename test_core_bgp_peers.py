@@ -3,7 +3,10 @@ import requests
 import json
 
 DEVICE_LIST = ["clab-zur1-pods-cr1", "clab-zur1-pods-cr2", "clab-zur1-pods-cr3"]
-VRF = "Routing"
+VRF = {
+    "ebgp_edge": "WAN_EDGE",
+    "ebgp_fabric": "Routing"
+}
 BGP_PEERS = {"ebgp_edge": 2, "ebgp_fabric": 6}
 BGP_GROUPS = ["ebgp_edge", "ebgp_fabric"]
 PREFIX_COUNTS = {"recieved": {"ebgp_edge": 6, "ebgp_fabric": 48}}
@@ -50,7 +53,7 @@ for group in BGP_GROUPS:
             url,
             data=json.dumps(
                 build_rpc_request(
-                    path=f"/network-instance[name={VRF}]/protocols/bgp/group[group-name={group}]/statistics",
+                    path=f"/network-instance[name={VRF[group]}]/protocols/bgp/group[group-name={group}]/statistics",
                     datastore="state",
                 )
             ),
