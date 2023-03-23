@@ -20,14 +20,13 @@ jsonrpc_path = "/jsonrpc"
 default_cred = ("admin", "NokiaSrl1!")
 headers = {"Content-type": "application/json"}
 
+
 def build_rpc_request(path: str, datastore: str) -> str:
     body = {
         "jsonrpc": "2.0",
         "id": 0,
         "method": "get",
-        "params": {
-            "commands": [{"path": path, "datastore": datastore}]
-        },
+        "params": {"commands": [{"path": path, "datastore": datastore}]},
     }
     return body
 
