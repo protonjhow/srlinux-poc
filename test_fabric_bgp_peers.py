@@ -7,7 +7,10 @@ DEVICE_LIST = [
     "clab-zur1-pods-pod1-sp2",
     "clab-zur1-pods-pod1-sp3"
 ]
-BGP_PEERS = 6
+BGP_PEERS = {
+    "underlay": 6,
+    "overlay-fabric": 6
+}
 BGP_GROUPS = [
     "underlay",
     "overlay-fabric"
@@ -37,15 +40,15 @@ def build_rpc_request(path: str, datastore: str) -> str:
 
 def assert_bgp_peer_status(response: requests.models.Response, bgp_group: str) -> tuple:
     peer_status = response.json()["result"][0]
-    if peer_status['total-peers'] == BGP_PEERS:
-        if peer_status['up-peers'] == BGP_PEERS:
-            state_str = f"peers expected {BGP_PEERS} ... cfgd {peer_status['total-peers']} / {peer_status['up-peers']} up"
+    if peer_status['total-peers'] == BGP_PEERS[bgp_group]:
+        if peer_status['up-peers'] == BGP_PEERS[bgp_group]:
+            state_str = f"peers expected {BGP_PEERS[bgp_group]} ... cfgd {peer_status['total-peers']} / {peer_status['up-peers']} up"
             state_bool = True
         else: 
-            state_str = f"peers expected {BGP_PEERS} ... cfgd {peer_status['total-peers']} / {peer_status['up-peers']} up"
+            state_str = f"peers expected {BGP_PEERS[bgp_group]} ... cfgd {peer_status['total-peers']} / {peer_status['up-peers']} up"
             state_bool = False
     else: 
-        state_str = f"peers expected {BGP_PEERS} ... cfgd {peer_status['total-peers']} / {peer_status['up-peers']} up"
+        state_str = f"peers expected {BGP_PEERS[bgp_group]} ... cfgd {peer_status['total-peers']} / {peer_status['up-peers']} up"
         state_bool = False
     return (state_bool, state_str)
     
