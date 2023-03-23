@@ -1,0 +1,17 @@
+---
+name: 'Python Black linting'
+on:
+  push:
+  pull_request:
+jobs:
+  black:
+    name: 'Run Black on Python code'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: black
+        uses: psf/black@stable
+        with:
+          options: '--check --verbose'
+          src: './*.py'
