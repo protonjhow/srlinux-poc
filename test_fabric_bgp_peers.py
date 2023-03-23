@@ -7,6 +7,7 @@ DEVICE_LIST = [
     "clab-zur1-pods-pod1-sp2",
     "clab-zur1-pods-pod1-sp3",
 ]
+VRF = "default"
 BGP_PEERS = {"underlay": 6, "overlay-fabric": 6}
 BGP_GROUPS = ["underlay", "overlay-fabric"]
 PREFIX_COUNTS = {"recieved": {"underlay": 6, "overlay-fabric": 48}}
@@ -48,7 +49,7 @@ for group in BGP_GROUPS:
             url,
             data=json.dumps(
                 build_rpc_request(
-                    path=f"/network-instance[name=default]/protocols/bgp/group[group-name={group}]/statistics",
+                    path=f"/network-instance[name={VRF}]/protocols/bgp/group[group-name={group}]/statistics",
                     datastore="state",
                 )
             ),
