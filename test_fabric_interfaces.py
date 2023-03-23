@@ -52,7 +52,9 @@ for device in DEVICE_LIST:
         response = requests.post(
             url,
             data=json.dumps(
-                build_rpc_request(f"/interface[name={interface}]", "state")
+                build_rpc_request(
+                    path=f"/interface[name={interface}]", datastore="state"
+                )
             ),
             headers=headers,
             auth=requests.auth.HTTPBasicAuth(*default_cred),

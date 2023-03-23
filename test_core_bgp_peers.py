@@ -45,8 +45,8 @@ for group in BGP_GROUPS:
             url,
             data=json.dumps(
                 build_rpc_request(
-                    f"/network-instance[name={VRF}]/protocols/bgp/group[group-name={group}]/statistics",
-                    "state",
+                    path=f"/network-instance[name={VRF}]/protocols/bgp/group[group-name={group}]/statistics",
+                    datastore="state",
                 )
             ),
             headers=headers,
