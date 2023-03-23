@@ -3,10 +3,7 @@ import requests
 import json
 
 DEVICE_LIST = ["clab-zur1-pods-cr1", "clab-zur1-pods-cr2", "clab-zur1-pods-cr3"]
-VRF = {
-    "ebgp_edge": "WAN_EDGE",
-    "ebgp_fabric": "Routing"
-}
+VRF = {"ebgp_edge": "WAN_EDGE", "ebgp_fabric": "Routing"}
 BGP_PEERS = {"ebgp_edge": 2, "ebgp_fabric": 6}
 BGP_GROUPS = ["ebgp_edge", "ebgp_fabric"]
 PREFIX_COUNTS = {"recieved": {"ebgp_edge": 6, "ebgp_fabric": 48}}
@@ -30,7 +27,7 @@ def assert_bgp_peer_status(response: requests.models.Response, bgp_group: str) -
     if response.json()["result"][0] == {}:
         state_str = f"peers expected {BGP_PEERS[bgp_group]} ... cfgd 0 / 0 up"
         state_bool = False
-    else: 
+    else:
         peer_status = response.json()["result"][0]
 
         if peer_status["total-peers"] == BGP_PEERS[bgp_group]:
