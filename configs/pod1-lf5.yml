@@ -256,7 +256,7 @@ srl_nokia-network-instance:network-instance:
             peer-group: overlay-fabric
           - peer-address: 169.254.2.255
             peer-group: overlay-fabric
-          - peer-address: 169.254.2.255
+          - peer-address: 169.254.3.255
             peer-group: overlay-fabric
   # Routing instance
   - name: Routing
