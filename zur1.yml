@@ -47,7 +47,7 @@ topology:
     ed2:
       group: edge
       kind: vr-sros
-      startup-config: configs/ed1.cfg
+      startup-config: configs/ed2.cfg
     cr1:
       group: core
       type: ixrh3
