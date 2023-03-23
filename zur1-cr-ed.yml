@@ -1,0 +1,85 @@
+---
+name: zur1-pods
+prefix: null
+mgmt: {}
+topology:
+  defaults:
+    kind: srl
+    type: ixrd2
+  kinds:
+    vr-sros: 
+      image: vrnetlab/vr-sros:22.10.R2
+      type: sr-1
+      license: sros-vm.lic
+      env: 
+        BOOT_DELAY: 10
+    srl:
+      image: ghcr.io/nokia/srlinux:latest
+    linux:
+      #image: ghcr.io/hellt/network-multitool:latest
+      image: alpine-host
+      env:
+        TMODE: lacp
+  nodes:
+    isp1: 
+      group: external
+      kind: linux
+      image: fatred/bgp-route-generator:latest
+      cmd: 
+      env: 
+        MYAS: 1299
+        PEERAS: 62371
+        PEERIP: 192.0.2.2
+    isp2: 
+      group: external
+      kind: linux
+      image: fatred/bgp-route-generator:latest
+      cmd: 
+      env: 
+        MYAS: 3356
+        PEERAS: 62371
+        PEERIP: 198.51.100.2
+    ed1: 
+      group: edge
+      kind: vr-sros
+      startup-config: configs/ed1.cfg
+    ed2: 
+      group: edge
+      kind: vr-sros
+      startup-config: configs/ed2.cfg
+    cr1:
+      group: core
+      type: ixrh3
+    cr2:
+      group: core
+      type: ixrh3
+    cr3:
+      group: core
+      type: ixrh3
+  links:
+    # edge1
+    - endpoints:
+        - ed1:eth1
+        - cr1:e1-10
+    - endpoints:
+        - ed1:eth2
+        - cr2:e1-10
+    - endpoints:
+        - ed1:eth3
+        - cr3:e1-10
+    - endpoints:
+        - ed1:eth4
+        - isp1:eth1
+    # edge2
+    - endpoints:
+        - ed2:eth1
+        - cr1:e1-11
+    - endpoints:
+        - ed2:eth2
+        - cr2:e1-11
+    - endpoints:
+        - ed2:eth3
+        - cr3:e1-11
+    - endpoints:
+        - ed2:eth4
+        - isp2:eth1

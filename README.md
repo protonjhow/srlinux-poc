@@ -1,6 +1,9 @@
 # srlinux-poc
 Playing about with Nokia SRLinux
 
+### pre-req
+this uses a SROS image for the edge router. this requires a licence file to work. make sure you add the licence file as `sros-vm.lic` and that this is __NEVER__ committed to the repo. 
+
 ## How to use me!
 1. install containerlab
 2. stand up the lab instance
