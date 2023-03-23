@@ -50,8 +50,8 @@ def assert_bgp_peer_status(response: requests.models.Response, bgp_group: str) -
     return (state_bool, state_str)
     
 
-for device in DEVICE_LIST:
-    for group in BGP_GROUPS:
+for group in BGP_GROUPS:
+    for device in DEVICE_LIST:
         url = f"https://{device}{jsonrpc_path}"
         response = requests.post(
             url,
