@@ -87,12 +87,12 @@ topology:
       group: pod1-websrv
       kind: linux
       binds:
-        - configs/interfaces.cab2-websrv1:/etc/network/interfaces
+        - configs/interfaces.cab2-websrv2:/etc/network/interfaces
     pod1-cab3-websrv1:
       group: pod1-websrv
       kind: linux
       binds:
-        - configs/interfaces.cab3-websrv1:/etc/network/interfaces
+        - configs/interfaces.cab3-websrv3:/etc/network/interfaces
   links:
     # edge1
     - endpoints:
