@@ -83,12 +83,12 @@ topology:
       kind: linux
       binds:
         - configs/interfaces.cab1-websrv1:/etc/network/interfaces
-    pod1-cab2-websrv1:
+    pod1-cab2-websrv2:
       group: pod1-websrv
       kind: linux
       binds:
         - configs/interfaces.cab2-websrv2:/etc/network/interfaces
-    pod1-cab3-websrv1:
+    pod1-cab3-websrv3:
       group: pod1-websrv
       kind: linux
       binds:
@@ -242,20 +242,20 @@ topology:
 
     # servers
     - endpoints:
-        - pod1-cab1-srv1:eth1
+        - pod1-cab1-websrv1:eth1
         - pod1-lf1:e1-1
     - endpoints:
-        - pod1-cab1-srv1:eth2
+        - pod1-cab1-websrv1:eth2
         - pod1-lf2:e1-1
     - endpoints:
-        - pod1-cab2-srv1:eth1
+        - pod1-cab2-websrv2:eth1
         - pod1-lf3:e1-1
     - endpoints:
-        - pod1-cab2-srv1:eth2
+        - pod1-cab2-websrv2:eth2
         - pod1-lf4:e1-1
     - endpoints:
-        - pod1-cab3-srv1:eth1
+        - pod1-cab3-websrv3:eth1
         - pod1-lf5:e1-1
     - endpoints:
-        - pod1-cab3-srv1:eth2
+        - pod1-cab3-websrv3:eth2
         - pod1-lf6:e1-1
