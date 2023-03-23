@@ -17,4 +17,8 @@ destroy-clab-ci: ## Destroy "ci" test topology
 	sudo clab destroy -t zur1.yml --cleanup
 
 run-tests: $(TESTS) ## Run all CI tests under ./ci/
-	bash -c $<
+	#bash -c $<
+	python3 test_fabric_interfaces.py
+	python3 test_fabric_bgp_peers.py
+	python3 test_core_interfaces.py
+	python3 test_core_bgp_peers.py
