@@ -9,9 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
       - name: black
-        uses: psf/black@stable
+        uses: rickstaa/action-black@v1
         with:
-          options: '--check --verbose'
-          src: '*.py'
+          black_args: ". --check"
