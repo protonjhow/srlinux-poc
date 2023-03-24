@@ -140,6 +140,7 @@ srl_nokia-interfaces:interface:
     subinterface:
       - index: 0
         ipv4:
+          admin-state: enable
           address:
             # 169.254.{devnum}.{254_lf|255_sp}/32
             - ip-prefix: 169.254.6.254/32
