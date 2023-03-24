@@ -139,7 +139,6 @@ srl_nokia-interfaces:interface:
     admin-state: enable
     subinterface:
       - index: 0
-        type: routed
         ipv4:
           admin-state: enable
           address:
@@ -149,7 +148,6 @@ srl_nokia-interfaces:interface:
     admin-state: enable
     subinterface:
       - index: 1
-        type: routed
         ipv4:
           admin-state: enable
           address:
@@ -162,7 +160,6 @@ srl_nokia-interfaces:interface:
                 - route-type: dynamic
         anycast-gw: {}
       - index: 200
-        type: routed
         ipv4:
           admin-state: enable
           address:
