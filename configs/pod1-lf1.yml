@@ -210,7 +210,7 @@ srl_nokia-network-instance:network-instance:
         failure-detection:
           fast-failover: true
         afi-safi:
-          ipv4-unicast:
+          - afi-safi-name: ipv4-unicast
             admin-state: enable
             multipath:
               max-paths-level-1: 8
