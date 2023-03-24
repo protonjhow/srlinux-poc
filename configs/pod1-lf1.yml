@@ -209,11 +209,12 @@ srl_nokia-network-instance:network-instance:
         router-id: 169.254.1.254
         failure-detection:
           fast-failover: true
-        ipv4-unicast:
-          admin-state: enable
-          multipath:
-            max-paths-level-1: 8
-            max-paths-level-2: 8
+        afi-safi:
+          ipv4-unicast:
+            admin-state: enable
+            multipath:
+              max-paths-level-1: 8
+              max-paths-level-2: 8
         group:
           - group-name: underlay
             peer-as: 65000
@@ -238,8 +239,9 @@ srl_nokia-network-instance:network-instance:
             transport:
               local-address: 169.254.1.254
             admin-state: enable
-            evpn:
-              admin-state: enable
+            afi-safi:
+              evpn:
+                admin-state: enable
             timers:
               connect-retry: 1
               hold-time: 9
