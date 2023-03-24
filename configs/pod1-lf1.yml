@@ -240,7 +240,7 @@ srl_nokia-network-instance:network-instance:
               local-address: 169.254.1.254
             admin-state: enable
             afi-safi:
-              evpn:
+              - afi-safe-name: evpn
                 admin-state: enable
             timers:
               connect-retry: 1
