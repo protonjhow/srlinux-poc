@@ -74,7 +74,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp01_e1/1..az1lf01_e-1/49"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.{spine}{next_avail_upper}/30
             - ip-prefix: 169.254.1.2/30
@@ -83,7 +85,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/1..az1lf01_e-1/50"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.{spine}{next_avail_upper}/30
             - ip-prefix: 169.254.2.2/30
@@ -92,7 +96,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp03_e1/1..az1lf01_e-1/51"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.{spine}{next_avail_upper}/30
             - ip-prefix: 169.254.3.2/30
@@ -101,7 +107,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1lf1_e-1/54..cr3_e1/3"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}{next_avail_upper}/30
             - ip-prefix: 169.254.203.2/30
@@ -110,7 +118,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1lf1_e-1/55..cr2_e1/3"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}{next_avail_upper}/30
             - ip-prefix: 169.254.202.2/30
@@ -119,7 +129,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1lf1_e-1/56..cr1_e1/3"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}{next_avail_upper}/30
             - ip-prefix: 169.254.201.2/30
@@ -127,7 +139,9 @@ srl_nokia-interfaces:interface:
     admin-state: enable
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.{devnum}.{254_lf|255_sp}/32
             - ip-prefix: 169.254.1.254/32
@@ -135,7 +149,9 @@ srl_nokia-interfaces:interface:
     admin-state: enable
     subinterface:
       - index: 1
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             - ip-prefix: 192.168.0.6/29
               anycast-gw: true
@@ -146,7 +162,9 @@ srl_nokia-interfaces:interface:
                 - route-type: dynamic
         anycast-gw: {}
       - index: 200
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             - ip-prefix: 10.200.200.1/24
               anycast-gw: true
