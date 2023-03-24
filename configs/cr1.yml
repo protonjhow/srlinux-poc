@@ -6,7 +6,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: cr01_e1/1..az1lf1_e-1/56"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}{next_avail_lower}/30
             - ip-prefix: 169.254.201.1/30
@@ -15,7 +17,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: cr1_e1/2..az1lf2_e-1/56"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}{next_avail_lower}/30
             - ip-prefix: 169.254.201.5/30
@@ -24,7 +28,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: cr1_e1/3..az1lf3_e-1/56"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}{next_avail_lower}/30
             - ip-prefix: 169.254.201.9/30
@@ -33,7 +39,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: cr1_e1/4..az1lf4_e-1/56"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}{next_avail_lower}/30
             - ip-prefix: 169.254.201.13/30
@@ -42,7 +50,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1cr1_e1/5..az1lf5_e-1/56"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}{next_avail_lower}/30
             - ip-prefix: 169.254.201.17/30
@@ -51,7 +61,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: cr1_e1/8..az1lf6_e-1/56"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}.{next_avail_lower}/30
             - ip-prefix: 169.254.201.21/30
@@ -61,7 +73,9 @@ srl_nokia-interfaces:interface:
     description: "EDGE: cr1_e1/10..ed1_eth1"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.21{core}.{next_avail_lower}/30
             - ip-prefix: 169.254.211.1/30
@@ -70,7 +84,9 @@ srl_nokia-interfaces:interface:
     description: "EDGE: cr1_e1/11..ed2_eth1"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.21{core}.{next_avail_lower}/30
             - ip-prefix: 169.254.211.5/30

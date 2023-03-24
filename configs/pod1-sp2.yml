@@ -5,7 +5,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/1..az1lf02_e-1/50"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.{spine}{next_avail_lower}/30
             - ip-prefix: 169.254.2.1/30
@@ -14,7 +16,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/2..az1lf02_e-1/50"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.{spine}{next_avail_lower}/30
             - ip-prefix: 169.254.2.5/30
@@ -23,7 +27,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/3..az1lf03_e-1/50"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.{spine}{next_avail_lower}/30
             - ip-prefix: 169.254.2.9/30
@@ -32,7 +38,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/4..az1lf04_e-1/50"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.{spine}{next_avail_lower}/30
             - ip-prefix: 169.254.2.13/30
@@ -41,7 +49,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/5..az1lf05_e-1/50"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.{spine}{next_avail_lower}/30
             - ip-prefix: 169.254.2.17/30
@@ -50,7 +60,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: az1sp02_e1/6..az1lf06_e-1/50"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.{spine}{next_avail_lower}/30
             - ip-prefix: 169.254.2.21/30
