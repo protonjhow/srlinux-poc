@@ -235,7 +235,7 @@ srl_nokia-network-instance:network-instance:
           - group-name: overlay-fabric
             peer-as: 64999
             local-as:
-              - as-number: 64999
+              as-number: 64999
             transport:
               local-address: 169.254.1.254
             admin-state: enable
