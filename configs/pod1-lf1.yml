@@ -272,8 +272,9 @@ srl_nokia-network-instance:network-instance:
       bgp:
         autonomous-system: 65001
         router-id: 169.254.1.254
-        # ipv4-unicast:
-        #   admin-state: enable
+        afi-safi:
+          - afi-safi-name: ipv4-unicast
+            admin-state: enable
         group:
           - group-name: ebgp_cr
             admin-state: enable
