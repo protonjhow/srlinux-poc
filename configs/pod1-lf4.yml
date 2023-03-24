@@ -209,11 +209,12 @@ srl_nokia-network-instance:network-instance:
         router-id: 169.254.4.254
         failure-detection:
           fast-failover: true
-        ipv4-unicast:
-          admin-state: enable
-          multipath:
-            max-paths-level-1: 8
-            max-paths-level-2: 8
+        afi-safi:
+          - afi-safi-name: ipv4-unicast
+            admin-state: enable
+            multipath:
+              max-paths-level-1: 8
+              max-paths-level-2: 8
         group:
           - group-name: underlay
             peer-as: 65000
@@ -234,12 +235,13 @@ srl_nokia-network-instance:network-instance:
           - group-name: overlay-fabric
             peer-as: 64999
             local-as:
-              - as-number: 64999
-            admin-state: enable
+              as-number: 64999
             transport:
               local-address: 169.254.4.254
-            evpn:
-              admin-state: enable
+            admin-state: enable
+            afi-safi:
+              - afi-safi-name: evpn
+                admin-state: enable
             timers:
               connect-retry: 1
               hold-time: 9
@@ -270,8 +272,9 @@ srl_nokia-network-instance:network-instance:
       bgp:
         autonomous-system: 65004
         router-id: 169.254.4.254
-        # ipv4-unicast:
-        #   admin-state: enable
+        afi-safi:
+          - afi-safi-name: ipv4-unicast
+            admin-state: enable
         group:
           - group-name: ebgp_cr
             admin-state: enable
@@ -389,7 +392,7 @@ srl_nokia-routing-policy:routing-policy:
   policy:
     - name: underlay-loopback-out
       statement:
-        - sequence-id: 410
+        - name: accept-local-loopbacks
           match:
             prefix-set: underlay-loopback-v4
             protocol: local
@@ -397,7 +400,7 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: 420
+        - name: reject-bgp-learned-loopbacks
           match:
             prefix-set: underlay-loopback-v4
             protocol: bgp
@@ -405,12 +408,12 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: reject
-        - sequence-id: 1000
+        - name: default-reject
           action:
             policy-result: reject
     - name: underlay-loopback-in
       statement:
-        - sequence-id: 410
+        - name: accept-bgp-learned-loopbacks
           match:
             prefix-set: underlay-loopback-v4
             protocol: bgp
@@ -418,7 +421,7 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: 420
+        - name: reject-local-loopbacks
           match:
             prefix-set: underlay-loopback-v4
             protocol: local
@@ -426,6 +429,6 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: reject
-        - sequence-id: 1000
+        - name: default-reject
           action:
             policy-result: reject
