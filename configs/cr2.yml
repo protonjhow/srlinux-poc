@@ -91,14 +91,15 @@ srl_nokia-network-instance:network-instance:
       - name: ethernet-1/11.0
       - name: system0.0
     protocols:
-      srl_nokia-bgp:bgp:
+      bgp:
         autonomous-system: 65999
-        router-id: 169.254.1.254
-        ipv4-unicast:
-          admin-state: enable
-          multipath:
-            max-paths-level-1: 8
-            max-paths-level-2: 8
+        router-id: 169.254.7.2
+        afi-safi:
+          - afi-safi-name: ipv4-unicast
+            admin-state: enable
+            multipath:
+              max-paths-level-1: 8
+              max-paths-level-2: 8
         group:
           - group-name: ebgp_edge
             admin-state: enable
@@ -136,8 +137,9 @@ srl_nokia-network-instance:network-instance:
       bgp:
         autonomous-system: 65008
         router-id: 169.254.7.2
-        # ipv4-unicast:
-        #   admin-state: enable
+        afi-safi:
+          - afi-safi-name: ipv4-unicast
+            admin-state: enable
         group:
           - group-name: ebgp_fabric
             admin-state: enable
@@ -185,31 +187,31 @@ srl_nokia-routing-policy:routing-policy:
           mask-length-range: "32..32"
     - name: proton_public
       prefix:
-        - ip-prefix: 185.70.40.0/22
+        - ip-prefix: "185.70.40.0/22"
           mask-length-range: "32..32"
   policy:
     - name: ebgp_import_edge
       statement:
-        - sequence-id: 410
+        - sequence-id: accept-wan-edge-loopbacks
           match:
             prefix-set: WAN_EDGE_loopbacks
             family:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: 420
+        - sequence-id: accept-default-route
           match:
             prefix-set: default_route
             family:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: 1000
+        - name: default-reject
           action:
             policy-result: reject
     - name: ebgp_export_edge
       statement:
-        - sequence-id: 410
+        - sequence-id: accept-local-proton-public-prefixes
           match:
             prefix-set: proton_public
             protocol: local
@@ -217,7 +219,7 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: 420
+        - sequence-id: accept-bgp-proton-public-prefixes
           match:
             prefix-set: proton_public
             protocol: bgp
@@ -225,7 +227,7 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: 430
+        - sequence-id: accept-evpn-proton-public-prefixes
           match:
             prefix-set: proton_public
             protocol: bgp-evpn
@@ -233,6 +235,6 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: 1000
+        - name: default-reject
           action:
             policy-result: reject
