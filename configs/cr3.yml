@@ -192,14 +192,14 @@ srl_nokia-routing-policy:routing-policy:
   policy:
     - name: ebgp_import_edge
       statement:
-        - sequence-id: accept-wan-edge-loopbacks
+        - name: accept-wan-edge-loopbacks
           match:
             prefix-set: WAN_EDGE_loopbacks
             family:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: accept-default-route
+        - name: accept-default-route
           match:
             prefix-set: default_route
             family:
@@ -211,7 +211,7 @@ srl_nokia-routing-policy:routing-policy:
             policy-result: reject
     - name: ebgp_export_edge
       statement:
-        - sequence-id: accept-local-proton-public-prefixes
+        - name: accept-local-proton-public-prefixes
           match:
             prefix-set: proton_public
             protocol: local
@@ -219,7 +219,7 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: accept-bgp-proton-public-prefixes
+        - name: accept-bgp-proton-public-prefixes
           match:
             prefix-set: proton_public
             protocol: bgp
@@ -227,7 +227,7 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: accept-evpn-proton-public-prefixes
+        - name: accept-evpn-proton-public-prefixes
           match:
             prefix-set: proton_public
             protocol: bgp-evpn
