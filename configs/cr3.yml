@@ -96,6 +96,7 @@ srl_nokia-interfaces:interface:
     subinterface:
       - index: 0
         ipv4:
+          admin-state: enable
           address:
             # 169.254.7.{corenumber}/32
             - ip-prefix: 169.254.7.3/32
