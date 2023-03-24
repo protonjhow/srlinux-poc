@@ -14,13 +14,12 @@ topology:
       env:
         BOOT_DELAY: 10
     srl:
-      image: ghcr.io/nokia/srlinux:latest
+      # image: ghcr.io/nokia/srlinux:latest
+      image: srlinux:23.3.1-99
     linux:
       binds:
         - /lib/modules:/lib/modules:ro
-      image: ghcr.io/hellt/network-multitool:latest
-      env:
-        TMODE: lacp
+      image: ubuntu:jammy
   nodes:
     isp1:
       group: external
