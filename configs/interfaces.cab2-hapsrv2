@@ -18,6 +18,6 @@ auto vlan900
 iface vlan900 inet static
 	address 172.16.0.22
 	netmask 255.255.255.0
-	# gateway 172.16.0.1
 	vlan-raw-device bond0
   up ip route add 172.16.0.0/12 via 172.16.0.1 || true
+  up ip route add 10.0.0.0/8 via 172.16.0.1 || true
