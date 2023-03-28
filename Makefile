@@ -24,9 +24,6 @@ run-tests: $(TESTS) ## Run all CI tests under ./ci/
 	python3 test_core_bgp_peers.py
 
 build-containers: ## build each docker container locally
-    cd containers/webserver
-	docker build . -t webserver:latest
-	cd ../haproxy
-	docker build . -t haproxy:latest
-	cd ../../
+	cd containers/webserver && docker build . -t webserver:latest
+	cd ../haproxy && docker build . -t haproxy:latest
 	
