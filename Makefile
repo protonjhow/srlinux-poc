@@ -2,7 +2,7 @@
 
 .DEFAULT_GOAL := help
 
-.PHONY: help deploy-clab-ci destroy-clab-ci run-tests
+.PHONY: help deploy-clab-ci destroy-clab-ci run-tests build-containers
 
 TESTS := $(shell find ./ci/ -name '*.sh')
 
@@ -22,3 +22,11 @@ run-tests: $(TESTS) ## Run all CI tests under ./ci/
 	python3 test_fabric_bgp_peers.py
 	python3 test_core_interfaces.py
 	python3 test_core_bgp_peers.py
+
+build-containers: ## build each docker container locally
+    cd containers/webserver
+	docker build . -t webserver:latest
+	cd ../haproxy
+	docker build . -t haproxy:latest
+	cd ../../
+	
