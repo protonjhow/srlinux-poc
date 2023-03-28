@@ -19,7 +19,6 @@ topology:
     linux:
       binds:
         - /lib/modules:/lib/modules:ro
-      image: ubuntu:jammy
   nodes:
     isp1:
       group: external
@@ -80,18 +79,39 @@ topology:
     pod1-cab1-websrv1:
       group: pod1-websrv
       kind: linux
+      image: webserver
       binds:
         - configs/interfaces.cab1-websrv1:/etc/network/interfaces
     pod1-cab2-websrv2:
       group: pod1-websrv
       kind: linux
+      image: webserver
       binds:
         - configs/interfaces.cab2-websrv2:/etc/network/interfaces
     pod1-cab3-websrv3:
       group: pod1-websrv
       kind: linux
+      image: webserver
       binds:
         - configs/interfaces.cab3-websrv3:/etc/network/interfaces
+    pod1-cab1-hapsrv1:
+      group: pod1-hapsrv
+      kind: linux
+      image: haproxy
+      binds:
+        - configs/interfaces.cab1-hapsrv1:/etc/network/interfaces
+    pod1-cab2-hapsrv2:
+      group: pod1-hapsrv
+      kind: linux
+      image: haproxy
+      binds:
+        - configs/interfaces.cab2-hapsrv2:/etc/network/interfaces
+    pod1-cab3-hapsrv3:
+      group: pod1-hapsrv
+      kind: linux
+      image: haproxy
+      binds:
+        - configs/interfaces.cab3-hapsrv3:/etc/network/interfaces
   links:
     # edge1
     - endpoints:
@@ -258,3 +278,22 @@ topology:
     - endpoints:
         - pod1-cab3-websrv3:eth2
         - pod1-lf6:e1-1
+
+    - endpoints:
+        - pod1-cab1-hapsrv1:eth1
+        - pod1-lf1:e1-2
+    - endpoints:
+        - pod1-cab1-hapsrv1:eth2
+        - pod1-lf2:e1-2
+    - endpoints:
+        - pod1-cab2-hapsrv2:eth1
+        - pod1-lf3:e1-2
+    - endpoints:
+        - pod1-cab2-hapsrv2:eth2
+        - pod1-lf4:e1-2
+    - endpoints:
+        - pod1-cab3-hapsrv3:eth1
+        - pod1-lf5:e1-2
+    - endpoints:
+        - pod1-cab3-hapsrv3:eth2
+        - pod1-lf6:e1-2

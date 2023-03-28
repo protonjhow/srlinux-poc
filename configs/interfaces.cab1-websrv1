@@ -3,9 +3,9 @@ iface lo inet loopback
 
 auto bond0
 iface bond0 inet static
-  address 192.168.0.1
-  netmask 255.255.255.248
-  up ip route add 192.168.0.0/16 via 192.168.0.6 || true
+  address 192.168.0.11
+  netmask 255.255.255.128
+  up ip route add 192.168.0.0/16 via 192.168.0.1 || true
 
   # bond0 uses standard IEEE 802.3ad LACP bonding protocol
   bond-mode 4
