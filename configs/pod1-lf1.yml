@@ -380,7 +380,7 @@ srl_nokia-network-instance:network-instance:
     type: mac-vrf
     admin-state: enable
     interface:
-      - name: lag1.900
+      - name: lag2.900
       - name: irb1.900
     vxlan-interface:
       - name: vxlan1.900
