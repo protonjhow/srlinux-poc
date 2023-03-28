@@ -51,7 +51,7 @@ srl_nokia-interfaces:interface:
       lacp:
         interval: FAST
         lacp-mode: ACTIVE
-        admin-key: 1
+        admin-key: 2
         system-id-mac: 02:00:00:01:02:02
   # PORTS!
   - name: ethernet-1/1
