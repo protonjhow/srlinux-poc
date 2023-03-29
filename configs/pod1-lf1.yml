@@ -436,7 +436,7 @@ srl_nokia-network-instance:network-instance:
           - id: 1
             admin-state: enable
             vxlan-interface: vxlan1.4000200
-            evi: 10200
+            evi: 4000200
             ecmp: 3
       bgp-vpn:
         bgp-instance:
