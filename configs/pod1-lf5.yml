@@ -420,21 +420,21 @@ srl_nokia-network-instance:network-instance:
     interface:
       - name: irb1.0
     vxlan-interface:
-      - name: vxlan1.10001
+      - name: vxlan1.10000
     protocols:
       bgp-evpn:
         bgp-instance:
           - id: 1
             admin-state: enable
-            vxlan-interface: vxlan1.10001
+            vxlan-interface: vxlan1.10000
             evi: 10001
             ecmp: 3
       bgp-vpn:
         bgp-instance:
           - id: 1
             route-target:
-              export-rt: target:1:10001
-              import-rt: target:1:10001
+              export-rt: target:1:10000
+              import-rt: target:1:10000
   # FrontEnd VRF
   - name: FrontEnd
     type: ip-vrf
