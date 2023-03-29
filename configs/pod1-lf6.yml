@@ -201,7 +201,7 @@ tunnel-interface:
       - index: 0
         type: bridged
         ingress:
-          vni: 0
+          vni: 1
         egress:
           source-ip: use-system-ipv4-address
       # FE_VLAN_200
