@@ -65,7 +65,7 @@ srl_nokia-interfaces:interface:
     description: "SRV: cab1-hapsrv1_bond0"
     ethernet:
       aggregate-id: lag2
-      reload-delay: 20  
+      reload-delay: 20
   # SPINES!
   - name: ethernet-1/49
     admin-state: enable
@@ -444,7 +444,6 @@ srl_nokia-network-instance:network-instance:
             route-target:
               export-rt: target:1:10200
               import-rt: target:1:10200
-      
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
     - name: underlay-loopback-v4
