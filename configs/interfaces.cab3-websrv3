@@ -18,6 +18,6 @@ auto vlan200
 iface vlan200 inet static
 	address 10.200.200.13
 	netmask 255.255.255.0
-=	vlan-raw-device bond0
+	vlan-raw-device bond0
   up ip route add 10.0.0.0/8 via 10.200.200.1 || true
   up ip route add 172.16.0.0/12 via 10.200.200.1 || true
