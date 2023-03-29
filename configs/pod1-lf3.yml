@@ -348,7 +348,7 @@ srl_nokia-network-instance:network-instance:
     admin-state: enable
     interface:
       - name: lag1.0
-      - name: irb1.1
+      - name: irb1.0
     vxlan-interface:
       - name: vxlan1.1
     protocols:
@@ -417,7 +417,7 @@ srl_nokia-network-instance:network-instance:
     type: ip-vrf
     admin-state: enable
     interface:
-      - name: irb1.1
+      - name: irb1.0
     vxlan-interface:
       - name: vxlan1.10001
     protocols:
