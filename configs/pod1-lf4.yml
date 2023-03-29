@@ -201,7 +201,7 @@ tunnel-interface:
       - index: 0
         type: bridged
         ingress:
-          vni: 0
+          vni: 1
         egress:
           source-ip: use-system-ipv4-address
       # FE_VLAN_200
@@ -374,8 +374,8 @@ srl_nokia-network-instance:network-instance:
         bgp-instance:
           - id: 1
             route-target:
-              export-rt: target:1:0
-              import-rt: target:1:0
+              export-rt: target:1:1
+              import-rt: target:1:1
   # vlan 200 (web servers)
   - name: FE_VLAN_200
     type: mac-vrf
