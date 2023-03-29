@@ -200,10 +200,10 @@ tunnel-interface:
         ingress:
           vni: 900
       # MGMT_Infra_L3
-      - index: 10001
+      - index: 10000
         type: routed
         ingress:
-          vni: 10001
+          vni: 10000
       # FrontEnd_L3
       - index: 10200
         type: routed
@@ -414,7 +414,7 @@ srl_nokia-network-instance:network-instance:
           - id: 1
             admin-state: enable
             vxlan-interface: vxlan1.10000
-            evi: 10001
+            evi: 10000
             ecmp: 3
       bgp-vpn:
         bgp-instance:
