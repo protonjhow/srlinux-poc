@@ -185,10 +185,10 @@ tunnel-interface:
   - name: vxlan1
     vxlan-interface:
       # MGMT_Infra_VLAN_untagged
-      - index: 1
+      - index: 0
         type: bridged
         ingress:
-          vni: 1
+          vni: 0
       # FE_VLAN_200
       - index: 200
         type: bridged
