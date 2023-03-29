@@ -13,15 +13,21 @@ configure_SRL() {
   echo $OUT > /dev/null
 }
 
-configure_SRV() {
+configure_WEBSRV() {
   docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- bond0 2>/dev/null
   docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- vlan200 2>/dev/null
+}
+
+configure_HAPSRV() {
+  docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- bond0 2>/dev/null
+  docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- vlan900 2>/dev/null
 }
 
 echo
 PIDS=""
 NE=("pod1-sp1" "pod1-sp2" "pod1-sp3" "pod1-lf1" "pod1-lf2" "pod1-lf3" "pod1-lf4" "pod1-lf5" "pod1-lf6" "cr1" "cr2" "cr3")
-SRV=("pod1-cab1-websrv1" "pod1-cab2-websrv2" "pod1-cab3-websrv3")
+WEBSRV=("pod1-cab1-websrv1" "pod1-cab2-websrv2" "pod1-cab3-websrv3")
+HAPSRV=("pod1-cab1-hapsrv1" "pod1-cab2-hapsrv2" "pod1-cab3-hapsrv3")
 
 for VARIANT in ${NE[@]}; do
   ( configure_SRL $VARIANT ) &
@@ -30,8 +36,15 @@ for VARIANT in ${NE[@]}; do
   PIDS+=" $REF"
 done
 
-for VARIANT in ${SRV[@]}; do
-  ( configure_SRV $VARIANT ) &
+for VARIANT in ${WEBSRV[@]}; do
+  ( configure_WEBSRV $VARIANT ) &
+  REF=$!
+  echo "[$REF] Configuring $VARIANT..."
+  PIDS+=" $REF"
+done
+
+for VARIANT in ${HAPSRV[@]}; do
+  ( configure_HAPSRV $VARIANT ) &
   REF=$!
   echo "[$REF] Configuring $VARIANT..."
   PIDS+=" $REF"
