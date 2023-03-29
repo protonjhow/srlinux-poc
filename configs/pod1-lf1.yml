@@ -145,7 +145,7 @@ srl_nokia-interfaces:interface:
   - name: irb1
     admin-state: enable
     subinterface:
-      - index: 1
+      - index: 0
         ipv4:
           admin-state: enable
           address:

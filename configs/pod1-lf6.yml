@@ -158,7 +158,7 @@ srl_nokia-interfaces:interface:
   - name: irb1
     admin-state: enable
     subinterface:
-      - index: 1
+      - index: 0
         ipv4:
           admin-state: enable
           address:
@@ -202,26 +202,36 @@ tunnel-interface:
         type: bridged
         ingress:
           vni: 1
+        egress:
+          source-ip: use-system-ipv4-address
       # FE_VLAN_200
       - index: 200
         type: bridged
         ingress:
           vni: 200
+        egress:
+          source-ip: use-system-ipv4-address
       # FE_VLAN_900
       - index: 900
         type: bridged
         ingress:
           vni: 900
+        egress:
+          source-ip: use-system-ipv4-address
       # MGMT_Infra_L3
       - index: 10001
         type: routed
         ingress:
           vni: 10001
+        egress:
+          source-ip: use-system-ipv4-address
       # FrontEnd_L3
       - index: 10200
         type: routed
         ingress:
           vni: 10200
+        egress:
+          source-ip: use-system-ipv4-address
 system:
   network-instance:
     protocols:
