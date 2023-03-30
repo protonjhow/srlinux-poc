@@ -170,7 +170,7 @@ srl_nokia-interfaces:interface:
               advertise:
                 - route-type: dynamic
         anycast-gw:
-          virtual-router-id: 200
+          virtual-router-id: 21
       - index: 900
         ipv4:
           admin-state: enable
@@ -183,7 +183,7 @@ srl_nokia-interfaces:interface:
               advertise:
                 - route-type: dynamic
         anycast-gw:
-          virtual-router-id: 900
+          virtual-router-id: 22
 tunnel-interface:
   - name: vxlan1
     vxlan-interface:
