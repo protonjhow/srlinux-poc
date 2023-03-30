@@ -23,11 +23,17 @@ configure_HAPSRV() {
   docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- vlan900 2>/dev/null
 }
 
+configure_DBSRV() {
+  docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- bond0 2>/dev/null
+  docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- vlan900 2>/dev/null
+}
+
 echo
 PIDS=""
 NE=("pod1-sp1" "pod1-sp2" "pod1-sp3" "pod1-lf1" "pod1-lf2" "pod1-lf3" "pod1-lf4" "pod1-lf5" "pod1-lf6" "cr1" "cr2" "cr3")
 WEBSRV=("pod1-cab1-websrv1" "pod1-cab2-websrv2" "pod1-cab3-websrv3")
 HAPSRV=("pod1-cab1-hapsrv1" "pod1-cab2-hapsrv2" "pod1-cab3-hapsrv3")
+DBSRV=("pod1-cab1-dbsrv1" "pod1-cab2-dbsrv2" "pod1-cab3-dbsrv3")
 
 for VARIANT in ${NE[@]}; do
   ( configure_SRL $VARIANT ) &
@@ -45,6 +51,13 @@ done
 
 for VARIANT in ${HAPSRV[@]}; do
   ( configure_HAPSRV $VARIANT ) &
+  REF=$!
+  echo "[$REF] Configuring $VARIANT..."
+  PIDS+=" $REF"
+done
+
+for VARIANT in ${DBSRV[@]}; do
+  ( configure_DBSRV $VARIANT ) &
   REF=$!
   echo "[$REF] Configuring $VARIANT..."
   PIDS+=" $REF"
