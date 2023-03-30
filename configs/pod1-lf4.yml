@@ -237,7 +237,7 @@ system:
                     - ethernet-interface: lag1
                 - name: cab1-hapsrv1_bond0
                   admin-state: enable
-                  esi: 00:12:12:12:12:12:12:00:00:02
+                  esi: 00:34:34:34:34:34:34:00:00:02
                   interface:
                     - ethernet-interface: lag2
       bgp-vpn:
