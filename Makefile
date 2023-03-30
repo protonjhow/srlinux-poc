@@ -26,4 +26,5 @@ run-tests: $(TESTS) ## Run all CI tests under ./ci/
 build-containers: ## build each docker container locally
 	cd containers/webserver && docker build . -t webserver:latest
 	cd containers/haproxy && docker build . -t haproxy:latest
+	cd containers/data && docker build . -t data:latest
 	
