@@ -112,6 +112,30 @@ topology:
       image: haproxy
       binds:
         - configs/interfaces.cab3-hapsrv3:/etc/network/interfaces
+    pod1-cab1-dbsrv1:
+      group: pod1-dbsrv
+      kind: linux
+      image: mysql:8-debian
+      binds:
+        - configs/interfaces.cab1-dbsrv1:/etc/network/interfaces
+      env:
+        MYSQL_ROOT_PASSWORD: my-secret-pw
+    pod1-cab2-dbsrv2:
+      group: pod1-dbsrv
+      kind: linux
+      image: mysql:8-debian
+      binds:
+        - configs/interfaces.cab2-dbsrv2:/etc/network/interfaces
+      env:
+        MYSQL_ROOT_PASSWORD: my-secret-pw
+    pod1-cab3-dbsrv3:
+      group: pod1-dbsrv
+      kind: linux
+      image: mysql:8-debian
+      binds:
+        - configs/interfaces.cab3-dbsrv3:/etc/network/interfaces
+      env: 
+        MYSQL_ROOT_PASSWORD: my-secret-pw 
   links:
     # edge1
     - endpoints:
@@ -260,6 +284,7 @@ topology:
         - pod1-lf6:e1-51
 
     # servers
+    # web
     - endpoints:
         - pod1-cab1-websrv1:eth1
         - pod1-lf1:e1-1
@@ -278,7 +303,7 @@ topology:
     - endpoints:
         - pod1-cab3-websrv3:eth2
         - pod1-lf6:e1-1
-
+    # hap
     - endpoints:
         - pod1-cab1-hapsrv1:eth1
         - pod1-lf1:e1-2
@@ -297,3 +322,23 @@ topology:
     - endpoints:
         - pod1-cab3-hapsrv3:eth2
         - pod1-lf6:e1-2
+    # db
+    - endpoints:
+        - pod1-cab1-dbsrv1:eth1
+        - pod1-lf1:e1-3
+    - endpoints:
+        - pod1-cab1-dbsrv1:eth2
+        - pod1-lf2:e1-3
+    - endpoints:
+        - pod1-cab2-dbsrv2:eth1
+        - pod1-lf3:e1-3
+    - endpoints:
+        - pod1-cab2-dbsrv2:eth2
+        - pod1-lf4:e1-3
+    - endpoints:
+        - pod1-cab3-dbsrv3:eth1
+        - pod1-lf5:e1-3
+    - endpoints:
+        - pod1-cab3-dbsrv3:eth2
+        - pod1-lf6:e1-3
+
