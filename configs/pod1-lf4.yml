@@ -1,6 +1,6 @@
 ---
 srl_nokia-interfaces:interface:
-  # LAGS! 
+  # LAGS!
   - name: lag1
     admin-state: enable
     description: "SRV: cab2-websrv2_eth2"
@@ -156,7 +156,8 @@ srl_nokia-interfaces:interface:
             evpn:
               advertise:
                 - route-type: dynamic
-        anycast-gw: {}
+        anycast-gw:
+          virtual-router-id: 1
       - index: 200
         ipv4:
           admin-state: enable
@@ -168,7 +169,8 @@ srl_nokia-interfaces:interface:
             evpn:
               advertise:
                 - route-type: dynamic
-        anycast-gw: {}
+        anycast-gw:
+          virtual-router-id: 200
       - index: 900
         ipv4:
           admin-state: enable
@@ -180,7 +182,8 @@ srl_nokia-interfaces:interface:
             evpn:
               advertise:
                 - route-type: dynamic
-        anycast-gw: {}
+        anycast-gw:
+          virtual-router-id: 900
 tunnel-interface:
   - name: vxlan1
     vxlan-interface:
