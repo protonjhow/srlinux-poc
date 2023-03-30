@@ -115,27 +115,21 @@ topology:
     pod1-cab1-dbsrv1:
       group: pod1-dbsrv
       kind: linux
-      image: mysql:8-debian
+      image: data
       binds:
         - configs/interfaces.cab1-dbsrv1:/etc/network/interfaces
-      env:
-        MYSQL_ROOT_PASSWORD: my-secret-pw
     pod1-cab2-dbsrv2:
       group: pod1-dbsrv
       kind: linux
-      image: mysql:8-debian
+      image: data
       binds:
         - configs/interfaces.cab2-dbsrv2:/etc/network/interfaces
-      env:
-        MYSQL_ROOT_PASSWORD: my-secret-pw
     pod1-cab3-dbsrv3:
       group: pod1-dbsrv
       kind: linux
-      image: mysql:8-debian
+      image: data
       binds:
         - configs/interfaces.cab3-dbsrv3:/etc/network/interfaces
-      env: 
-        MYSQL_ROOT_PASSWORD: my-secret-pw 
   links:
     # edge1
     - endpoints:
