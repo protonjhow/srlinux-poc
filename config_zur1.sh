@@ -25,7 +25,7 @@ configure_HAPSRV() {
 
 configure_DBSRV() {
   docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- bond0 2>/dev/null
-  docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- vlan900 2>/dev/null
+  docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- vlan500 2>/dev/null
 }
 
 echo
