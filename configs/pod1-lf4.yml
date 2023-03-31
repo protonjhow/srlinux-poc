@@ -203,9 +203,9 @@ srl_nokia-interfaces:interface:
                 - route-type: dynamic
             host-route:
               populate:
-                static:
+                - route-type: static
                   datapath-programming: true
-                dynamic:
+                - route-type: dynamic
                   datapath-programming: true
         anycast-gw:
           virtual-router-id: 21
@@ -222,9 +222,9 @@ srl_nokia-interfaces:interface:
                 - route-type: dynamic
             host-route:
               populate:
-                static:
+                - route-type: static
                   datapath-programming: true
-                dynamic:
+                - route-type: dynamic
                   datapath-programming: true
         anycast-gw:
           virtual-router-id: 51
