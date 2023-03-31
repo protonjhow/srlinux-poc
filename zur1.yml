@@ -335,4 +335,3 @@ topology:
     - endpoints:
         - pod1-cab3-dbsrv3:eth2
         - pod1-lf6:e1-3
-
