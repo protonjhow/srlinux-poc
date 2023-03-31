@@ -546,6 +546,10 @@ srl_nokia-network-instance:network-instance:
             route-target:
               export-rt: target:1:10200
               import-rt: target:1:10200
+    inter-instance-policies:
+      apply-policy:
+        import-policy: VRF_Leak_BE_FE
+        export-policy: VRF_Leak_FE_BE
   # BackEnd VRF
   - name: BackEnd
     type: ip-vrf
@@ -568,13 +572,43 @@ srl_nokia-network-instance:network-instance:
             route-target:
               export-rt: target:1:10500
               import-rt: target:1:10500
+    inter-instance-policies:
+      apply-policy:
+        import-policy: VRF_Leak_FE_BE
+        export-policy: VRF_Leak_BE_FE
 srl_nokia-routing-policy:routing-policy:
   prefix-set:
     - name: underlay-loopback-v4
       prefix:
         - ip-prefix: "169.254.0.0/16"
           mask-length-range: "32..32"
+    - name: vl200_websrv
+      prefix:
+        - ip-prefix: "10.200.200.0/24"
+          mask-length-range: "exact"
+    - name: vl500_dbsrv
+      prefix:
+        - ip-prefix: "172.16.50.0/24"
+          mask-length-range: "exact"
   policy:
+    - name: VRF_Leak_FE_BE
+      statement:
+        - name: export-websrv
+          match:
+            prefix-set: vl200_websrv
+          action:
+            policy-result: accept
+      default-action:
+        policy-result: reject
+    - name: VRF_Leak_BE_FE
+      statement:
+        - name: export-dbsrv
+          match:
+            prefix-set: vl500_dbsrv
+          action:
+            policy-result: accept
+      default-action:
+        policy-result: reject
     - name: underlay-loopback-out
       statement:
         - name: accept-local-loopbacks
@@ -593,9 +627,8 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: reject
-        - name: default-reject
-          action:
-            policy-result: reject
+      default-action:
+        policy-result: reject
     - name: underlay-loopback-in
       statement:
         - name: accept-bgp-learned-loopbacks
@@ -614,6 +647,5 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: reject
-        - name: default-reject
-          action:
-            policy-result: reject
+      default-action:
+        policy-result: reject
