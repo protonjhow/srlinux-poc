@@ -597,11 +597,11 @@ srl_nokia-routing-policy:routing-policy:
     - name: vl200_websrv
       prefix:
         - ip-prefix: "10.200.200.0/24"
-          mask-length-range: "exact"
+          mask-length-range: "24..32"
     - name: vl500_dbsrv
       prefix:
         - ip-prefix: "172.16.50.0/24"
-          mask-length-range: "exact"
+          mask-length-range: "24..32"
   policy:
     - name: VRF_Leak_FE_BE
       statement:
