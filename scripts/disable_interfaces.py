@@ -11,11 +11,11 @@ from nornir_pygnmi.tasks import gnmi_capabilities, gnmi_get, gnmi_set
 
 # Statics
 NORNIR_CONFIG = "./config.yaml"
-PATH = ["srl_nokia-interfaces:interface[name=ethernet-1/3]/admin-state"]
+PATH = ["interface[name=ethernet-1/3]/admin-state"]
 CONFIG_MSG = [
     (
         "/",
-        {"srl_nokia-interfaces:interface":[{"name": "ethernet-1/3", "admin-state": "disable"}]}
+        {"interface":[{"name": "ethernet-1/3", "admin-state": "disable"}]}
     )
 ]
 
@@ -23,7 +23,7 @@ CONFIG_MSG = [
 if __name__ == "__main__":
     # Get initial timestamp
     start_time = datetime.datetime.now()
-    print(f"Execition started at {start_time}")
+    print(f"Execution started at {start_time}")
 
     # Initialise Nornir
     nrn = InitNornir(config_file=NORNIR_CONFIG)
