@@ -30,7 +30,7 @@ configure_DBSRV() {
 
 echo
 PIDS=""
-NE=("pod1-sp1" "pod1-sp2" "pod1-sp3" "pod1-lf1" "pod1-lf2" "pod1-lf3" "pod1-lf4" "pod1-lf5" "pod1-lf6" "cr1" "cr2" "cr3")
+NE=("pod1-sp1" "pod1-sp2" "pod1-sp3" "pod1-lf3" "pod1-lf4" "pod1-lf5" "pod1-lf6" "cr1" "cr2" "cr3")
 WEBSRV=("pod1-cab1-websrv1" "pod1-cab2-websrv2" "pod1-cab3-websrv3")
 HAPSRV=("pod1-cab1-hapsrv1" "pod1-cab2-hapsrv2" "pod1-cab3-hapsrv3")
 DBSRV=("pod1-cab1-dbsrv1" "pod1-cab2-dbsrv2" "pod1-cab3-dbsrv3")
