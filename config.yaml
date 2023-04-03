@@ -6,7 +6,7 @@
 #     # group_file: "inventory/groups.yaml"
 #     # defaults_file: "inventory/defaults.yaml"
 inventory:
-    plugin: nornir.plugins.inventory.ansible.AnsibleInventory
+    plugin: AnsibleInventory
     options:
         hostsfile: "clab-zur1-pods\ansible-inventory.yml"
 runner:
