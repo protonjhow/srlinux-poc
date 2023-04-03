@@ -33,4 +33,3 @@ srl_nokia-network-instance:network-instance:
           - peer-address: 169.254.203.5
             peer-group: ebgp_cr
             peer-as: 65009
-

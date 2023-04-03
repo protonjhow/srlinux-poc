@@ -1,53 +1,53 @@
+---
 tunnel-interface:
-    - name: vxlan1
-      vxlan-interface:
-        # MGMT_Infra_VLAN_untagged
-        - index: 0
-          type: bridged
-          ingress:
-            vni: 1
-          egress:
-            source-ip: use-system-ipv4-address
-        # FE_VLAN_200
-        - index: 200
-          type: bridged
-          ingress:
-            vni: 200
-          egress:
-            source-ip: use-system-ipv4-address
-        # BE_VLAN_500
-        - index: 500
-          type: bridged
-          ingress:
-            vni: 500
-          egress:
-            source-ip: use-system-ipv4-address
-        # FE_VLAN_900
-        - index: 900
-          type: bridged
-          ingress:
-            vni: 900
-          egress:
-            source-ip: use-system-ipv4-address
-        # MGMT_Infra_L3
-        - index: 10000
-          type: routed
-          ingress:
-            vni: 10000
-          egress:
-            source-ip: use-system-ipv4-address
-        # FrontEnd_L3
-        - index: 10200
-          type: routed
-          ingress:
-            vni: 10200
-          egress:
-            source-ip: use-system-ipv4-address
-        # BackEnd_L3
-        - index: 10500
-          type: routed
-          ingress:
-            vni: 10500
-          egress:
-            source-ip: use-system-ipv4-address
-  
+  - name: vxlan1
+    vxlan-interface:
+      # MGMT_Infra_VLAN_untagged
+      - index: 0
+        type: bridged
+        ingress:
+          vni: 1
+        egress:
+          source-ip: use-system-ipv4-address
+      # FE_VLAN_200
+      - index: 200
+        type: bridged
+        ingress:
+          vni: 200
+        egress:
+          source-ip: use-system-ipv4-address
+      # BE_VLAN_500
+      - index: 500
+        type: bridged
+        ingress:
+          vni: 500
+        egress:
+          source-ip: use-system-ipv4-address
+      # FE_VLAN_900
+      - index: 900
+        type: bridged
+        ingress:
+          vni: 900
+        egress:
+          source-ip: use-system-ipv4-address
+      # MGMT_Infra_L3
+      - index: 10000
+        type: routed
+        ingress:
+          vni: 10000
+        egress:
+          source-ip: use-system-ipv4-address
+      # FrontEnd_L3
+      - index: 10200
+        type: routed
+        ingress:
+          vni: 10200
+        egress:
+          source-ip: use-system-ipv4-address
+      # BackEnd_L3
+      - index: 10500
+        type: routed
+        ingress:
+          vni: 10500
+        egress:
+          source-ip: use-system-ipv4-address

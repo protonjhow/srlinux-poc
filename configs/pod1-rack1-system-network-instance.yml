@@ -1,26 +1,27 @@
+---
 system:
-    network-instance:
-      protocols:
-        evpn:
-          ethernet-segments:
-            bgp-instance:
-              - id: 1
-                ethernet-segment:
-                  - name: cab1-websrv1_bond0
-                    admin-state: enable
-                    esi: 00:12:12:12:12:12:12:00:00:01
-                    interface:
-                      - ethernet-interface: lag1
-                  - name: cab1-hapsrv1_bond0
-                    admin-state: enable
-                    esi: 00:12:12:12:12:12:12:00:00:02
-                    interface:
-                      - ethernet-interface: lag2
-                  - name: cab1-dbsrv1_bond0
-                    admin-state: enable
-                    esi: 00:12:12:12:12:12:12:00:00:03
-                    interface:
-                      - ethernet-interface: lag3
-        bgp-vpn:
+  network-instance:
+    protocols:
+      evpn:
+        ethernet-segments:
           bgp-instance:
             - id: 1
+              ethernet-segment:
+                - name: cab1-websrv1_bond0
+                  admin-state: enable
+                  esi: 00:12:12:12:12:12:12:00:00:01
+                  interface:
+                    - ethernet-interface: lag1
+                - name: cab1-hapsrv1_bond0
+                  admin-state: enable
+                  esi: 00:12:12:12:12:12:12:00:00:02
+                  interface:
+                    - ethernet-interface: lag2
+                - name: cab1-dbsrv1_bond0
+                  admin-state: enable
+                  esi: 00:12:12:12:12:12:12:00:00:03
+                  interface:
+                    - ethernet-interface: lag3
+      bgp-vpn:
+        bgp-instance:
+          - id: 1

@@ -67,4 +67,3 @@ srl_nokia-interfaces:interface:
                 - route-type: dynamic
         anycast-gw:
           virtual-router-id: 22
-
