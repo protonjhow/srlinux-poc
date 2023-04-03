@@ -13,8 +13,12 @@ NORNIR_CONFIG = "./config.yaml"
 PATH = ["interface[name=ethernet-1/3]/admin-state"]
 CONFIG_MSG = [
     (
-        '/',
-        {"srl_nokia-interfaces:interface":[{"name": "ethernet-1/3", "admin-state": "enable"}]}
+        "/",
+        {
+            "srl_nokia-interfaces:interface": [
+                {"name": "ethernet-1/3", "admin-state": "enable"}
+            ]
+        },
     )
 ]
 
