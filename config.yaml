@@ -1,10 +1,14 @@
 ---
+# inventory:
+#   plugin: SimpleInventory
+#   options:
+#     host_file: "inventory/hosts.yaml"
+#     # group_file: "inventory/groups.yaml"
+#     # defaults_file: "inventory/defaults.yaml"
 inventory:
-  plugin: SimpleInventory
-  options:
-    host_file: "inventory/hosts.yaml"
-    # group_file: "inventory/groups.yaml"
-    # defaults_file: "inventory/defaults.yaml"
+    plugin: nornir.plugins.inventory.ansible.AnsibleInventory
+    options:
+        hostsfile: "clab-zur1-pods\ansible-inventory.yml"
 runner:
   plugin: threaded
   options:
