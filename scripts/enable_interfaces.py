@@ -13,8 +13,8 @@ NORNIR_CONFIG = "./config.yaml"
 PATH = ["interface[name=ethernet-1/3]/admin-state"]
 CONFIG_MSG = [
     (
-        "/interface[name=ethernet-1/3]/admin-state",
-        "enable",
+        '/',
+        {"srl_nokia-interfaces:interface":[{"name": "ethernet-1/3", "admin-state": "enable"}]}
     )
 ]
 
@@ -22,7 +22,7 @@ CONFIG_MSG = [
 if __name__ == "__main__":
     # Get initial timestamp
     start_time = datetime.datetime.now()
-    print(f"Execition started at {start_time}")
+    print(f"Execution started at {start_time}")
 
     # Initialise Nornir
     nrn = InitNornir(config_file=NORNIR_CONFIG)

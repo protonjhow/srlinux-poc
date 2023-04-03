@@ -13,8 +13,8 @@ NORNIR_CONFIG = "./config.yaml"
 PATH = ["interface[name=ethernet-1/3]/admin-state"]
 CONFIG_MSG = [
     (
-        "/interface[name=ethernet-1/3]/admin-state",
-        "disable",
+        '/',
+        {"srl_nokia-interfaces:interface":[{"name": "ethernet-1/3", "admin-state": "disable"}]}
     )
 ]
 
@@ -30,11 +30,11 @@ if __name__ == "__main__":
     # Perform action
     # result1 = nrn.run(task=gnmi_capabilities)
     # print_result(result1)
-    result2 = nrn.run(task=gnmi_get, encoding="JSON_IETF", path=PATH)
+    result2 = nrn.run(task=gnmi_get, encoding="json_ietf", path=PATH)
     print_result(result2)
-    result3 = nrn.run(task=gnmi_set, encoding="JSON_IETF", update=CONFIG_MSG)
+    result3 = nrn.run(task=gnmi_set, encoding="json_ietf", update=CONFIG_MSG)
     print_result(result3, severity_level=logging.DEBUG)
-    result4 = nrn.run(task=gnmi_get, encoding="JSON_IETF", path=PATH)
+    result4 = nrn.run(task=gnmi_get, encoding="json_ietf", path=PATH)
     print_result(result4)
 
     # Get final timestamp
