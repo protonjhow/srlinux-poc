@@ -4,7 +4,6 @@
 # Modules
 import datetime
 import logging
-import os
 from nornir.init_nornir import InitNornir
 from nornir_utils.plugins.functions import print_result
 from nornir_pygnmi.tasks import gnmi_capabilities, gnmi_get, gnmi_set
