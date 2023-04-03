@@ -3,6 +3,7 @@
 
 # Modules
 from nornir.init_nornir import InitNornir
+from nornir.core.filter import F
 from nornir_utils.plugins.functions import print_result
 from nornir_pygnmi.tasks import gnmi_get, gnmi_set
 
@@ -26,7 +27,7 @@ if __name__ == "__main__":
     nr = InitNornir(config_file=NORNIR_CONFIG)
 
     # filter to just Cores 
-    cores = nr.filter(group='core')
+    cores = nr.filter(F(groups_contains="core"))
     
     # Check before
     interfaces_state_before = cores.run(task=gnmi_get, encoding="json_ietf", path=PATH)
