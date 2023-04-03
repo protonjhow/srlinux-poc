@@ -1,0 +1,75 @@
+srl_nokia-network-instance:network-instance:
+  ## L3
+  - name: FrontEnd
+    type: ip-vrf
+    admin-state: enable
+    interface:
+      - name: irb1.200
+      - name: irb1.900
+    vxlan-interface:
+      - name: vxlan1.10200
+    protocols:
+      bgp-evpn:
+        bgp-instance:
+          - id: 1
+            admin-state: enable
+            vxlan-interface: vxlan1.10200
+            evi: 10200
+            ecmp: 3
+      bgp-vpn:
+        bgp-instance:
+          - id: 1
+            route-target:
+              export-rt: target:1:10200
+              import-rt: target:1:10200
+    inter-instance-policies:
+      apply-policy:
+        import-policy: VRF_Leak_BE_FE
+        export-policy: VRF_Leak_FE_BE
+  ## L2
+  # vlan 200 (web servers)
+  - name: FE_VLAN_200
+    type: mac-vrf
+    admin-state: enable
+    interface:
+      - name: irb1.200
+      - name: lag1.200
+    vxlan-interface:
+      - name: vxlan1.200
+    protocols:
+      bgp-evpn:
+        bgp-instance:
+          - id: 1
+            admin-state: enable
+            vxlan-interface: vxlan1.200
+            evi: 200
+            ecmp: 3
+      bgp-vpn:
+        bgp-instance:
+          - id: 1
+            route-target:
+              export-rt: target:1:200
+              import-rt: target:1:200
+  # vlan 900 (HAProxy)
+  - name: FE_VLAN_900
+    type: mac-vrf
+    admin-state: enable
+    interface:
+      - name: irb1.900
+      - name: lag2.900
+    vxlan-interface:
+      - name: vxlan1.900
+    protocols:
+      bgp-evpn:
+        bgp-instance:
+          - id: 1
+            admin-state: enable
+            vxlan-interface: vxlan1.900
+            evi: 900
+            ecmp: 3
+      bgp-vpn:
+        bgp-instance:
+          - id: 1
+            route-target:
+              export-rt: target:1:900
+              import-rt: target:1:900

@@ -1,0 +1,36 @@
+---
+srl_nokia-network-instance:network-instance:
+  # Routing instance
+  - name: Routing
+    admin-state: enable
+    type: ip-vrf
+    interface:
+      - name: ethernet-1/54.0
+      - name: ethernet-1/55.0
+      - name: ethernet-1/56.0
+    protocols:
+      bgp:
+        autonomous-system: 65002
+        router-id: 169.254.2.254
+        afi-safi:
+          - afi-safi-name: ipv4-unicast
+            admin-state: enable
+        group:
+          - group-name: ebgp_cr
+            admin-state: enable
+            # timers:
+            #   connect-retry: 1
+            #   hold-time: 9
+            #   keepalive-interval: 3
+            #   minimum-advertisement-interval: 1
+        neighbor:
+          - peer-address: 169.254.201.5
+            peer-group: ebgp_cr
+            peer-as: 65007
+          - peer-address: 169.254.202.5
+            peer-group: ebgp_cr
+            peer-as: 65008
+          - peer-address: 169.254.203.5
+            peer-group: ebgp_cr
+            peer-as: 65009
+

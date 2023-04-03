@@ -1,0 +1,15 @@
+---
+srl_nokia-routing-policy:routing-policy:
+  prefix-set:
+    - name: underlay-loopback-v4
+      prefix:
+        - ip-prefix: "169.254.0.0/16"
+          mask-length-range: "32..32"
+    - name: vl200_websrv
+      prefix:
+        - ip-prefix: "10.200.200.0/24"
+          mask-length-range: "24..32"
+    - name: vl500_dbsrv
+      prefix:
+        - ip-prefix: "172.16.50.0/24"
+          mask-length-range: "24..32"

@@ -1,0 +1,21 @@
+---
+srl_nokia-routing-policy:routing-policy:
+  policy:
+    - name: VRF_Leak_FE_BE
+      statement:
+        - name: export-websrv
+          match:
+            prefix-set: vl200_websrv
+          action:
+            policy-result: accept
+      default-action:
+        policy-result: reject
+    - name: VRF_Leak_BE_FE
+      statement:
+        - name: export-dbsrv
+          match:
+            prefix-set: vl500_dbsrv
+          action:
+            policy-result: accept
+      default-action:
+        policy-result: reject
