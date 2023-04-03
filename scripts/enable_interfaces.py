@@ -11,11 +11,15 @@ from nornir_pygnmi.tasks import gnmi_capabilities, gnmi_get, gnmi_set
 
 # Statics
 NORNIR_CONFIG = "./config.yaml"
-PATH = ["srl_nokia-interfaces:interface[name=ethernet-1/3]/admin-state"]
+PATH = ["interface[name=ethernet-1/3]/admin-state"]
 CONFIG_MSG = [
     (
         "/",
-        {"srl_nokia-interfaces:interface":[{"name": "ethernet-1/3", "admin-state": "enable"}]}
+        {
+            "interface": [
+                {"name": "ethernet-1/3", "admin-state": "enable"}
+            ]
+        },
     )
 ]
 

@@ -15,7 +15,11 @@ PATH = ["interface[name=ethernet-1/3]/admin-state"]
 CONFIG_MSG = [
     (
         "/",
-        {"interface":[{"name": "ethernet-1/3", "admin-state": "disable"}]}
+        {
+            "interface": [
+                {"name": "ethernet-1/3", "admin-state": "disable"}
+            ]
+        },
     )
 ]
 
