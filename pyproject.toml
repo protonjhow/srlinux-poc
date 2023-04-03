@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "srlinux-poc"
+version = "0.1.0"
+description = ""
+authors = ["geg347 <geg347@users.noreply.gihub.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+nornir-pygnmi = "^0.2.0"
+nornir-utils = "^0.2.0"
+nornir = "^3.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
