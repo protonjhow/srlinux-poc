@@ -27,7 +27,7 @@ if __name__ == "__main__":
     nr = InitNornir(config_file=NORNIR_CONFIG)
 
     # filter to just Cores 
-    cores = nr.filter(F(groups_contains="core"))
+    cores = nr.filter(F(groups__contains="core"))
     
     # Check before
     interfaces_state_before = cores.run(task=gnmi_get, encoding="json_ietf", path=PATH)
