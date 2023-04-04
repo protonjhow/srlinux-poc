@@ -65,7 +65,7 @@ if __name__ == "__main__":
     send_config_to_group("pod1-rack1-interfaces", rack1)
     send_config_to_group("pod1-interfaces", leaves)
     send_config_to_group("pod1-tunnel-interfaces", leaves)
-    send_config_to_group("pod1-pod1-routing-policy-prefix-sets", leaves)
+    send_config_to_group("pod1-routing-policy-prefix-sets", leaves)
     send_config_to_group("pod1-routing-policy-underlay", leaves)
     send_config_to_group("pod1-lf1-network-instance-vrf-default", leaf1)
     send_config_to_group("pod1-lf2-network-instance-vrf-default", leaf2)
