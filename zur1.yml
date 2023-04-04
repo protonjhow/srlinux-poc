@@ -11,11 +11,15 @@ topology:
       image: vrnetlab/vr-sros:22.10.R2
       type: sr-1
       license: sros-vm.lic
+      labels:
+        ansible-no-host-var: "true"
       env:
         BOOT_DELAY: 10
     srl:
       # image: ghcr.io/nokia/srlinux:latest
       image: srlinux:23.3.1-99
+      labels:
+        ansible-no-host-var: "true"
     linux:
       binds:
         - /lib/modules:/lib/modules:ro
@@ -88,32 +92,26 @@ topology:
       group: pod1-leaf
       labels:
         ansible-group: rack1-leaf
-        ansible-no-host-var: "true"
     pod1-lf2:
       group: pod1-leaf
       labels:
         ansible-group: rack1-leaf
-        ansible-no-host-var: "true"
     pod1-lf3:
       group: pod1-leaf
       labels:
         ansible-group: rack2-leaf
-        ansible-no-host-var: "true"
     pod1-lf4:
       group: pod1-leaf
       labels:
         ansible-group: rack2-leaf
-        ansible-no-host-var: "true"
     pod1-lf5:
       group: pod1-leaf
       labels:
         ansible-group: rack3-leaf
-        ansible-no-host-var: "true"
     pod1-lf6:
       group: pod1-leaf
       labels:
         ansible-group: rack3-leaf
-        ansible-no-host-var: "true"
     pod1-cab1-websrv1:
       group: pod1-websrv
       kind: linux
