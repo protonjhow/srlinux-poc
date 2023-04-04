@@ -52,12 +52,12 @@ if __name__ == "__main__":
     rack1 = nr.filter(F(groups__contains="rack1-leaf"))
     rack2 = nr.filter(F(groups__contains="rack2-leaf"))
     rack3 = nr.filter(F(groups__contains="rack3-leaf"))
-    leaf1 = nr.filter(name__endswith="lf1")
-    leaf2 = nr.filter(name__endswith="lf2")
-    leaf3 = nr.filter(name__endswith="lf3")
-    leaf4 = nr.filter(name__endswith="lf4")
-    leaf5 = nr.filter(name__endswith="lf5")
-    leaf6 = nr.filter(name__endswith="lf6")
+    leaf1 = nr.filter(F(name__endswith="lf1"))
+    leaf2 = nr.filter(F(name__endswith="lf2"))
+    leaf3 = nr.filter(F(name__endswith="lf3"))
+    leaf4 = nr.filter(F(name__endswith="lf4"))
+    leaf5 = nr.filter(F(name__endswith="lf5"))
+    leaf6 = nr.filter(F(name__endswith="lf6"))
 
     # order of things
     send_config_to_group("Configure interfaces - LF1", "pod1-lf1-interfaces", leaf1)
