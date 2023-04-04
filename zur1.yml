@@ -88,26 +88,32 @@ topology:
       group: pod1-leaf
       labels:
         ansible-group: rack1-leaf
+        ansible-no-host-var: "true"
     pod1-lf2:
       group: pod1-leaf
       labels:
         ansible-group: rack1-leaf
+        ansible-no-host-var: "true"
     pod1-lf3:
       group: pod1-leaf
       labels:
         ansible-group: rack2-leaf
+        ansible-no-host-var: "true"
     pod1-lf4:
       group: pod1-leaf
       labels:
         ansible-group: rack2-leaf
+        ansible-no-host-var: "true"
     pod1-lf5:
       group: pod1-leaf
       labels:
         ansible-group: rack3-leaf
+        ansible-no-host-var: "true"
     pod1-lf6:
       group: pod1-leaf
       labels:
         ansible-group: rack3-leaf
+        ansible-no-host-var: "true"
     pod1-cab1-websrv1:
       group: pod1-websrv
       kind: linux
