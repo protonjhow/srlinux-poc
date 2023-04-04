@@ -8,7 +8,7 @@
 inventory:
   plugin: AnsibleInventory
   options:
-    hostsfile: "clab-zur1-pods/ansible-inventory.yml"
+    hostsfile: "ansible-inventory.yml"
 runner:
   plugin: threaded
   options:
