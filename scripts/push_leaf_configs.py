@@ -80,6 +80,36 @@ if __name__ == "__main__":
         nornir_group=rack1,
     )
     send_config_to_group(
+        run_name="Configure interfaces - LF3",
+        config_name="pod1-lf3-interfaces",
+        nornir_group=leaf3,
+    )
+    send_config_to_group(
+        run_name="Configure interfaces - LF4",
+        config_name="pod1-lf4-interfaces",
+        nornir_group=leaf4,
+    )
+    send_config_to_group(
+        run_name="Configure interfaces - Rack2",
+        config_name="pod1-rack2-interfaces",
+        nornir_group=rack2,
+    )
+    send_config_to_group(
+        run_name="Configure interfaces - LF5",
+        config_name="pod1-lf5-interfaces",
+        nornir_group=leaf5,
+    )
+    send_config_to_group(
+        run_name="Configure interfaces - LF6",
+        config_name="pod1-lf6-interfaces",
+        nornir_group=leaf6,
+    )
+    send_config_to_group(
+        run_name="Configure interfaces - Rack3",
+        config_name="pod1-rack3-interfaces",
+        nornir_group=rack3,
+    )
+    send_config_to_group(
         run_name="Configure interfaces - Pod1",
         config_name="pod1-interfaces",
         nornir_group=leaves,
@@ -110,6 +140,26 @@ if __name__ == "__main__":
         nornir_group=leaf2,
     )
     send_config_to_group(
+        run_name="Configure VRF default - LF3",
+        config_name="pod1-lf3-network-instance-vrf-default",
+        nornir_group=leaf3,
+    )
+    send_config_to_group(
+        run_name="Configure VRF default - LF4",
+        config_name="pod1-lf4-network-instance-vrf-default",
+        nornir_group=leaf4,
+    )
+    send_config_to_group(
+        run_name="Configure VRF default - LF5",
+        config_name="pod1-lf5-network-instance-vrf-default",
+        nornir_group=leaf5,
+    )
+    send_config_to_group(
+        run_name="Configure VRF default - LF6",
+        config_name="pod1-lf6-network-instance-vrf-default",
+        nornir_group=leaf6,
+    )
+    send_config_to_group(
         run_name="Configure VRF Routing - LF1",
         config_name="pod1-lf1-network-instance-vrf-routing",
         nornir_group=leaf1,
@@ -118,6 +168,26 @@ if __name__ == "__main__":
         run_name="Configure VRF Routing - LF2",
         config_name="pod1-lf2-network-instance-vrf-routing",
         nornir_group=leaf2,
+    )
+    send_config_to_group(
+        run_name="Configure VRF Routing - LF3",
+        config_name="pod1-lf3-network-instance-vrf-routing",
+        nornir_group=leaf3,
+    )
+    send_config_to_group(
+        run_name="Configure VRF Routing - LF4",
+        config_name="pod1-lf4-network-instance-vrf-routing",
+        nornir_group=leaf4,
+    )
+    send_config_to_group(
+        run_name="Configure VRF Routing - LF5",
+        config_name="pod1-lf5-network-instance-vrf-routing",
+        nornir_group=leaf5,
+    )
+    send_config_to_group(
+        run_name="Configure VRF Routing - LF6",
+        config_name="pod1-lf6-network-instance-vrf-routing",
+        nornir_group=leaf6,
     )
     send_config_to_group(
         run_name="Configure network-instance system - Pod1",
