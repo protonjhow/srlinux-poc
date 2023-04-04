@@ -39,7 +39,7 @@ def send_config_to_group(run_name, config_name, nornir_group):
     print_result(update_request)
     # if update_request['response'][0]['op'] == 'UPDATE':
     #     print_result("OK!")
-    # else: 
+    # else:
     #     print_result(update_request)
 
 
