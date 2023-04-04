@@ -22,6 +22,7 @@ CONFIG_MSG = [
         content,
     )
 ]
+POD1_RACKS = ["rack1-leaf", "rack2-leaf", "rack3-leaf"]
 
 # Body
 if __name__ == "__main__":
@@ -29,7 +30,7 @@ if __name__ == "__main__":
     nr = InitNornir(config_file=NORNIR_CONFIG)
 
     # filter to just leaves 
-    leaves = nr.filter(F(groups__contains="leaf"))
+    leaves = nr.filter(F(groups__any=POD1_RACKS))
     
     # Check before
     # interfaces_state_before = leaves.run(task=gnmi_get, encoding="json_ietf", path=PATH)
