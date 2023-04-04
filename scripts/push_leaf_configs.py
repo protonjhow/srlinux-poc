@@ -60,19 +60,83 @@ if __name__ == "__main__":
     leaf6 = nr.filter(F(name__endswith="lf6"))
 
     # order of things
-    send_config_to_group("Configure interfaces - LF1", "pod1-lf1-interfaces", leaf1)
-    send_config_to_group("Configure interfaces - LF2", "pod1-lf2-interfaces", leaf2)
-    send_config_to_group("Configure interfaces - Rack1", "pod1-rack1-interfaces", rack1)
-    send_config_to_group("Configure interfaces - Pod1", "pod1-interfaces", leaves)
-    send_config_to_group("Configure tunnel interfaces - Pod1", "pod1-tunnel-interfaces", leaves)
-    send_config_to_group("Configure routing policy prefixes - Pod1", "pod1-routing-policy-prefix-sets", leaves)
-    send_config_to_group("Configure routing policy underlay - Pod1", "pod1-routing-policy-underlay", leaves)
-    send_config_to_group("Configure VRF default - LF1", "pod1-lf1-network-instance-vrf-default", leaf1)
-    send_config_to_group("Configure VRF default - LF2", "pod1-lf2-network-instance-vrf-default", leaf2)
-    send_config_to_group("Configure VRF Routing - LF1", "pod1-lf1-network-instance-vrf-routing", leaf1)
-    send_config_to_group("Configure VRF Routing - LF2", "pod1-lf2-network-instance-vrf-routing", leaf2)
-    send_config_to_group("Configure network-instance system - Pod1", "pod1-rack1-system-network-instance", rack1)
-    send_config_to_group("Configure VRF MGMT_Infra - Pod1", "pod1-network-instance-vrf-mgmt-infra", leaves)
-    send_config_to_group("Configure routing policy VRF Leaking - Pod1", "pod1-routing-policy-vrf-leaks", leaves)
-    send_config_to_group("Configure VRF Frontend - Pod1", "pod1-network-instance-vrf-frontend", leaves)
-    send_config_to_group("Configure VRF Backend - Pod1", "pod1-network-instance-vrf-backend", leaves)
+    send_config_to_group(
+        run_name="Configure interfaces - LF1",
+        config_name="pod1-lf1-interfaces",
+        nornir_group=leaf1,
+    )
+    send_config_to_group(
+        run_name="Configure interfaces - LF2",
+        config_name="pod1-lf2-interfaces",
+        nornir_group=leaf2,
+    )
+    send_config_to_group(
+        run_name="Configure interfaces - Rack1",
+        config_name="pod1-rack1-interfaces",
+        nornir_group=rack1,
+    )
+    send_config_to_group(
+        run_name="Configure interfaces - Pod1",
+        config_name="pod1-interfaces",
+        nornir_group=leaves,
+    )
+    send_config_to_group(
+        run_name="Configure tunnel interfaces - Pod1",
+        config_name="pod1-tunnel-interfaces",
+        nornir_group=leaves,
+    )
+    send_config_to_group(
+        run_name="Configure routing policy prefixes - Pod1",
+        config_name="pod1-routing-policy-prefix-sets",
+        nornir_group=leaves,
+    )
+    send_config_to_group(
+        run_name="Configure routing policy underlay - Pod1",
+        config_name="pod1-routing-policy-underlay",
+        nornir_group=leaves,
+    )
+    send_config_to_group(
+        run_name="Configure VRF default - LF1",
+        config_name="pod1-lf1-network-instance-vrf-default",
+        nornir_group=leaf1,
+    )
+    send_config_to_group(
+        run_name="Configure VRF default - LF2",
+        config_name="pod1-lf2-network-instance-vrf-default",
+        nornir_group=leaf2,
+    )
+    send_config_to_group(
+        run_name="Configure VRF Routing - LF1",
+        config_name="pod1-lf1-network-instance-vrf-routing",
+        nornir_group=leaf1,
+    )
+    send_config_to_group(
+        run_name="Configure VRF Routing - LF2",
+        config_name="pod1-lf2-network-instance-vrf-routing",
+        nornir_group=leaf2,
+    )
+    send_config_to_group(
+        run_name="Configure network-instance system - Pod1",
+        config_name="pod1-rack1-system-network-instance",
+        nornir_group=rack1,
+    )
+    send_config_to_group(
+        run_name="Configure VRF MGMT_Infra - Pod1",
+        config_name="pod1-network-instance-vrf-mgmt-infra",
+        nornir_group=leaves,
+    )
+    send_config_to_group(
+        run_name="Configure routing policy VRF Leaking - Pod1",
+        config_name="pod1-routing-policy-vrf-leaks",
+        nornir_group=leaves,
+    )
+    send_config_to_group(
+        run_name="Configure VRF Frontend - Pod1",
+        config_name="pod1-network-instance-vrf-frontend",
+        nornir_group=leaves,
+    )
+    send_config_to_group(
+        run_name="Configure VRF Backend - Pod1",
+        config_name="pod1-network-instance-vrf-backend",
+        nornir_group=leaves,
+    )
