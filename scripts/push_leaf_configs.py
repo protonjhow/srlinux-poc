@@ -36,10 +36,11 @@ def send_config_to_group(run_name, config_name, nornir_group):
     update_request = nornir_group.run(
         name=run_name, task=gnmi_set, encoding="json_ietf", update=config_msg
     )
-    if update_request['response'][0]['op'] == 'UPDATE':
-        print_result("OK!")
-    else: 
-        print_result(update_request)
+    print_result(update_request)
+    # if update_request['response'][0]['op'] == 'UPDATE':
+    #     print_result("OK!")
+    # else: 
+    #     print_result(update_request)
 
 
 # Body
