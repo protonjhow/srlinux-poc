@@ -467,7 +467,7 @@ srl_nokia-network-instance:network-instance:
               export-rt: target:1:200
               import-rt: target:1:200
   # vlan 500 (db servers)
-  - name: BE_VLAN_200
+  - name: BE_VLAN_500
     type: mac-vrf
     admin-state: enable
     interface:
