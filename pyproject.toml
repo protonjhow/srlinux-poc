@@ -11,6 +11,7 @@ nornir-pygnmi = "^0.2.0"
 nornir-utils = "^0.2.0"
 nornir = "^3.3.0"
 nornir-ansible = "^2022.7.30"
+rich = "^13.3.3"
 
 
 [build-system]
