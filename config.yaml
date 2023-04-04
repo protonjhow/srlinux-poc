@@ -6,9 +6,9 @@
 #     # group_file: "inventory/groups.yaml"
 #     # defaults_file: "inventory/defaults.yaml"
 inventory:
-    plugin: AnsibleInventory
-    options:
-        hostsfile: "clab-zur1-pods/ansible-inventory.yml"
+  plugin: AnsibleInventory
+  options:
+    hostsfile: "clab-zur1-pods/ansible-inventory.yml"
 runner:
   plugin: threaded
   options:
