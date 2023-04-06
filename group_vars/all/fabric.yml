@@ -12,5 +12,3 @@ underlay:
   import-policy: underlay-loopback-in
 overlay:
   asn: 64999
-lag: 
-  system-id-mac: 02:00:00:00:00:00
