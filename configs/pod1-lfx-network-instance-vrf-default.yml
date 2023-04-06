@@ -1,0 +1,56 @@
+---
+srl_nokia-network-instance:network-instance:
+  - name: default
+    admin-state: enable
+    interface:
+      - name: [$$spine_interface_name$$]
+      - name: $$loopback_interface_name$$
+    protocols:
+      bgp:
+        autonomous-system: $$underlay.asn.self$$
+        router-id: $$loopback_prefix_self$$
+        failure-detection:
+          fast-failover: true
+        afi-safi:
+          - afi-safi-name: ipv4-unicast
+            admin-state: enable
+            multipath:
+              max-paths-level-1: 8
+              max-paths-level-2: 8
+        group:
+          - group-name: underlay
+            peer-as: $$underlay.asn.spine$$
+            admin-state: enable
+            export-policy: $$underlay.export-policy$$
+            import-policy: $$underlay.import-policy$$
+            graceful-restart:
+              admin-state: enable
+            trace-options:
+              flag:
+                - name: events
+                - name: graceful-restart
+            timers:
+              connect-retry: 1
+              hold-time: 9
+              keepalive-interval: 3
+              minimum-advertisement-interval: 1
+          - group-name: overlay-fabric
+            peer-as: $$overlay.asn$$
+            local-as:
+              as-number: $$overlay.asn$$
+            transport:
+              local-address: $$loopback_prefix_self$$
+            admin-state: enable
+            afi-safi:
+              - afi-safi-name: evpn
+                admin-state: enable
+            timers:
+              connect-retry: 1
+              hold-time: 9
+              keepalive-interval: 3
+              minimum-advertisement-interval: 1
+        neighbor:
+          - peer-address: [$$spine_prefix_remote$$]
+            peer-group: underlay
+          - peer-address: [$$spine_loopback$$]
+            peer-group: overlay-fabric

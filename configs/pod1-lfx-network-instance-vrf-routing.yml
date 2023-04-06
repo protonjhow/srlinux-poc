@@ -1,0 +1,22 @@
+---
+srl_nokia-network-instance:network-instance:
+  # Routing instance
+  - name: Routing
+    admin-state: enable
+    type: ip-vrf
+    interface:
+      - name: [$$core_interface_name$$]
+    protocols:
+      bgp:
+        autonomous-system: $$overlay.asn$$
+        router-id: $$loopback_prefix_self$$
+        afi-safi:
+          - afi-safi-name: ipv4-unicast
+            admin-state: enable
+        group:
+          - group-name: ebgp_cr
+            admin-state: enable
+        neighbor:
+          - peer-address: $$core_prefix_remote$$
+            peer-group: ebgp_cr
+            peer-as: $$core.asn$$
