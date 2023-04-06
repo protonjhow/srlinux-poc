@@ -1,0 +1,23 @@
+---
+# loopback
+system0: 169.254.2.255/32
+# Spines
+leaves: 
+  lf1:
+    interface: ethernet-1/1
+    prefix: 169.254.2.0/30
+  lf2: 
+    interface: ethernet-1/2
+    prefix: 169.254.2.4/30
+  lf3: 
+    interface: ethernet-1/3
+    prefix: 169.254.2.8/30
+  lf4:
+    interface: ethernet-1/4
+    prefix: 169.254.2.12/30
+  lf5: 
+    interface: ethernet-1/5
+    prefix: 169.254.2.16/30
+  lf6: 
+    interface: ethernet-1/6
+    prefix: 169.254.2.20/30

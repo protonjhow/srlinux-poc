@@ -1,0 +1,25 @@
+---
+# loopback
+system0: 169.254.4.254/32
+# Spines
+spines: 
+  sp1:
+    interface: ethernet-1/49
+    prefix: 169.254.1.12/30
+  sp2: 
+    interface: ethernet-1/50
+    prefix: 169.254.2.12/30
+  sp3: 
+    interface: ethernet-1/51
+    prefix: 169.254.3.12/30
+# Cores
+cores:
+  cr1: 
+    interface: ethernet-1/54
+    prefix: 169.254.203.12/30
+  cr2: 
+    interface: ethernet-1/55
+    prefix: 169.254.202.12/30
+  cr3:
+    interface: ethernet-1/56
+    prefix: 169.254.201.12/30
