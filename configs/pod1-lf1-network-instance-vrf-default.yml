@@ -52,11 +52,11 @@ srl_nokia-network-instance:network-instance:
               keepalive-interval: 3
               minimum-advertisement-interval: 1
         neighbor:
-          - peer-address: 169.254.1.5
+          - peer-address: 169.254.1.1
             peer-group: underlay
-          - peer-address: 169.254.2.5
+          - peer-address: 169.254.2.1
             peer-group: underlay
-          - peer-address: 169.254.3.5
+          - peer-address: 169.254.3.1
             peer-group: underlay
           - peer-address: 169.254.1.255
             peer-group: overlay-fabric
