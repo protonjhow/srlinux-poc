@@ -17,7 +17,7 @@ topology:
         BOOT_DELAY: 10
     srl:
       # image: ghcr.io/nokia/srlinux:latest
-      image: srlinux:23.3.1-99
+      image: ghcr.io/nokia/srlinux:23.3.1
       labels:
         ansible-no-host-var: "true"
     linux:
