@@ -9,8 +9,5 @@ all:
     srl:
       hosts:
         clab-acl-test-leaf1:
-          ansible_host: 172.20.20.6
         clab-acl-test-leaf2:
-          ansible_host: 172.20.20.5
         clab-acl-test-spine1:
-          ansible_host: 172.20.20.4

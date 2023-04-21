@@ -5,6 +5,8 @@ topology:
   kinds:
     srl:
       image: ghcr.io/nokia/srlinux:latest
+      labels:
+        ansible-no-host-var: "true"
     linux:
       image: ghcr.io/hellt/network-multitool
 
