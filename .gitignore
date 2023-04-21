@@ -4,3 +4,6 @@ clab-zur1-pods/*
 sros-vm.lic
 .vscode
 nornir.log
+.venv
+clab-acl-test
+.acl-test-topo.yml.bak
