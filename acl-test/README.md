@@ -23,4 +23,11 @@ now you have a working env (or poetry working) here is the basics (all from with
 1. `sudo containerlab deploy -c --topo acl-test-topo.yml`
 2. `cp clab-acl-test/ansible-inventory.yml acl-test-inventory.yml`
 3. `python3 baseline_acl_test_topo.py`
-4. 
+4. Setup the docker hosts with static MAC Addrs and IPs:
+   1. `docker exec clab-acl-test-srv1 /sbin/ip -- link set address 00:c1:ab:00:00:01 dev eth1 2>/dev/null`
+   2. `docker exec clab-acl-test-srv1 /sbin/ip -- addr add 192.168.0.1/24 dev eth1 2>/dev/null`
+   3. `docker exec clab-acl-test-srv2 /sbin/ip -- link set address 00:c1:ab:00:00:02 dev eth1 2>/dev/null`
+   4. `docker exec clab-acl-test-srv2 /sbin/ip -- addr add 192.168.0.2/24 dev eth1 2>/dev/null`
+
+### Tests
+
