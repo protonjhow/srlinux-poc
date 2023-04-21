@@ -3,9 +3,9 @@ all:
     linux:
       hosts:
         clab-acl-test-srv1:
-          ansible_host: 172.20.20.3
-        clab-acl-test-srv2:
           ansible_host: 172.20.20.2
+        clab-acl-test-srv2:
+          ansible_host: 172.20.20.3
     srl:
       hosts:
         clab-acl-test-leaf1:
