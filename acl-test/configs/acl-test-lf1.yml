@@ -147,10 +147,10 @@ network-instance:
           - id: 1
             admin-state: enable
             vxlan-interface: vxlan1.1
-            evi: 111
+            evi: 1
       bgp-vpn:
         bgp-instance:
           - id: 1
             route-target:
-              export-rt: target:100:111
-              import-rt: target:100:111
+              export-rt: target:1:1
+              import-rt: target:1:1
