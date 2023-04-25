@@ -1,0 +1,19 @@
+---
+underlay:
+  asn:
+    spine: 65000
+    leaf1: 65001
+    leaf2: 65002
+    leaf3: 65003
+    leaf4: 65004
+    leaf5: 65005
+    leaf6: 65006
+  export-policy: underlay-loopback-out
+  import-policy: underlay-loopback-in
+overlay:
+  asn: 64999
+timers:
+  connect-retry: 1
+  hold-time: 9
+  keepalive-interval: 3
+  minimum-advertisement-interval: 1

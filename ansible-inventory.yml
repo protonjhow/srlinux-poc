@@ -1,0 +1,100 @@
+all:
+  children:
+    linux:
+      hosts:
+        clab-zur1-pods-isp1:
+          ansible_host: 172.20.20.26
+        clab-zur1-pods-isp2:
+          ansible_host: 172.20.20.25
+        clab-zur1-pods-pod1-cab1-dbsrv1:
+          ansible_host: 172.20.20.7
+        clab-zur1-pods-pod1-cab1-hapsrv1:
+          ansible_host: 172.20.20.19
+        clab-zur1-pods-pod1-cab1-websrv1:
+          ansible_host: 172.20.20.20
+        clab-zur1-pods-pod1-cab2-dbsrv2:
+          ansible_host: 172.20.20.9
+        clab-zur1-pods-pod1-cab2-hapsrv2:
+          ansible_host: 172.20.20.12
+        clab-zur1-pods-pod1-cab2-websrv2:
+          ansible_host: 172.20.20.16
+        clab-zur1-pods-pod1-cab3-dbsrv3:
+          ansible_host: 172.20.20.6
+        clab-zur1-pods-pod1-cab3-hapsrv3:
+          ansible_host: 172.20.20.21
+        clab-zur1-pods-pod1-cab3-websrv3:
+          ansible_host: 172.20.20.22
+    srl:
+      hosts:
+        clab-zur1-pods-cr1:
+        clab-zur1-pods-cr2:
+        clab-zur1-pods-cr3:
+        clab-zur1-pods-pod1-lf1:
+        clab-zur1-pods-pod1-lf2:
+        clab-zur1-pods-pod1-lf3:
+        clab-zur1-pods-pod1-lf4:
+        clab-zur1-pods-pod1-lf5:
+        clab-zur1-pods-pod1-lf6:
+        clab-zur1-pods-pod1-sp1:
+        clab-zur1-pods-pod1-sp2:
+        clab-zur1-pods-pod1-sp3:
+    vr-sros:
+      hosts:
+        clab-zur1-pods-ed1:
+        clab-zur1-pods-ed2:
+    core:
+      hosts:
+        clab-zur1-pods-cr1:
+        clab-zur1-pods-cr2:
+        clab-zur1-pods-cr3:
+    dbserver:
+      hosts:
+        clab-zur1-pods-pod1-cab1-dbsrv1:
+          ansible_host: 172.20.20.7
+        clab-zur1-pods-pod1-cab2-dbsrv2:
+          ansible_host: 172.20.20.9
+        clab-zur1-pods-pod1-cab3-dbsrv3:
+          ansible_host: 172.20.20.6
+    edge:
+      hosts:
+        clab-zur1-pods-ed1:
+        clab-zur1-pods-ed2:
+    fake-transit:
+      hosts:
+        clab-zur1-pods-isp1:
+          ansible_host: 172.20.20.26
+        clab-zur1-pods-isp2:
+          ansible_host: 172.20.20.25
+    haproxy:
+      hosts:
+        clab-zur1-pods-pod1-cab1-hapsrv1:
+          ansible_host: 172.20.20.19
+        clab-zur1-pods-pod1-cab2-hapsrv2:
+          ansible_host: 172.20.20.12
+        clab-zur1-pods-pod1-cab3-hapsrv3:
+          ansible_host: 172.20.20.21
+    rack1-leaf:
+      hosts:
+        clab-zur1-pods-pod1-lf1:
+        clab-zur1-pods-pod1-lf2:
+    rack2-leaf:
+      hosts:
+        clab-zur1-pods-pod1-lf3:
+        clab-zur1-pods-pod1-lf4:
+    rack3-leaf:
+      hosts:
+        clab-zur1-pods-pod1-lf5:
+        clab-zur1-pods-pod1-lf6:
+    spine:
+      hosts:
+        clab-zur1-pods-pod1-sp1:
+        clab-zur1-pods-pod1-sp2:
+        clab-zur1-pods-pod1-sp3:
+    webserver:
+      hosts:
+        clab-zur1-pods-pod1-cab1-websrv1:
+          ansible_host: 172.20.20.20
+        clab-zur1-pods-pod1-cab2-websrv2:
+          ansible_host: 172.20.20.16
+        clab-zur1-pods-pod1-cab3-websrv3:
+          ansible_host: 172.20.20.22

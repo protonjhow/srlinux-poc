@@ -1,0 +1,66 @@
+---
+srl_nokia-network-instance:network-instance:
+  - name: default
+    admin-state: enable
+    interface:
+      - name: ethernet-1/49.0
+      - name: ethernet-1/50.0
+      - name: ethernet-1/51.0
+      - name: system0.0
+    protocols:
+      bgp:
+        autonomous-system: 65005
+        router-id: 169.254.5.254
+        failure-detection:
+          fast-failover: true
+        afi-safi:
+          - afi-safi-name: ipv4-unicast
+            admin-state: enable
+            multipath:
+              max-paths-level-1: 8
+              max-paths-level-2: 8
+        group:
+          - group-name: underlay
+            peer-as: 65000
+            admin-state: enable
+            export-policy: underlay-loopback-out
+            import-policy: underlay-loopback-in
+            graceful-restart:
+              admin-state: enable
+            trace-options:
+              flag:
+                - name: events
+                - name: graceful-restart
+            timers:
+              connect-retry: 1
+              hold-time: 9
+              keepalive-interval: 3
+              minimum-advertisement-interval: 1
+          - group-name: overlay-fabric
+            peer-as: 64999
+            local-as:
+              as-number: 64999
+            transport:
+              local-address: 169.254.5.254
+            admin-state: enable
+            afi-safi:
+              - afi-safi-name: evpn
+                admin-state: enable
+            timers:
+              connect-retry: 1
+              hold-time: 9
+              keepalive-interval: 3
+              minimum-advertisement-interval: 1
+        neighbor:
+          - peer-address: 169.254.1.17
+            peer-group: underlay
+          - peer-address: 169.254.2.17
+            peer-group: underlay
+          - peer-address: 169.254.3.17
+            peer-group: underlay
+          - peer-address: 169.254.1.255
+            peer-group: overlay-fabric
+          - peer-address: 169.254.2.255
+            peer-group: overlay-fabric
+          - peer-address: 169.254.3.255
+            peer-group: overlay-fabric

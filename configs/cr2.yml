@@ -6,7 +6,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: cr2_e1/1..az1lf1_e-1/55"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}{next_avail_lower}/30
             - ip-prefix: 169.254.202.1/30
@@ -15,7 +17,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: cr2_e1/2..az1lf2_e-1/55"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}{next_avail_lower}/30
             - ip-prefix: 169.254.202.5/30
@@ -24,7 +28,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: cr2_e1/3..az1lf3_e-1/55"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}{next_avail_lower}/30
             - ip-prefix: 169.254.202.9/30
@@ -33,7 +39,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: cr2_e1/4..az1lf4_e-1/55"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}{next_avail_lower}/30
             - ip-prefix: 169.254.202.13/30
@@ -42,7 +50,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: cr2_e1/5..az1lf5_e-1/55"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}{next_avail_lower}/30
             - ip-prefix: 169.254.202.17/30
@@ -51,7 +61,9 @@ srl_nokia-interfaces:interface:
     description: "CORE: cr2_e1/8..az1lf6_e-1/55"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.20{core}.{next_avail_lower}/30
             - ip-prefix: 169.254.202.21/30
@@ -61,7 +73,9 @@ srl_nokia-interfaces:interface:
     description: "EDGE: cr2_e1/10..ed1_eth2"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.21{core}.{next_avail_lower}/30
             - ip-prefix: 169.254.212.1/30
@@ -70,7 +84,9 @@ srl_nokia-interfaces:interface:
     description: "EDGE: cr2_e1/11..ed2_eth2"
     subinterface:
       - index: 0
+        type: routed
         ipv4:
+          admin-state: enable
           address:
             # 169.254.21{core}.{next_avail_lower}/30
             - ip-prefix: 169.254.212.5/30
@@ -80,6 +96,7 @@ srl_nokia-interfaces:interface:
     subinterface:
       - index: 0
         ipv4:
+          admin-state: enable
           address:
             # 169.254.7.{corenumber}/32
             - ip-prefix: 169.254.7.2/32
@@ -91,14 +108,15 @@ srl_nokia-network-instance:network-instance:
       - name: ethernet-1/11.0
       - name: system0.0
     protocols:
-      srl_nokia-bgp:bgp:
+      bgp:
         autonomous-system: 65999
-        router-id: 169.254.1.254
-        ipv4-unicast:
-          admin-state: enable
-          multipath:
-            max-paths-level-1: 8
-            max-paths-level-2: 8
+        router-id: 169.254.7.2
+        afi-safi:
+          - afi-safi-name: ipv4-unicast
+            admin-state: enable
+            multipath:
+              max-paths-level-1: 8
+              max-paths-level-2: 8
         group:
           - group-name: ebgp_edge
             admin-state: enable
@@ -136,8 +154,9 @@ srl_nokia-network-instance:network-instance:
       bgp:
         autonomous-system: 65008
         router-id: 169.254.7.2
-        # ipv4-unicast:
-        #   admin-state: enable
+        afi-safi:
+          - afi-safi-name: ipv4-unicast
+            admin-state: enable
         group:
           - group-name: ebgp_fabric
             admin-state: enable
@@ -185,31 +204,31 @@ srl_nokia-routing-policy:routing-policy:
           mask-length-range: "32..32"
     - name: proton_public
       prefix:
-        - ip-prefix: 185.70.40.0/22
+        - ip-prefix: "185.70.40.0/22"
           mask-length-range: "32..32"
   policy:
     - name: ebgp_import_edge
       statement:
-        - sequence-id: 410
+        - name: accept-wan-edge-loopbacks
           match:
             prefix-set: WAN_EDGE_loopbacks
             family:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: 420
+        - name: accept-default-route
           match:
             prefix-set: default_route
             family:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: 1000
+        - name: default-reject
           action:
             policy-result: reject
     - name: ebgp_export_edge
       statement:
-        - sequence-id: 410
+        - name: accept-local-proton-public-prefixes
           match:
             prefix-set: proton_public
             protocol: local
@@ -217,7 +236,7 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: 420
+        - name: accept-bgp-proton-public-prefixes
           match:
             prefix-set: proton_public
             protocol: bgp
@@ -225,7 +244,7 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: 430
+        - name: accept-evpn-proton-public-prefixes
           match:
             prefix-set: proton_public
             protocol: bgp-evpn
@@ -233,6 +252,6 @@ srl_nokia-routing-policy:routing-policy:
               - ipv4-unicast
           action:
             policy-result: accept
-        - sequence-id: 1000
+        - name: default-reject
           action:
             policy-result: reject

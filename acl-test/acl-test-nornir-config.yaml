@@ -1,0 +1,9 @@
+---
+inventory:
+  plugin: AnsibleInventory
+  options:
+    hostsfile: "acl-test-inventory.yml"
+runner:
+  plugin: threaded
+  options:
+    num_workers: 100

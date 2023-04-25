@@ -11,22 +11,26 @@ topology:
       image: vrnetlab/vr-sros:22.10.R2
       type: sr-1
       license: sros-vm.lic
+      labels:
+        ansible-no-host-var: "true"
       env:
         BOOT_DELAY: 10
     srl:
-      image: ghcr.io/nokia/srlinux:latest
+      # image: ghcr.io/nokia/srlinux:latest
+      image: ghcr.io/nokia/srlinux:23.3.1
+      labels:
+        ansible-no-host-var: "true"
     linux:
       binds:
         - /lib/modules:/lib/modules:ro
-      image: ghcr.io/hellt/network-multitool:latest
-      env:
-        TMODE: lacp
   nodes:
     isp1:
       group: external
       kind: linux
       image: fatred/bgp-route-generator:latest
       cmd:
+      labels:
+        ansible-group: fake-transit
       env:
         MYAS: 1299
         PEERAS: 62371
@@ -36,6 +40,8 @@ topology:
       kind: linux
       image: fatred/bgp-route-generator:latest
       cmd:
+      labels:
+        ansible-group: fake-transit
       env:
         MYAS: 3356
         PEERAS: 62371
@@ -44,55 +50,140 @@ topology:
       group: edge
       kind: vr-sros
       startup-config: configs/ed1.cfg
+      labels:
+        ansible-group: edge
     ed2:
       group: edge
       kind: vr-sros
       startup-config: configs/ed2.cfg
+      labels:
+        ansible-group: edge
     cr1:
       group: core
       type: ixrh3
+      labels:
+        ansible-group: core
     cr2:
       group: core
       type: ixrh3
+      labels:
+        ansible-group: core
     cr3:
       group: core
       type: ixrh3
+      labels:
+        ansible-group: core
     pod1-sp1:
       group: pod1-spine
       type: ixrd3
+      labels:
+        ansible-group: spine
     pod1-sp2:
       group: pod1-spine
       type: ixrd3
+      labels:
+        ansible-group: spine
     pod1-sp3:
       group: pod1-spine
       type: ixrd3
+      labels:
+        ansible-group: spine
     pod1-lf1:
       group: pod1-leaf
+      labels:
+        ansible-group: rack1-leaf
     pod1-lf2:
       group: pod1-leaf
+      labels:
+        ansible-group: rack1-leaf
     pod1-lf3:
       group: pod1-leaf
+      labels:
+        ansible-group: rack2-leaf
     pod1-lf4:
       group: pod1-leaf
+      labels:
+        ansible-group: rack2-leaf
     pod1-lf5:
       group: pod1-leaf
+      labels:
+        ansible-group: rack3-leaf
     pod1-lf6:
       group: pod1-leaf
+      labels:
+        ansible-group: rack3-leaf
     pod1-cab1-websrv1:
       group: pod1-websrv
       kind: linux
+      image: webserver
       binds:
         - configs/interfaces.cab1-websrv1:/etc/network/interfaces
+      labels:
+        ansible-group: webserver
     pod1-cab2-websrv2:
       group: pod1-websrv
       kind: linux
+      image: webserver
       binds:
         - configs/interfaces.cab2-websrv2:/etc/network/interfaces
+      labels:
+        ansible-group: webserver
     pod1-cab3-websrv3:
       group: pod1-websrv
       kind: linux
+      image: webserver
       binds:
         - configs/interfaces.cab3-websrv3:/etc/network/interfaces
+      labels:
+        ansible-group: webserver
+    pod1-cab1-hapsrv1:
+      group: pod1-hapsrv
+      kind: linux
+      image: haproxy
+      binds:
+        - configs/interfaces.cab1-hapsrv1:/etc/network/interfaces
+      labels:
+        ansible-group: haproxy
+    pod1-cab2-hapsrv2:
+      group: pod1-hapsrv
+      kind: linux
+      image: haproxy
+      binds:
+        - configs/interfaces.cab2-hapsrv2:/etc/network/interfaces
+      labels:
+        ansible-group: haproxy
+    pod1-cab3-hapsrv3:
+      group: pod1-hapsrv
+      kind: linux
+      image: haproxy
+      binds:
+        - configs/interfaces.cab3-hapsrv3:/etc/network/interfaces
+      labels:
+        ansible-group: haproxy
+    pod1-cab1-dbsrv1:
+      group: pod1-dbsrv
+      kind: linux
+      image: data
+      binds:
+        - configs/interfaces.cab1-dbsrv1:/etc/network/interfaces
+      labels:
+        ansible-group: dbserver
+    pod1-cab2-dbsrv2:
+      group: pod1-dbsrv
+      kind: linux
+      image: data
+      binds:
+        - configs/interfaces.cab2-dbsrv2:/etc/network/interfaces
+      labels:
+        ansible-group: dbserver
+    pod1-cab3-dbsrv3:
+      group: pod1-dbsrv
+      kind: linux
+      image: data
+      binds:
+        - configs/interfaces.cab3-dbsrv3:/etc/network/interfaces
+      labels:
+        ansible-group: dbserver
   links:
     # edge1
     - endpoints:
@@ -241,6 +332,7 @@ topology:
         - pod1-lf6:e1-51
 
     # servers
+    # web
     - endpoints:
         - pod1-cab1-websrv1:eth1
         - pod1-lf1:e1-1
@@ -259,3 +351,41 @@ topology:
     - endpoints:
         - pod1-cab3-websrv3:eth2
         - pod1-lf6:e1-1
+    # hap
+    - endpoints:
+        - pod1-cab1-hapsrv1:eth1
+        - pod1-lf1:e1-2
+    - endpoints:
+        - pod1-cab1-hapsrv1:eth2
+        - pod1-lf2:e1-2
+    - endpoints:
+        - pod1-cab2-hapsrv2:eth1
+        - pod1-lf3:e1-2
+    - endpoints:
+        - pod1-cab2-hapsrv2:eth2
+        - pod1-lf4:e1-2
+    - endpoints:
+        - pod1-cab3-hapsrv3:eth1
+        - pod1-lf5:e1-2
+    - endpoints:
+        - pod1-cab3-hapsrv3:eth2
+        - pod1-lf6:e1-2
+    # db
+    - endpoints:
+        - pod1-cab1-dbsrv1:eth1
+        - pod1-lf1:e1-3
+    - endpoints:
+        - pod1-cab1-dbsrv1:eth2
+        - pod1-lf2:e1-3
+    - endpoints:
+        - pod1-cab2-dbsrv2:eth1
+        - pod1-lf3:e1-3
+    - endpoints:
+        - pod1-cab2-dbsrv2:eth2
+        - pod1-lf4:e1-3
+    - endpoints:
+        - pod1-cab3-dbsrv3:eth1
+        - pod1-lf5:e1-3
+    - endpoints:
+        - pod1-cab3-dbsrv3:eth2
+        - pod1-lf6:e1-3

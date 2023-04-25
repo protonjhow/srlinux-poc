@@ -1,0 +1,80 @@
+---
+srl_nokia-interfaces:interface:
+  # SPINES!
+  - name: ethernet-1/49
+    admin-state: enable
+    description: "CORE: az1sp01_e1/4..az1lf04_e-1/49"
+    subinterface:
+      - index: 0
+        type: routed
+        ipv4:
+          admin-state: enable
+          address:
+            # 169.254.{spine}{next_avail_upper}/30
+            - ip-prefix: 169.254.1.14/30
+  - name: ethernet-1/50
+    admin-state: enable
+    description: "CORE: az1sp02_e1/4..az1lf04_e-1/50"
+    subinterface:
+      - index: 0
+        type: routed
+        ipv4:
+          admin-state: enable
+          address:
+            # 169.254.{spine}{next_avail_upper}/30
+            - ip-prefix: 169.254.2.14/30
+  - name: ethernet-1/51
+    admin-state: enable
+    description: "CORE: az1sp03_e1/4..az1lf04_e-1/51"
+    subinterface:
+      - index: 0
+        type: routed
+        ipv4:
+          admin-state: enable
+          address:
+            # 169.254.{spine}{next_avail_upper}/30
+            - ip-prefix: 169.254.3.14/30
+  # CORES!
+  - name: ethernet-1/54
+    admin-state: enable
+    description: "CORE: az1lf4_e-1/54..cr3_e1/6"
+    subinterface:
+      - index: 0
+        type: routed
+        ipv4:
+          admin-state: enable
+          address:
+            # 169.254.20{core}{next_avail_upper}/30
+            - ip-prefix: 169.254.203.14/30
+  - name: ethernet-1/55
+    admin-state: enable
+    description: "CORE: az1lf4_e-1/55..cr2_e1/6"
+    subinterface:
+      - index: 0
+        type: routed
+        ipv4:
+          admin-state: enable
+          address:
+            # 169.254.20{core}{next_avail_upper}/30
+            - ip-prefix: 169.254.202.14/30
+  - name: ethernet-1/56
+    admin-state: enable
+    description: "CORE: az1lf4_e-1/56..cr1_e1/6"
+    subinterface:
+      - index: 0
+        type: routed
+        ipv4:
+          admin-state: enable
+          address:
+            # 169.254.20{core}{next_avail_upper}/30
+            - ip-prefix: 169.254.201.14/30
+  # LOOPBACKS!
+  - name: system0
+    admin-state: enable
+    subinterface:
+      - index: 0
+        ipv4:
+          admin-state: enable
+          address:
+            # 169.254.{devnum}.{254_lf|255_sp}/32
+            - ip-prefix: 169.254.4.254/32

@@ -1,0 +1,33 @@
+---
+srl_nokia-interfaces:interface:
+  # SPINES!
+  - name: $$spine_interface_name$$
+    admin-state: enable
+    description: $$spine_interface_desc$$
+    subinterface:
+      - index: 0
+        type: routed
+        ipv4:
+          admin-state: enable
+          address:
+            - ip-prefix: $$spine_interface_prefix$$
+  # CORES !
+  - name: $$core_interface_name$$
+    admin-state: enable
+    description: $$core_interface_desc$$
+    subinterface:
+      - index: 0
+        type: routed
+        ipv4:
+          admin-state: enable
+          address:
+            - ip-prefix: $$core_interface_prefix$$
+  # LOOPBACK!
+  - name: system0
+    admin-state: enable
+    subinterface:
+      - index: 0
+        ipv4:
+          admin-state: enable
+          address:
+            - ip-prefix: $$loopback_interface_prefix$$

@@ -1,0 +1,43 @@
+---
+srl_nokia-routing-policy:routing-policy:
+  policy:
+    - name: underlay-loopback-out
+      statement:
+        - name: accept-local-loopbacks
+          match:
+            prefix-set: underlay-loopback-v4
+            protocol: local
+            family:
+              - ipv4-unicast
+          action:
+            policy-result: accept
+        - name: reject-bgp-learned-loopbacks
+          match:
+            prefix-set: underlay-loopback-v4
+            protocol: bgp
+            family:
+              - ipv4-unicast
+          action:
+            policy-result: reject
+      default-action:
+        policy-result: reject
+    - name: underlay-loopback-in
+      statement:
+        - name: accept-bgp-learned-loopbacks
+          match:
+            prefix-set: underlay-loopback-v4
+            protocol: bgp
+            family:
+              - ipv4-unicast
+          action:
+            policy-result: accept
+        - name: reject-local-loopbacks
+          match:
+            prefix-set: underlay-loopback-v4
+            protocol: local
+            family:
+              - ipv4-unicast
+          action:
+            policy-result: reject
+      default-action:
+        policy-result: reject
