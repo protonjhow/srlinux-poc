@@ -47,6 +47,7 @@ if __name__ == "__main__":
     leaf1 = nr.filter(F(name__endswith="leaf1"))
     leaf2 = nr.filter(F(name__endswith="leaf2"))
     spine1 = nr.filter(F(name__endswith="spine1"))
+    srl = nr.filter(F(groups__contains="srl"))
 
     # baselines
     send_config_to_group(
@@ -63,4 +64,10 @@ if __name__ == "__main__":
         run_name="Configure baseline - SP1",
         config_name="acl-test-sp1",
         nornir_group=spine1,
+    )
+    # logging
+    send_config_to_group(
+        run_name="Configure Logging - All SRL",
+        config_name="logging",
+        nornir_group=srl,
     )

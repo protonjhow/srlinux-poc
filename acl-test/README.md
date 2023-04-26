@@ -26,12 +26,17 @@ cd acl-test
 pip3 install -r requirements.txt
 ```
 
-now you have a working env (or poetry working) here is the basics (all from within the `acl-test` folder):
+Now you have a working env (or poetry working) here is the basics (all from within the `acl-test` folder):
+
+Option1: simply `make deploy-clab-ci` (we assume you have `jq` installed btw. who doesnt?)
+
+Option2:
 
 1. `sudo containerlab deploy -c --topo acl-test-topo.yml`
 2. `cp clab-acl-test/ansible-inventory.yml acl-test-inventory.yml`
 3. `python3 baseline_acl_test_topo.py`
-4. Check the docker hosts have the correct static MAC Addrs and IPs:
+4. `./add-saved-objects.sh`
+5. Check the docker hosts have the correct static MAC Addrs and IPs:
    1. `docker exec clab-acl-test-srv1 /sbin/ip -- addr show dev eth1`
    2. `docker exec clab-acl-test-srv2 /sbin/ip -- addr show dev eth1`
    3. If the IPs are not correct, you can fix them with these commands:

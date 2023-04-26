@@ -1,0 +1,133 @@
+system:
+  logging:
+    network-instance: mgmt
+    buffer:
+      - buffer-name: messages
+        rotate: 3
+        size: "10000000"
+        facility:
+          - facility-name: local6
+            priority:
+              match-above: informational
+      - buffer-name: system
+        facility:
+          - facility-name: auth
+            priority:
+              match-above: warning
+          - facility-name: cron
+            priority:
+              match-above: warning
+          - facility-name: daemon
+            priority:
+              match-above: warning
+          - facility-name: ftp
+            priority:
+              match-above: warning
+          - facility-name: kern
+            priority:
+              match-above: warning
+          - facility-name: lpr
+            priority:
+              match-above: warning
+          - facility-name: mail
+            priority:
+              match-above: warning
+          - facility-name: news
+            priority:
+              match-above: warning
+          - facility-name: syslog
+            priority:
+              match-above: warning
+          - facility-name: user
+            priority:
+              match-above: warning
+          - facility-name: uucp
+            priority:
+              match-above: warning
+          - facility-name: local0
+            priority:
+              match-above: warning
+          - facility-name: local1
+            priority:
+              match-above: warning
+          - facility-name: local2
+            priority:
+              match-above: warning
+          - facility-name: local3
+            priority:
+              match-above: warning
+          - facility-name: local4
+            priority:
+              match-above: warning
+          - facility-name: local5
+            priority:
+              match-above: warning
+          - facility-name: local7
+            priority:
+              match-above: warning
+    file:
+      - file-name: elastic_out
+        format: '%TIMEGENERATED:::date-rfc3339% == %HOSTNAME% == %SYSLOGTAG%==%MSG:::sp-if-no-1st-sp%%MSG:::drop-last-lf%\n'
+        rotate: 3
+        size: "10000000"
+        facility:
+          - facility-name: local6
+            priority:
+              match-above: informational
+      - file-name: messages
+        rotate: 3
+        size: "10000000"
+        facility:
+          - facility-name: local6
+            priority:
+              match-above: warning
+    remote-server:
+      - host: 100.101.0.199
+        transport: udp
+        remote-port: 1514
+        subsystem:
+          - subsystem-name: aaa
+            priority:
+              match-above: informational
+          - subsystem-name: acl
+            priority:
+              match-above: informational
+          - subsystem-name: bfd
+            priority:
+              match-above: informational
+          - subsystem-name: bgp
+            priority:
+              match-above: informational
+          - subsystem-name: bridgetable
+            priority:
+              match-above: informational
+          - subsystem-name: chassis
+            priority:
+              match-above: informational
+          - subsystem-name: evpn
+            priority:
+              match-above: informational
+          - subsystem-name: fib
+            priority:
+              match-above: informational
+          - subsystem-name: gnmi
+            priority:
+              match-above: informational
+          - subsystem-name: lag
+            priority:
+              match-above: informational
+          - subsystem-name: linux
+            priority:
+              match-above: informational
+          - subsystem-name: lldp
+            priority:
+              match-above: informational
+          - subsystem-name: mgmt
+            priority:
+              match-above: informational
+          - subsystem-name: platform
+            priority:
+              match-above: informational
+          - subsystem-name: vxlan
+            priority:
+              match-above: informational
