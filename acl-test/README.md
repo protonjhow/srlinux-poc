@@ -57,6 +57,11 @@ To access the leaves:
    1. `docker exec -it clab-acl-test-leaf1 sr_cli`
    2. `docker exec -it clab-acl-test-leaf2 sr_cli`
 
+Kibana is [here](http://localhost:5601/)
+
+* In the [dashboard section](http://localhost:5601/app/dashboards#/) there is "Example Fabric Dashboard"
+* In the [discover section](http://localhost:5601/app/discover) there is the index "fabric-logs-*" which is where the syslogs land
+
 ### Tests
 
 1. Make sure the servers can reach the anycast GW:
