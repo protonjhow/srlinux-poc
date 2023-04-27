@@ -39,18 +39,30 @@ Option2:
 5. Check the docker hosts have the correct static MAC Addrs and IPs:
    1. `docker exec clab-acl-test-srv1 /sbin/ip -- addr show dev eth1`
    2. `docker exec clab-acl-test-srv2 /sbin/ip -- addr show dev eth1`
-   3. If the IPs are not correct, you can fix them with these commands:
+   3. `docker exec clab-acl-test-srv3 /sbin/ip -- addr show dev eth1`
+   4. `docker exec clab-acl-test-srv4 /sbin/ip -- addr show dev eth1`
+   5. If the IPs are not correct, you can fix them with these commands:
       1. `docker exec clab-acl-test-srv1 /sbin/ip -- link set address 00:c1:ab:00:00:01 dev eth1 2>/dev/null`
-      2. `docker exec clab-acl-test-srv1 /sbin/ip -- addr add 192.168.0.1/24 dev eth1 2>/dev/null`
-      3. `docker exec clab-acl-test-srv2 /sbin/ip -- link set address 00:c1:ab:00:00:02 dev eth1 2>/dev/null`
-      4. `docker exec clab-acl-test-srv2 /sbin/ip -- addr add 192.168.0.2/24 dev eth1 2>/dev/null`
+      2. `docker exec clab-acl-test-srv1 /sbin/ip -- addr add 192.168.1.1/24 dev eth1 2>/dev/null`
+      3. `docker exec clab-acl-test-srv1 /sbin/ip -- route add 192.168.2.0/24 via 192.168.1.254 2>/dev/null`
+      4. `docker exec clab-acl-test-srv2 /sbin/ip -- link set address 00:c1:ab:00:00:02 dev eth1 2>/dev/null`
+      5. `docker exec clab-acl-test-srv2 /sbin/ip -- addr add 192.168.1.2/24 dev eth1 2>/dev/null`
+      6. `docker exec clab-acl-test-srv2 /sbin/ip -- route add 192.168.2.0/24 via 192.168.1.254 2>/dev/null`
+      7. `docker exec clab-acl-test-srv3 /sbin/ip -- link set address 00:c1:ab:00:00:03 dev eth1 2>/dev/null`
+      8. `docker exec clab-acl-test-srv3 /sbin/ip -- addr add 192.168.2.3/24 dev eth1 2>/dev/null`
+      9. `docker exec clab-acl-test-srv3 /sbin/ip -- route add 192.168.1.0/24 via 192.168.2.254 2>/dev/null`
+      10. `docker exec clab-acl-test-srv4 /sbin/ip -- link set address 00:c1:ab:00:00:04 dev eth1 2>/dev/null`
+      11. `docker exec clab-acl-test-srv4 /sbin/ip -- addr add 192.168.2.4/24 dev eth1 2>/dev/null`
+      12. `docker exec clab-acl-test-srv3 /sbin/ip -- route add 192.168.1.0/24 via 192.168.2.254 2>/dev/null`
 
 ### Basic ops
 
 To access the Servers:
 
-   1. `docker exec -it clab-acl-test-srv1 bash`
-   2. `docker exec -it clab-acl-test-srv2 bash`
+   1. `docker exec -it clab-acl-test-srv1 bash` (VRF1)
+   2. `docker exec -it clab-acl-test-srv2 bash` (VRF1)
+   3. `docker exec -it clab-acl-test-srv3 bash` (VRF2)
+   4. `docker exec -it clab-acl-test-srv4 bash` (VRF2)
 
 To access the leaves:
 
@@ -65,10 +77,23 @@ Kibana is [here](http://localhost:5601/)
 ### Tests
 
 1. Make sure the servers can reach the anycast GW:
-   1. Both: `ping 192.168.0.254`
-2. Make sure the servers can reach each other:
-   1. SRV1: `ping 192.168.0.2`
-   2. SRV2: `ping 192.168.0.1`
-3. Test TCP ports:
+   1. VRF1: `ping 192.168.1.254`
+   2. VRF2: `ping 192.168.2.254`
+2. Make sure the servers can reach each other within L2 EVPN:
+   1. SRV1: `ping 192.168.1.2`
+   2. SRV2: `ping 192.168.1.1`
+   3. SRV3: `ping 192.168.2.4`
+   4. SRV4: `ping 192.168.2.3`
+3. Make sure IRB within Switch is ok:
+   1. SRV1: `ping 192.168.2.3`
+   2. SRV2: `ping 192.168.2.4`
+   3. SRV3: `ping 192.168.1.1`
+   4. SRV4: `ping 192.168.1.2`
+4. Make sure IRB over EVPN is ok:
+   1. SRV1: `ping 192.168.2.4`
+   2. SRV2: `ping 192.168.2.3`
+   3. SRV3: `ping 192.168.1.2`
+   4. SRV4: `ping 192.168.1.1`
+5. Test TCP ports:
    1. SRV1: `nc -l 80`
-   2. SRV2: `nc -vw2 192.168.0.1 80`
+   2. SRV2: `nc -vw2 192.168.1.1 80`

@@ -1,7 +1,17 @@
 ---
 interface:
-  # server
+  # server2
   - name: ethernet-1/1
+    admin-state: enable
+    vlan-tagging: true
+    subinterface:
+      - index: 0
+        type: bridged
+        admin-state: enable
+        vlan:
+          encap:
+            untagged: {}
+  - name: ethernet-1/2
     admin-state: enable
     vlan-tagging: true
     subinterface:
@@ -38,19 +48,44 @@ interface:
         ipv4:
           admin-state: enable
           address:
-            - ip-prefix: 192.168.0.254/24
+            - ip-prefix: 192.168.1.254/24
               anycast-gw: true
           arp:
             learn-unsolicited: true
-            host-route:
-              populate:
-                - route-type: static
-                - route-type: dynamic
             evpn:
               advertise:
                 - route-type: dynamic
+            host-route:
+              populate:
+                - route-type: static
+                  datapath-programming: true
+                - route-type: dynamic
+                  datapath-programming: true
         anycast-gw:
           virtual-router-id: 1
+  - name: irb2
+    admin-state: enable
+    subinterface:
+      - index: 0
+        admin-state: enable
+        ipv4:
+          admin-state: enable
+          address:
+            - ip-prefix: 192.168.2.254/24
+              anycast-gw: true
+          arp:
+            learn-unsolicited: true
+            evpn:
+              advertise:
+                - route-type: dynamic
+            host-route:
+              populate:
+                - route-type: static
+                  datapath-programming: true
+                - route-type: dynamic
+                  datapath-programming: true
+        anycast-gw:
+          virtual-router-id: 2
 
 tunnel-interface:
   - name: vxlan1
@@ -59,10 +94,20 @@ tunnel-interface:
         type: bridged
         ingress:
           vni: 1
-      - index: 10000
+      - index: 2
+        type: bridged
+        ingress:
+          vni: 2
+      - index: 10001
         type: routed
         ingress:
-          vni: 10000
+          vni: 10001
+        egress:
+          source-ip: use-system-ipv4-address
+      - index: 10002
+        type: routed
+        ingress:
+          vni: 10002
         egress:
           source-ip: use-system-ipv4-address
 
@@ -119,20 +164,20 @@ network-instance:
     interface:
       - name: irb1.0
     vxlan-interface:
-      - name: vxlan1.10000
+      - name: vxlan1.10001
     protocols:
       bgp-evpn:
         bgp-instance:
           - id: 1
             admin-state: enable
-            vxlan-interface: vxlan1.10000
-            evi: 10000
+            vxlan-interface: vxlan1.10001
+            evi: 10001
       bgp-vpn:
         bgp-instance:
           - id: 1
             route-target:
-              export-rt: target:1:10000
-              import-rt: target:1:10000
+              export-rt: target:1:10001
+              import-rt: target:1:10001
   - name: vrf-1
     type: mac-vrf
     admin-state: enable
@@ -154,3 +199,44 @@ network-instance:
             route-target:
               export-rt: target:1:1
               import-rt: target:1:1
+  - name: l3vrf-2
+    type: ip-vrf
+    admin-state: enable
+    interface:
+      - name: irb2.0
+    vxlan-interface:
+      - name: vxlan1.10002
+    protocols:
+      bgp-evpn:
+        bgp-instance:
+          - id: 1
+            admin-state: enable
+            vxlan-interface: vxlan1.10002
+            evi: 10002
+      bgp-vpn:
+        bgp-instance:
+          - id: 1
+            route-target:
+              export-rt: target:1:10002
+              import-rt: target:1:10002
+  - name: vrf-2
+    type: mac-vrf
+    admin-state: enable
+    interface:
+      - name: ethernet-1/2.0
+      - name: irb2.0
+    vxlan-interface:
+      - name: vxlan1.2
+    protocols:
+      bgp-evpn:
+        bgp-instance:
+          - id: 1
+            admin-state: enable
+            vxlan-interface: vxlan1.2
+            evi: 2
+      bgp-vpn:
+        bgp-instance:
+          - id: 1
+            route-target:
+              export-rt: target:1:2
+              import-rt: target:1:2

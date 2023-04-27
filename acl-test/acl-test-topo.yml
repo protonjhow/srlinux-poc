@@ -39,14 +39,32 @@ topology:
       mgmt_ipv6: fc00:100:101::51
       exec:
         - ip link set address 00:c1:ab:00:00:01 dev eth1
-        - ip addr add 192.168.0.1/24 dev eth1
+        - ip addr add 192.168.1.1/24 dev eth1
+        - ip route add 192.168.2.0/24 via 192.168.1.254
     srv2:
       kind: linux
       mgmt_ipv4: 100.101.0.52
       mgmt_ipv6: fc00:100:101::52
       exec:
         - ip link set address 00:c1:ab:00:00:02 dev eth1
-        - ip addr add 192.168.0.2/24 dev eth1
+        - ip addr add 192.168.1.2/24 dev eth1
+        - ip route add 192.168.2.0/24 via 192.168.1.254
+    srv3:
+      kind: linux
+      mgmt_ipv4: 100.101.0.53
+      mgmt_ipv6: fc00:100:101::53
+      exec:
+        - ip link set address 00:c1:ab:00:00:03 dev eth1
+        - ip addr add 192.168.2.3/24 dev eth1
+        - ip route add 192.168.1.0/24 via 192.168.2.254
+    srv4:
+      kind: linux
+      mgmt_ipv4: 100.101.0.54
+      mgmt_ipv6: fc00:100:101::54
+      exec:
+        - ip link set address 00:c1:ab:00:00:04 dev eth1
+        - ip addr add 192.168.2.4/24 dev eth1
+        - ip route add 192.168.1.0/24 via 192.168.2.254
     # logging stack
     elastic:
       kind: linux
@@ -91,3 +109,5 @@ topology:
     # server links
     - endpoints: ["srv1:eth1", "leaf1:e1-1"]
     - endpoints: ["srv2:eth1", "leaf2:e1-1"]
+    - endpoints: ["srv3:eth1", "leaf1:e1-2"]
+    - endpoints: ["srv4:eth1", "leaf2:e1-2"]

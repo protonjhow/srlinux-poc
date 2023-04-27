@@ -12,6 +12,10 @@ all:
           ansible_host: 100.101.0.51
         clab-acl-test-srv2:
           ansible_host: 100.101.0.52
+        clab-acl-test-srv3:
+          ansible_host: 100.101.0.53
+        clab-acl-test-srv4:
+          ansible_host: 100.101.0.54
     srl:
       hosts:
         clab-acl-test-leaf1:

@@ -1,0 +1,72 @@
+routing-policy:
+  prefix-set:
+    - name: vrf1_pfx
+      prefix:
+        - ip-prefix: "192.168.1.0/24"
+          mask-length-range: "24..32"
+    - name: vrf2_pfx
+      prefix:
+        - ip-prefix: "192.168.2.0/24"
+          mask-length-range: "24..32"
+  policy:
+    - name: VRF_Leak_1_2
+      statement:
+        - name: export-vrf1_pfx
+          match:
+            prefix-set: vrf1_pfx
+          action:
+            policy-result: accept
+      default-action:
+        policy-result: reject
+    - name: VRF_Leak_2_1
+      statement:
+        - name: export-vrf2_pfx
+          match:
+            prefix-set: vrf2_pfx
+          action:
+            policy-result: accept
+      default-action:
+        policy-result: reject
+
+network-instance:
+  - name: l3vrf-1
+    inter-instance-policies:
+      apply-policy:
+        import-policy: VRF_Leak_2_1
+        export-policy: VRF_Leak_1_2
+  - name: l3vrf-2
+    inter-instance-policies:
+      apply-policy:
+        import-policy: VRF_Leak_1_2
+        export-policy: VRF_Leak_2_1
+
+acl:
+  ipv4-filter:
+    - name: permit_ipv4_srv1_srv3_dport80
+      entry:
+        - sequence-id: 1000
+          description: http from srv1 to srv3 on tcp/80
+          action:
+            accept: {}
+          match:
+            protocol: tcp
+            destination-ip:
+              prefix: 192.168.2.3/32
+            source-ip:
+              prefix: 192.168.1.1/32
+            destination-port:
+              value: 80
+        - sequence-id: 65535
+          description: default deny
+          action:
+            drop:
+              log: true
+
+interface: 
+  - name: irb1
+    subinterface: 
+      - index: 0
+        acl: 
+          input: 
+            ipv4-filter: 
+              - "permit_ipv4_srv1_srv3_dport80"

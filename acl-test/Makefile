@@ -13,7 +13,7 @@ deploy-clab-ci: ## Deploy ACL test topology
 	sudo clab deploy -t acl-test-topo.yml --reconfigure
 	cp clab-acl-test/ansible-inventory.yml acl-test-inventory.yml
 	poetry run python3 baseline_acl_test_topo.py
-	sleep 10 && ./add-saved-objects.sh
+	sleep 15 && ./add-saved-objects.sh
 
 destroy-clab-ci: ## Destroy ACL test topology
 	sudo clab destroy -t acl-test-topo.yml --cleanup
