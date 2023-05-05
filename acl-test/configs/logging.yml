@@ -91,7 +91,7 @@ system:
               match-above: informational
           - subsystem-name: acl
             priority:
-              match-above: informational
+              match-above: debug
           - subsystem-name: bfd
             priority:
               match-above: informational
