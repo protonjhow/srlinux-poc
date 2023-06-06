@@ -2,18 +2,20 @@
 interface:
   - name: ethernet-1/1
     admin-state: enable
-    mtu: 9216
+    mtu: 8982
     subinterface:
       - index: 0
+        ip-mtu: 8968
         ipv4:
           admin-state: enable
           address:
             - ip-prefix: 192.168.11.2/30
   - name: ethernet-1/2
     admin-state: enable
-    mtu: 9216
+    mtu: 8982
     subinterface:
       - index: 0
+        ip-mtu: 8968
         ipv4:
           admin-state: enable
           address:
@@ -23,6 +25,7 @@ interface:
     # mtu: 9216
     subinterface:
       - index: 0
+        ip-mtu: 8968
         ipv4:
           admin-state: enable
           address:

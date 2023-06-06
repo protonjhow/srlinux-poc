@@ -3,6 +3,7 @@ interface:
   # server
   - name: ethernet-1/1
     admin-state: enable
+    mtu: 8932
     vlan-tagging: true
     subinterface:
       - index: 0
@@ -14,9 +15,10 @@ interface:
   # spine
   - name: ethernet-1/49
     admin-state: enable
-    mtu: 9216
+    mtu: 8982
     subinterface:
       - index: 0
+        ip-mtu: 8968
         ipv4:
           admin-state: enable
           address:
@@ -24,7 +26,7 @@ interface:
   # loopback
   - name: system0
     admin-state: enable
-    # mtu: 9216
+    ip-mtu: 8968
     subinterface:
       - index: 0
         ipv4:
@@ -34,6 +36,7 @@ interface:
   # anycastgw
   - name: irb1
     admin-state: enable
+    ip-mtu: 8968
     subinterface:
       - index: 0
         admin-state: enable
