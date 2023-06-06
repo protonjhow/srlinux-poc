@@ -26,7 +26,6 @@ interface:
   # loopback
   - name: system0
     admin-state: enable
-    ip-mtu: 8968
     subinterface:
       - index: 0
         ipv4:
@@ -36,10 +35,10 @@ interface:
   # anycastgw
   - name: irb1
     admin-state: enable
-    ip-mtu: 8968
     subinterface:
       - index: 0
         admin-state: enable
+        ip-mtu: 8968
         ipv4:
           admin-state: enable
           address:

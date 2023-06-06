@@ -22,10 +22,8 @@ interface:
             - ip-prefix: 192.168.12.2/30
   - name: system0
     admin-state: enable
-    # mtu: 9216
     subinterface:
       - index: 0
-        ip-mtu: 8968
         ipv4:
           admin-state: enable
           address:
