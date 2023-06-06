@@ -9,7 +9,7 @@ mgmt:
 topology:
   kinds:
     srl:
-      image: ghcr.io/nokia/srlinux:latest
+      image: ghcr.io/nokia/srlinux:23.3.2
       labels:
         ansible-no-host-var: "true"
       wait-for:
