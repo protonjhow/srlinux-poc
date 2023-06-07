@@ -1,21 +1,23 @@
 ---
+system: 
+  mtu:
+    default-port-mtu: 9212
+    default-l2-mtu: 9212
+    default-ip-mtu: 9194
+    min-path-mtu: 9212
 interface:
   - name: ethernet-1/1
     admin-state: enable
-    mtu: 8982
     subinterface:
       - index: 0
-        ip-mtu: 8968
         ipv4:
           admin-state: enable
           address:
             - ip-prefix: 192.168.11.2/30
   - name: ethernet-1/2
     admin-state: enable
-    mtu: 8982
     subinterface:
       - index: 0
-        ip-mtu: 8968
         ipv4:
           admin-state: enable
           address:
