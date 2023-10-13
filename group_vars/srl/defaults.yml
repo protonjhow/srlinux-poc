@@ -5,8 +5,8 @@ port: 57400
 connection_options:
   pygnmi:
     extras:
-      # path_cert: "./clab-zur1-pods/.tls/cr1/cr1.pem"
-      # path_key: "./clab-zur1-pods/.tls/cr1/cr1.key"
-      path_root: "./clab-zur1-pods/.tls/ca/ca.pem"
+      # path_cert: "./clab-dc1-pods/.tls/cr1/cr1.pem"
+      # path_key: "./clab-dc1-pods/.tls/cr1/cr1.key"
+      path_root: "./clab-dc1-pods/.tls/ca/ca.pem"
       skip_verify: False
       insecure: False

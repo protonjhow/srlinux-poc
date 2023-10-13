@@ -1,29 +1,29 @@
 ---
-clab-zur1-pods-cr1:
+clab-dc1-pods-cr1:
   # hostname: 2001:172:20:20::2
-  hostname: clab-zur1-pods-cr1
+  hostname: clab-dc1-pods-cr1
   username: admin
   password: NokiaSrl1!
   port: 57400
   connection_options:
     pygnmi:
       extras:
-        path_cert: "./clab-zur1-pods/.tls/cr1/cr1.pem"
-        path_key: "./clab-zur1-pods/.tls/cr1/cr1.key"
-        path_root: "./clab-zur1-pods/.tls/ca/ca.pem"
+        path_cert: "./clab-dc1-pods/.tls/cr1/cr1.pem"
+        path_key: "./clab-dc1-pods/.tls/cr1/cr1.key"
+        path_root: "./clab-dc1-pods/.tls/ca/ca.pem"
         skip_verify: False
         insecure: False
-clab-zur1-pods-pod1-lf1:
+clab-dc1-pods-pod1-lf1:
   # hostname: 2001:172:20:20::3
-  hostname: clab-zur1-pods-pod1-lf1
+  hostname: clab-dc1-pods-pod1-lf1
   username: admin
   password: NokiaSrl1!
   port: 57400
   connection_options:
     pygnmi:
       extras:
-        path_cert: "./clab-zur1-pods/.tls/pod1-lf1/pod1-lf1.pem"
-        path_key: "./clab-zur1-pods/.tls/pod1-lf1/pod1-lf1.key"
-        path_root: "./clab-zur1-pods/.tls/ca/ca.pem"
+        path_cert: "./clab-dc1-pods/.tls/pod1-lf1/pod1-lf1.pem"
+        path_key: "./clab-dc1-pods/.tls/pod1-lf1/pod1-lf1.key"
+        path_root: "./clab-dc1-pods/.tls/ca/ca.pem"
         skip_verify: False
         insecure: False

@@ -3,9 +3,9 @@ import requests
 import json
 
 DEVICE_LIST = [
-    "clab-zur1-pods-pod1-sp1",
-    "clab-zur1-pods-pod1-sp2",
-    "clab-zur1-pods-pod1-sp3",
+    "clab-dc1-pods-pod1-sp1",
+    "clab-dc1-pods-pod1-sp2",
+    "clab-dc1-pods-pod1-sp3",
 ]
 VRF = "default"
 BGP_PEERS = {"underlay": 6, "overlay-fabric": 6}
@@ -55,7 +55,7 @@ for group in BGP_GROUPS:
             ),
             headers=headers,
             auth=requests.auth.HTTPBasicAuth(*default_cred),
-            verify="clab-zur1-pods/.tls/ca/ca.pem",
+            verify="clab-dc1-pods/.tls/ca/ca.pem",
         )
 
         success, result = assert_bgp_peer_status(response, group)

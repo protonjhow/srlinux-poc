@@ -10,11 +10,11 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 deploy-clab-ci: ## Deploy "ci" test topology
-	sudo clab deploy -t zur1.yml --reconfigure
-	./config_zur1.sh && sleep 5 # Give system some time to settle
+	sudo clab deploy -t dc1.yml --reconfigure
+	./config_dc1.sh && sleep 5 # Give system some time to settle
 
 destroy-clab-ci: ## Destroy "ci" test topology
-	sudo clab destroy -t zur1.yml --cleanup
+	sudo clab destroy -t dc1.yml --cleanup
 
 run-tests: $(TESTS) ## Run all CI tests under ./ci/
 	#bash -c $<

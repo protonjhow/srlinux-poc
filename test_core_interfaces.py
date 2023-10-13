@@ -2,7 +2,7 @@
 import requests
 import json
 
-DEVICE_LIST = ["clab-zur1-pods-cr1", "clab-zur1-pods-cr2", "clab-zur1-pods-cr3"]
+DEVICE_LIST = ["clab-dc1-pods-cr1", "clab-dc1-pods-cr2", "clab-dc1-pods-cr3"]
 INTERFACE_LIST = [
     "ethernet-1/3",
     "ethernet-1/4",
@@ -54,7 +54,7 @@ for device in DEVICE_LIST:
             ),
             headers=headers,
             auth=requests.auth.HTTPBasicAuth(*default_cred),
-            verify="clab-zur1-pods/.tls/ca/ca.pem",
+            verify="clab-dc1-pods/.tls/ca/ca.pem",
         )
         success, result = assert_interface_status(response)
 

@@ -3,29 +3,29 @@
 CFG_DIR=./configs
 
 configure_SRL() {
-  OUT=$(gnmic -a clab-zur1-pods-$1 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file $CFG_DIR/$1.yml 2>&1)
+  OUT=$(gnmic -a clab-dc1-pods-$1 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file $CFG_DIR/$1.yml 2>&1)
   echo $OUT | grep -q -e '\"operation\": \"UPDATE\"'
   if [ $? -eq 0 ]; then
-    docker exec clab-zur1-pods-$1 sr_cli "save startup" > /dev/null
+    docker exec clab-dc1-pods-$1 sr_cli "save startup" > /dev/null
   else
-    echo "Error: Unable to push config into clab-zur1-pods-$1."
+    echo "Error: Unable to push config into clab-dc1-pods-$1."
   fi
   echo $OUT > /dev/null
 }
 
 configure_WEBSRV() {
-  docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- bond0 2>/dev/null
-  docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- vlan200 2>/dev/null
+  docker exec clab-dc1-pods-$1 /usr/sbin/ifup -- bond0 2>/dev/null
+  docker exec clab-dc1-pods-$1 /usr/sbin/ifup -- vlan200 2>/dev/null
 }
 
 configure_HAPSRV() {
-  docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- bond0 2>/dev/null
-  docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- vlan900 2>/dev/null
+  docker exec clab-dc1-pods-$1 /usr/sbin/ifup -- bond0 2>/dev/null
+  docker exec clab-dc1-pods-$1 /usr/sbin/ifup -- vlan900 2>/dev/null
 }
 
 configure_DBSRV() {
-  docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- bond0 2>/dev/null
-  docker exec clab-zur1-pods-$1 /usr/sbin/ifup -- vlan500 2>/dev/null
+  docker exec clab-dc1-pods-$1 /usr/sbin/ifup -- bond0 2>/dev/null
+  docker exec clab-dc1-pods-$1 /usr/sbin/ifup -- vlan500 2>/dev/null
 }
 
 echo
@@ -75,17 +75,17 @@ echo
 
 ## manual commands
 # core
-# gnmic -a clab-zur1-pods-cr1 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/cr1.yml
-# gnmic -a clab-zur1-pods-cr2 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/cr2.yml
-# gnmic -a clab-zur1-pods-cr3 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/cr3.yml
+# gnmic -a clab-dc1-pods-cr1 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/cr1.yml
+# gnmic -a clab-dc1-pods-cr2 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/cr2.yml
+# gnmic -a clab-dc1-pods-cr3 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/cr3.yml
 # spine
-# gnmic -a clab-zur1-pods-pod1-sp1 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-sp1.yml
-# gnmic -a clab-zur1-pods-pod1-sp2 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-sp2.yml
- #gnmic -a clab-zur1-pods-pod1-sp3 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-sp3.yml
+# gnmic -a clab-dc1-pods-pod1-sp1 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-sp1.yml
+# gnmic -a clab-dc1-pods-pod1-sp2 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-sp2.yml
+ #gnmic -a clab-dc1-pods-pod1-sp3 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-sp3.yml
 # leaf
-# gnmic -a clab-zur1-pods-pod1-lf1 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf1.yml
-# gnmic -a clab-zur1-pods-pod1-lf2 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf2.yml
-# gnmic -a clab-zur1-pods-pod1-lf3 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf3.yml
-# gnmic -a clab-zur1-pods-pod1-lf4 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf4.yml
-# gnmic -a clab-zur1-pods-pod1-lf5 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf5.yml
-# gnmic -a clab-zur1-pods-pod1-lf6 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf6.yml
+# gnmic -a clab-dc1-pods-pod1-lf1 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf1.yml
+# gnmic -a clab-dc1-pods-pod1-lf2 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf2.yml
+# gnmic -a clab-dc1-pods-pod1-lf3 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf3.yml
+# gnmic -a clab-dc1-pods-pod1-lf4 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf4.yml
+# gnmic -a clab-dc1-pods-pod1-lf5 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf5.yml
+# gnmic -a clab-dc1-pods-pod1-lf6 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf6.yml
