@@ -1,6 +1,6 @@
-.zur1.yml
-.zur1.yml.bak
-clab-zur1-pods/*
+.dc1.yml
+.dc1.yml.bak
+clab-dc1-pods/*
 sros-vm.lic
 .vscode
 nornir.log
