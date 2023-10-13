@@ -2,39 +2,40 @@
 Playing about with Nokia SRLinux
 
 ### pre-req
-this uses a SROS image for the edge router. this requires a licence file to work. make sure you add the licence file as `sros-vm.lic` and that this is __NEVER__ committed to the repo. 
+this uses a SROS image for the edge router. this requires a licence file to work. make sure you add the licence file as `sros-vm.lic` and that this is __NEVER__ committed to the repo. Alternatively, comment out all the edge* lines
 
 ## How to use me!
 1. install containerlab
-2. stand up the lab instance
+2. `make build-containers` to ensure you have the base container images we use for "servers" in the topology. Skipping this will mean the "servers" dont work and may stop the topology being deployed.
+3. stand up the lab instance
 
-`sudo containerlab deploy --topo zur1.yml`
+`sudo containerlab deploy --topo dc1.yml`
 
 ```
 +----+-------------------------------+--------------+----------------------------------------+-------+---------+-----------------+-----------------------+
 | #  |             Name              | Container ID |                 Image                  | Kind  |  State  |  IPv4 Address   |     IPv6 Address      |
 +----+-------------------------------+--------------+----------------------------------------+-------+---------+-----------------+-----------------------+
-|  1 | clab-zur1-pods-cr1            | be255e03427b | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.7/24  | 2001:172:20:20::7/64  |
-|  2 | clab-zur1-pods-cr2            | 30422041d98f | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.14/24 | 2001:172:20:20::e/64  |
-|  3 | clab-zur1-pods-cr3            | e4e69fa7af9e | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.11/24 | 2001:172:20:20::b/64  |
-|  4 | clab-zur1-pods-pod1-cab1-srv1 | 279110513cbc | ghcr.io/hellt/network-multitool:latest | linux | running | 172.20.20.4/24  | 2001:172:20:20::4/64  |
-|  5 | clab-zur1-pods-pod1-cab2-srv1 | acb6e5c86956 | ghcr.io/hellt/network-multitool:latest | linux | running | 172.20.20.5/24  | 2001:172:20:20::5/64  |
-|  6 | clab-zur1-pods-pod1-cab3-srv1 | dd77ca034a71 | ghcr.io/hellt/network-multitool:latest | linux | running | 172.20.20.12/24 | 2001:172:20:20::c/64  |
-|  7 | clab-zur1-pods-pod1-lf1       | 9042d96a9b0c | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.6/24  | 2001:172:20:20::6/64  |
-|  8 | clab-zur1-pods-pod1-lf2       | 0a9f01d9fc4e | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.15/24 | 2001:172:20:20::f/64  |
-|  9 | clab-zur1-pods-pod1-lf3       | d376aaab3349 | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.16/24 | 2001:172:20:20::10/64 |
-| 10 | clab-zur1-pods-pod1-lf4       | 183bfb29149d | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.10/24 | 2001:172:20:20::a/64  |
-| 11 | clab-zur1-pods-pod1-lf5       | bf871385fa6c | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.9/24  | 2001:172:20:20::9/64  |
-| 12 | clab-zur1-pods-pod1-lf6       | db36c52b9e65 | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.8/24  | 2001:172:20:20::8/64  |
-| 13 | clab-zur1-pods-pod1-sp1       | 62c1383183a2 | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.13/24 | 2001:172:20:20::d/64  |
-| 14 | clab-zur1-pods-pod1-sp2       | e12066ff0d40 | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.2/24  | 2001:172:20:20::2/64  |
-| 15 | clab-zur1-pods-pod1-sp3       | 37b23e311b4b | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.3/24  | 2001:172:20:20::3/64  |
+|  1 | clab-dc1-pods-cr1            | be255e03427b | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.7/24  | 2001:172:20:20::7/64  |
+|  2 | clab-dc1-pods-cr2            | 30422041d98f | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.14/24 | 2001:172:20:20::e/64  |
+|  3 | clab-dc1-pods-cr3            | e4e69fa7af9e | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.11/24 | 2001:172:20:20::b/64  |
+|  4 | clab-dc1-pods-pod1-cab1-srv1 | 279110513cbc | ghcr.io/hellt/network-multitool:latest | linux | running | 172.20.20.4/24  | 2001:172:20:20::4/64  |
+|  5 | clab-dc1-pods-pod1-cab2-srv1 | acb6e5c86956 | ghcr.io/hellt/network-multitool:latest | linux | running | 172.20.20.5/24  | 2001:172:20:20::5/64  |
+|  6 | clab-dc1-pods-pod1-cab3-srv1 | dd77ca034a71 | ghcr.io/hellt/network-multitool:latest | linux | running | 172.20.20.12/24 | 2001:172:20:20::c/64  |
+|  7 | clab-dc1-pods-pod1-lf1       | 9042d96a9b0c | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.6/24  | 2001:172:20:20::6/64  |
+|  8 | clab-dc1-pods-pod1-lf2       | 0a9f01d9fc4e | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.15/24 | 2001:172:20:20::f/64  |
+|  9 | clab-dc1-pods-pod1-lf3       | d376aaab3349 | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.16/24 | 2001:172:20:20::10/64 |
+| 10 | clab-dc1-pods-pod1-lf4       | 183bfb29149d | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.10/24 | 2001:172:20:20::a/64  |
+| 11 | clab-dc1-pods-pod1-lf5       | bf871385fa6c | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.9/24  | 2001:172:20:20::9/64  |
+| 12 | clab-dc1-pods-pod1-lf6       | db36c52b9e65 | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.8/24  | 2001:172:20:20::8/64  |
+| 13 | clab-dc1-pods-pod1-sp1       | 62c1383183a2 | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.13/24 | 2001:172:20:20::d/64  |
+| 14 | clab-dc1-pods-pod1-sp2       | e12066ff0d40 | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.2/24  | 2001:172:20:20::2/64  |
+| 15 | clab-dc1-pods-pod1-sp3       | 37b23e311b4b | ghcr.io/nokia/srlinux:latest           | srl   | running | 172.20.20.3/24  | 2001:172:20:20::3/64  |
 +----+-------------------------------+--------------+----------------------------------------+-------+---------+-----------------+-----------------------+
 ```
 
 3. deploy the configs
 
-`./config_zur1.sh`
+`./config_dc1.sh`
 
 4. check underlay is working
 
@@ -105,7 +106,7 @@ IPv4 prefixes with active ECMP routes: 5
 
 _this is showing the three (one per leaf pair) servers in vrf-1. this works when you first spawn the lab, but since there is no persistent traffic, these will age out. you might have to jump on one srv1 and ping another one to put traffic on the fabric_
 
-```docker exec -it clab-zur1-pods-pod1-cab1-srv1 ping -c3 192.168.0.2```
+```docker exec -it clab-dc1-pods-pod1-cab1-srv1 ping -c3 192.168.0.2```
 
 ```
 A:pod1-lf1# show network-instance vrf-1 bridge-table mac-table all
@@ -201,14 +202,14 @@ Note how the Designated Forwarder (DF) is alternatingly chosen for each VLAN
 ## talk to the env
 ### get to a shell
 #### srl box cli
-`docker exec -it clab-zur1-pods-pod1-sp1 sr_cli`
+`docker exec -it clab-dc1-pods-pod1-sp1 sr_cli`
 
 #### srv shell
-`docker exec -it clab-zur1-pods-pod1-cab1-srv1 bash`
+`docker exec -it clab-dc1-pods-pod1-cab1-srv1 bash`
 
 ### config management
 #### "manually" push a yaml config to an srl box
-`gnmic -a clab-zur1-pods-pod1-lf1 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf1.yml`
+`gnmic -a clab-dc1-pods-pod1-lf1 --timeout 30s -u admin -p NokiaSrl1! -e json_ietf --skip-verify set --update-path / --update-file configs/pod1-lf1.yml`
 
 ----
 
