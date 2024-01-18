@@ -18,7 +18,7 @@ help:
 
 deploy-full: ## Deploy full topology
 	sudo clab deploy -t dc1.yml --reconfigure 
-	cp dc1-pods/ansible-inventory.yml .
+	cp clab-dc1-pods/ansible-inventory.yml .
 	./config_dc1.sh && sleep 5 # Give system some time to settle
 
 destroy-full: ## Destroy full topology
@@ -27,14 +27,14 @@ destroy-full: ## Destroy full topology
 
 deploy-no-edge: ## Deploy topology without SROS Edges
 	sudo clab deploy -t dc1.yml --reconfigure --node-filter ${spines},${leaves},${cores},${webservers},${hapservers},${dbservers}
-	cp dc1-pods/ansible-inventory.yml .
+	cp clab-dc1-pods/ansible-inventory.yml .
 	./config_dc1.sh && sleep 5 # Give system some time to settle
 
 
 destroy-no-edge: ## Destroy topology without SROS Edges
 	sudo clab destroy -t dc1.yml --cleanup --node-filter ${spines},${leaves},${cores},${webservers},${hapservers},${dbservers}
 	rm ansible-inventory.yml
-	
+
 run-tests: $(TESTS) ## Run all CI tests under ./ci/
 	#bash -c $<
 	python3 test_fabric_interfaces.py
