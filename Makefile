@@ -20,6 +20,7 @@ deploy-full: ## Deploy full topology
 	sudo clab deploy -t dc1.yml --reconfigure 
 	cp clab-dc1-pods/ansible-inventory.yml .
 	./config_dc1.sh && sleep 5 # Give system some time to settle
+	poetry run python3 scripts/push_leaf_configs.py
 
 destroy-full: ## Destroy full topology
 	sudo clab destroy -t dc1.yml --cleanup
@@ -29,7 +30,7 @@ deploy-no-edge: ## Deploy topology without SROS Edges
 	sudo clab deploy -t dc1.yml --reconfigure --node-filter ${spines},${leaves},${cores},${webservers},${hapservers},${dbservers}
 	cp clab-dc1-pods/ansible-inventory.yml .
 	./config_dc1.sh && sleep 5 # Give system some time to settle
-
+	poetry run python3 scripts/push_leaf_configs.py
 
 destroy-no-edge: ## Destroy topology without SROS Edges
 	sudo clab destroy -t dc1.yml --cleanup --node-filter ${spines},${leaves},${cores},${webservers},${hapservers},${dbservers}
